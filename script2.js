@@ -1,5 +1,8 @@
-// here's a global I'm not sure how to get out of global
-let currentPermittedWidth = 0;
+// what about cleaning this mess up?
+
+// globals i'd like to get out of the global space
+// let functionArr =[];
+// let skullPixels =[];
 
 // 'secret' image to get inserted
 const secretImg = new Image()
@@ -9,7 +12,29 @@ secretImg.src = './skull.png'
 const bgImg = new Image();
 bgImg.src = './rhino.jpg';
 
-secretImg.onload = () => {	
+(function main() {
+	// set up the destination canvas
+	const canvas = document.getElementById('destinationCanvas')
+	const ctx = canvas.getContext('2d');
+	const pixelScale = 4;
+
+	// get the pixel information for the secret image
+	const { functionArr, secretPixelArr } = getSecretImageData();	
+
+	// get the pixel information for the background image
+	const sourceData = (getSourceData("sourceCanvas", 199, bgImg));
+	ctx.canvas.width = sourceData.width * pixelScale;
+	ctx.canvas.height = sourceData.height * pixelScale;
+
+	draw(164, sourceData, ctx, pixelScale);
+}());
+
+
+
+
+
+function getSecretImageData() {
+secretImg.onload = function() {
   const secretPixels = getSourceData('skullCanvas', 112, secretImg);  
   // create an array of functions
   // each function describes where that pixel should be in a grid given a width
@@ -21,102 +46,75 @@ secretImg.onload = () => {
   });
   skullPixels = secretPixels.pixelArr;
   return {
-  	pixelArr: secretPixels.pixelArr,
+  	secretPixelArr: secretPixels.pixelArr,
   	functionArr: functionArr,
   }
+  });
 }
 
-bgImg.onload = () => {	
-	// get the pixel information for the background image
-	const sourceData = (getSourceData("sourceCanvas", 199, bgImg));
 
-	// set up the destination canvas
-	const canvas = document.getElementById('destinationCanvas')
-	const ctx = canvas.getContext('2d');
-	const pixelScale = 4;
-	ctx.canvas.width = sourceData.width * pixelScale;
-	ctx.canvas.height = sourceData.height * pixelScale;
-	applySecretImage(sourceData, 164);
+function oldOnLoadFunc() {		
 
-	draw(0, sourceData, ctx, pixelScale);
-	controls(sourceData, ctx, pixelScale, canvas)	
-}
+	//==============for inscribing text or another image into the canvas==================
+	//==============pass sourceData.pixelArr to a function that will================
+	//==============modify it's values and return the modified array======================
 
-function controls(sourceData, ctx, pixelScale, canvas){	
-	let direction = null;
-	let timerId = null;
-
- 	canvas.onclick = (e) => {
- 		if (timerId !== null) { 			
- 			clearInterval(timerId);
- 		} 		
- 		const seek = Math.round(e.offsetX/pixelScale);	 		
-
- 		if (currentPermittedWidth < seek) {
- 			direction = 1;
- 		} else {
- 			direction = -1
- 		}	 	
- 		  		
-		timerId = setInterval(() => { 			 					
- 			if (currentPermittedWidth === seek) { 				
- 				clearInterval(timerId);	 				
- 			} else {	 				
- 				currentPermittedWidth+=direction;
- 				draw(currentPermittedWidth, sourceData, ctx, pixelScale);
- 			}
- 		},50) 		
- }
+	let width = 10; // based on the definition of A below, it will render correctly at this value
+	const height = sourceData.height;
+	const A = [2, width+1, width+3, width*2, (width*2)+4, width*3, (width*3)+1, (width*3)+2, (width*3)+3,(width*3)+4, (width*4), (width*4)+4];
+	A.forEach(point => sourceData.pixelArr[point + height-1]  = 255);
+	width = 11;
+	const M = [0, 4, width, width+1, width+3, width+4, (width*2), (width*2)+2, (width*2)+4, (width*3), (width*3)+4, (width*4), (width*4),(width*4)+4];
 	
- 	//assign functions to keyCodes
-	function control(e) {
-		if (timerId !== null) { 			
- 			clearInterval(timerId);
- 		}
-		//scrub right		
-		if (currentPermittedWidth < canvas.width/pixelScale && e.keyCode === 39) {			
-			currentPermittedWidth++;
-			draw(currentPermittedWidth, sourceData, ctx, pixelScale);
-		//scrub left
-		} else if (currentPermittedWidth > 0 && e.keyCode === 37) {
-			currentPermittedWidth--;
-			draw(currentPermittedWidth, sourceData, ctx, pixelScale);			
-		}
-	}
-	document.addEventListener('keydown', control)
-}
-
-function applySecretImage(sourceData, resolveWidth) {
-	const secretData = secretImg.onload();
-	console.log(secretData);
-
-	// reduce brightness of background
+	M.forEach(point => sourceData.pixelArr[point + height*2-5]  = 255);
+	
 	for (let i = 0; i < sourceData.pixelArr.length; i++) {
 		sourceData.pixelArr[i] -= 50;		
 	}
 
 	for (let i = 0; i < functionArr.length; i+=3) {
-		// don't apply black pixels
-		if (secretData.pixelArr[i] === 0) continue;
-		// using the functions in the function array to supply indicies
-		// insert the pixels from the secret image into the background image
-		sourceData.pixelArr[functionArr[i](resolveWidth)-270] = secretData.pixelArr[i]+5;
-	}	
-}		
-
-	//==========================secret text======================================
-	// let width = 10; // based on the definition of A below, it will render correctly at this value
-	// const height = sourceData.height;
-	// const A = [2, width+1, width+3, width*2, (width*2)+4, width*3, (width*3)+1, (width*3)+2, (width*3)+3,(width*3)+4, (width*4), (width*4)+4];
-	// A.forEach(point => sourceData.pixelArr[point + height-1]  = 255);
-	// width = 11;
-	// const M = [0, 4, width, width+1, width+3, width+4, (width*2), (width*2)+2, (width*2)+4, (width*3), (width*3)+4, (width*4), (width*4),(width*4)+4];
+		if (skullPixels[i] === 0) continue;
+		sourceData.pixelArr[functionArr[i](164)-270] = skullPixels[i]+5;
+	}
 	
-	// M.forEach(point => sourceData.pixelArr[point + height*2-5]  = 255);
+	//====================================================================================
+
+	// for (let frames=1; frames < sourceData.width+1; frames++) {
+	// 	setTimeout(draw, frames*100, frames);
+	// }
+	draw(164);
+
+	let drawIndex = 0;
+ 	canvas.onmousemove = handleMouseMove;
+ 		function handleMouseMove(event) {
+ 			if (event.offsetX % pixelScale === 0) {
+ 				drawIndex = event.offsetX/4;
+ 				draw(drawIndex);
+ 			}
+ 		}
+	
+ 	//assign functions to keyCodes
+	function control(e) {		
+		if (e.keyCode === 39) {
+			drawIndex++;
+			draw(drawIndex);
+		} else if (e.keyCode === 37) {
+			drawIndex--;
+			draw(drawIndex);
+			
+		}
+	}
+	document.addEventListener('keydown', control)
+	
+
+//==================================================================================================//
+// still inside img.onload function here....
+//==================================================================================================//
+}; // end of old img.onload function....
 
 
 function draw(permittedWidth, sourceData, ctx, pixelScale) {
-// draw	a frame at a given permitted width		
+// draw	a frame at a given permitted width	
 	const length = sourceData.pixelArr.length;		
 	const pixelsToDraw = (sourceData.height * permittedWidth)-1;
 	
@@ -139,14 +137,16 @@ function draw(permittedWidth, sourceData, ctx, pixelScale) {
 	let counter2 = 0;
 	for (let column = 0; column < sourceData.height; column++) {
 		for (let row = permittedWidth; row < sourceData.width; row++) {
-			let pixel = sourceData.pixelArr[length-remaining]/8;		
+			let pixel = sourceData.pixelArr[length-remaining]/4;		
 			ctx.fillStyle = `rgb(${pixel},${pixel},${pixel})`;
 			ctx.fillRect(row*pixelScale, column*pixelScale, pixelScale, pixelScale);
 			remaining--;		
 			counter2++;
 		}
-	}					
+	}						
 }
+
+
 
 function getSourceData(sourceName, targetWidth, imageRef) {
 	// get the canvas context

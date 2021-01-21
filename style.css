@@ -1,0 +1,30 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+	background-color: #141a2b;
+}
+
+#sourceCanvas {
+	display: none;
+}
+
+#skullCanvas {
+	display: none;
+}
+
+#destinationCanvas {
+	background-color: red;
+	/*width: 768px;
+	height: 582px;*/
+}
+
+.layoutContainer {			
+	background-color: #02210f;
+	/*z-index: -3;	*/
+}
+
+
+
+	
+

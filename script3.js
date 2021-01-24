@@ -1,15 +1,48 @@
-// here's a global I'm not sure how to get out of global
-let currentPermittedWidth = 0;
+	// // here's a global I'm not sure how to get out of global
+	// let currentPermittedWidth = 0;
 
-// 'secret' image to get inserted
-const secretImg = new Image()
-secretImg.src = './skull.png'
+	// // 'secret' image to get inserted
+	// const secretImg = new Image()
+	// secretImg.src = './skull.png'
 
-// background image
-const bgImg = new Image();
-bgImg.src = './rhino.jpg';
+	// // background image
+	// const bgImg = new Image();
+	// bgImg.src = './rhino.jpg';
 
-secretImg.onload = () => {	
+
+(function main(){
+
+	// YAY, this was global but now it's encapsulated!
+	let currentPermittedWidth = 0;
+
+	// 'secret' image to get inserted
+	const secretImg = new Image()
+	secretImg.src = './skull.png'
+
+	// background image
+	const bgImg = new Image();
+	bgImg.src = './rhino.jpg';
+
+	let secretLoaded = false;
+	let bgLoaded = false;
+
+	secretImg.addEventListener('load', (event) => {	
+		secretLoaded = true;
+	});
+
+	bgImg.addEventListener('load', (event) => {	
+		bgLoaded = true;	
+	});
+
+	const loadMonitorTimer = setInterval(()=> {
+		if (secretLoaded && bgLoaded) {
+			clearInterval(loadMonitorTimer);
+			backgroundOnload(bgImg, secretImg, currentPermittedWidth);
+		}
+	},100);
+}());
+
+function secretOnload(secretImg){	
   const secretPixels = getSourceData('skullCanvas', 112, secretImg);  
   // create an array of functions
   // each function describes where that pixel should be in a grid given a width
@@ -19,14 +52,14 @@ secretImg.onload = () => {
   	const offset = index % secretPixels.width;  	
   	functionArr.push((width) => (width*row + offset));
   });
-  skullPixels = secretPixels.pixelArr;
+  
   return {
   	pixelArr: secretPixels.pixelArr,
   	functionArr: functionArr,
   }
 }
 
-bgImg.onload = () => {	
+function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {	
 	// get the pixel information for the background image
 	const sourceData = (getSourceData("sourceCanvas", 199, bgImg));
 
@@ -36,14 +69,14 @@ bgImg.onload = () => {
 	const pixelScale = 4;
 	ctx.canvas.width = sourceData.width * pixelScale;
 	ctx.canvas.height = sourceData.height * pixelScale;
-	applySecretImage(sourceData, 164);
+	applySecretImage(sourceData, 164, secretImg);
 	applySecretText(sourceData);
 
 	draw(0, sourceData, ctx, pixelScale);
-	controls(sourceData, ctx, pixelScale, canvas);		
+	controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth);		
 }
 
-function controls(sourceData, ctx, pixelScale, canvas){	
+function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){	
 	let direction = null;
 	let timerId = null;
  	canvas.onclick = (e) => {
@@ -83,8 +116,8 @@ function controls(sourceData, ctx, pixelScale, canvas){
 	document.addEventListener('keydown', control)
 }
 
-function applySecretImage(sourceData, resolveWidth) {
-	const secretData = secretImg.onload();
+function applySecretImage(sourceData, resolveWidth, secretImg) {
+	const secretData = secretOnload(secretImg);
 	console.log(secretData);
 	// reduce brightness of background
 	for (let i = 0; i < sourceData.pixelArr.length; i++) {

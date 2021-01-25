@@ -1,3 +1,5 @@
+//what about rendering text in a canvas on top of this one?
+
 (function main(){
 
 	// YAY, this was global but now it's encapsulated!
@@ -54,7 +56,7 @@ function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {
 	// set up the destination canvas
 	const canvas = document.getElementById('destinationCanvas')
 	const ctx = canvas.getContext('2d');
-	const pixelScale = 4;
+	const pixelScale = 6;
 	ctx.canvas.width = sourceData.width * pixelScale;
 	ctx.canvas.height = sourceData.height * pixelScale;
 	applySecretImage(sourceData, 164, secretImg);
@@ -67,8 +69,7 @@ function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {
 function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){	
 	let direction = null;
 	let timerId = null;
- 	canvas.onclick = (e) => {
- 		console.log(e);
+ 	canvas.onclick = (e) => { 		
  		if (timerId !== null) { 			
  			clearInterval(timerId);
  		} 		
@@ -248,14 +249,18 @@ function draw(permittedWidth, sourceData, ctx, pixelScale) {
 							// which pixel do I select from sourceData based on column and row?
 							let pixelIndex = row + (column*permittedWidth)
 							if (pixelIndex > pixelsToDraw) break outer;
-							const pixel = sourceData.pixelArr[pixelIndex]-10;			
+							const pixel = sourceData.pixelArr[pixelIndex]-10;
+							ctx.fillStyle = `rgba(0,0,0,0)`;
+							ctx.fillRect(row*pixelScale, column*pixelScale, pixelScale, pixelScale);			
 							ctx.fillStyle = `rgba(${pixel},${pixel},${pixel},1)`;
-							ctx.fillRect(row*pixelScale, column*pixelScale, pixelScale, pixelScale);
+							ctx.fillRect(row*pixelScale, column*pixelScale, pixelScale, pixelScale-4);
+							
 							counter++;		
 						}
 	}
 
-	let remaining = length - counter;			
+	// use the remaining pixels to "fill in" the empty part of the canvass
+	/*let remaining = length - counter;			
 
 	let counter2 = 0;
 	for (let column = 0; column < sourceData.height; column++) {
@@ -266,7 +271,7 @@ function draw(permittedWidth, sourceData, ctx, pixelScale) {
 			remaining--;		
 			counter2++;
 		}
-	}					
+	}*/					
 }
 
 function getSourceData(sourceName, targetWidth, imageRef) {

@@ -1,15 +1,3 @@
-	// // here's a global I'm not sure how to get out of global
-	// let currentPermittedWidth = 0;
-
-	// // 'secret' image to get inserted
-	// const secretImg = new Image()
-	// secretImg.src = './skull.png'
-
-	// // background image
-	// const bgImg = new Image();
-	// bgImg.src = './rhino.jpg';
-
-
 (function main(){
 
 	// YAY, this was global but now it's encapsulated!
@@ -70,7 +58,7 @@ function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {
 	ctx.canvas.width = sourceData.width * pixelScale;
 	ctx.canvas.height = sourceData.height * pixelScale;
 	applySecretImage(sourceData, 164, secretImg);
-	applySecretText(sourceData);
+	// applySecretText(sourceData);
 
 	draw(0, sourceData, ctx, pixelScale);
 	controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth);		
@@ -80,23 +68,30 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 	let direction = null;
 	let timerId = null;
  	canvas.onclick = (e) => {
+ 		console.log(e);
  		if (timerId !== null) { 			
  			clearInterval(timerId);
  		} 		
- 		const seek = Math.round(e.offsetX/pixelScale); 		
- 		if (currentPermittedWidth < seek) {
- 			direction = 1;
+ 		const seek = Math.round(e.offsetX/pixelScale);
+ 		if (!e.shiftKey) { 		
+	 		if (currentPermittedWidth < seek) {
+	 			direction = 1;
+	 		} else {
+	 			direction = -1
+	 		} 		  		
+			timerId = setInterval(() => { 			 					
+	 			if (currentPermittedWidth === seek) { 				
+	 				clearInterval(timerId);	 				
+	 			} else {	 				
+	 				currentPermittedWidth+=direction;
+	 				draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+	 			}
+	 		},50)
  		} else {
- 			direction = -1
- 		} 		  		
-		timerId = setInterval(() => { 			 					
- 			if (currentPermittedWidth === seek) { 				
- 				clearInterval(timerId);	 				
- 			} else {	 				
- 				currentPermittedWidth+=direction;
- 				draw(currentPermittedWidth, sourceData, ctx, pixelScale);
- 			}
- 		},50) 		
+ 			currentPermittedWidth = seek;
+ 			draw(seek, sourceData, ctx, pixelScale);
+ 		}		
+ 		 		
  	}	
  	//assign functions to keyCodes
 	function control(e) {
@@ -117,8 +112,7 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 }
 
 function applySecretImage(sourceData, resolveWidth, secretImg) {
-	const secretData = secretOnload(secretImg);
-	console.log(secretData);
+	const secretData = secretOnload(secretImg);	
 	// reduce brightness of background
 	for (let i = 0; i < sourceData.pixelArr.length; i++) {
 		sourceData.pixelArr[i] -= 50;		
@@ -132,10 +126,63 @@ function applySecretImage(sourceData, resolveWidth, secretImg) {
 	}	
 }		
 
-function applySecretText(sourceData) {	
-	applyChar('A', 5, 0);  // row 1, char 1
-	applyChar('B', 5, 40); // row 2, char 1
-	applyChar('C', 5, 80); // row 3, char 1
+function applySecretText(sourceData) {
+	console.log('sourceData.width:', sourceData.width);
+	// currentPermittedWidth = row width
+	// row width * char grid height = the offset to bump a char down one row
+	// chars are plotted on a 5x5 grid
+
+	// nth row offset
+	// nth row offset = currentPermittedWidth * 6 * desired row / column index + 1
+	// this is for column position 0
+	// nth column = desired column * 6 ???
+	// postion = row offset + column offset
+	// const resolvePointCount = Math.floor(sourceData.width/6);
+	// console.log(resolvePointCount);
+
+	// const resolvePoints = [];
+
+	// for (let i = 0; i < resolvePointCount; i++) {
+	// 	resolvePoints.push(((i+1)*6)-1);
+	// }
+	// console.log('resolvePoints:', resolvePoints);
+
+
+	// const resolvePoints = alphabet.map((letter, index) => {
+	// 	return ((index+1)*6)-1;
+	// })
+	// console.log('resolvePoints:', resolvePoints);
+
+	// const rowHeads = [0];
+	// let rowHead = 4	
+	// for (let i = 1; i < resolvePoints.length; i++) {
+	// 	rowHeads.push(rowHead*resolvePoints[i]);
+	// 	rowHead+=3;
+	// }
+	// console.log('rowHeads:', rowHeads);
+
+	
+
+
+	applyChar('A', 5, 0);  //		* 1 = 0 
+
+	applyChar('A', 11, 44); // 11 * 4 = 44
+	applyChar('B', 11, 44+6);
+
+	applyChar('A', 17, 119); // 17 * 7 = 119
+	applyChar('B', 17, 119+6);
+	applyChar('C', 17, 119+6+6);
+
+	applyChar('A', 23, 230); // 23 * 10 = 230
+	applyChar('B', 23, 230+6);
+	applyChar('C', 23, 230+6+6);
+	applyChar('D', 23, 230+6+6+6);
+
+	applyChar('A', 29, 377); // 29 * 13 = 377
+	applyChar('B', 29, 377+6);
+	applyChar('C', 29, 377+6+6);
+	applyChar('D', 29, 377+6+6+6);
+	applyChar('E', 29, 377+6+6+6+6);
 
 	function applyChar(char, resolveWidth, positionOffset){
 		const width = resolveWidth;			
@@ -214,7 +261,7 @@ function draw(permittedWidth, sourceData, ctx, pixelScale) {
 	for (let column = 0; column < sourceData.height; column++) {
 		for (let row = permittedWidth; row < sourceData.width; row++) {
 			let pixel = sourceData.pixelArr[length-remaining]/4;		
-			ctx.fillStyle = `rgb(${pixel},${pixel},${pixel})`;
+			ctx.fillStyle = `rgb(${pixel},${pixel},${pixel},1)`;
 			ctx.fillRect(row*pixelScale, column*pixelScale, pixelScale, pixelScale);
 			remaining--;		
 			counter2++;
@@ -233,8 +280,7 @@ function getSourceData(sourceName, targetWidth, imageRef) {
 	source_ctx.drawImage(imageRef, 0, 0, targetWidth, targetHeight);
 
 	// retrieve the pixel data from the source canvas
-  const imageData = source_ctx.getImageData(0, 0, targetWidth, targetHeight);
-  console.log(imageData);
+  const imageData = source_ctx.getImageData(0, 0, targetWidth, targetHeight);  
   // run the functions that reduce the bit depth and convert to grayscale  
   const destroyedImg = destroyImg(imageData);	
 

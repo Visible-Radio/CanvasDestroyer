@@ -1,3 +1,0 @@
-// what about cleaning this mess up?
-// what about advancing automatically to the next hidden image?
-// text that appears at different resolve points

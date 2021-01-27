@@ -26,8 +26,11 @@ body {
 }
 
 #littleContainer {
-	/*position: absolute;*/
-	/*top: 734px;*/
+	/*position: absolute;
+	top: 734px;*/
+
+	/*background-color: #141a2b88;*/
+	/*background-color: rgb(160,0,90)*/
 }
 
 #textLayer {	
@@ -43,7 +46,8 @@ body {
 .layoutContainer {
 	/*transform: scale(0.75);*/
 	margin-top: 0px;
-	position: relative;					
+	position: relative;
+	/*width:100%;					*/
 }
 .layoutContainer:hover {
 	cursor: pointer;
@@ -51,19 +55,15 @@ body {
 
 button {
 	height: 35px;
-	width: 35px;	
-	/*border-radius: 5px;*/
+	width: 35px;		
 	font-size: 20px;
-	border: none;
-	padding: 5px;
-	letter-spacing: 3px;
-	font-family: courier;
-	
+	border: none;	
+	font-family: courier;	
 	color: #141a2b;
 	z-index: 3;
 }
 
-button:hover {		
+#resolveImage:hover, #resolveSecret:hover {		
 	transition-property: transform filter width;
 	transition-duration: 0.2s;
 	transform: scale(1.15);
@@ -71,7 +71,7 @@ button:hover {
 	border-radius: 50%;
 }
 
-button:active {
+#resolveImage:active, #resolveSecret:active{
 	transition-property: transform filter;
 	transition-duration: 0.1s;
 	transform: scale(0.98);
@@ -96,6 +96,59 @@ button:focus {
 	left: 1100px;
 	background-color: rgb(220,190,0);
 	color: rgb(130,60,0);	
+}
+
+#scrubberRef {
+	position:relative;
+}
+
+#scrubber {
+	position: absolute;
+	top: 700px;
+	left: 1143px;
+	width: max-content;
+	/*border: 1px solid red;*/
+}
+
+#scrubLeft {
+	position: relative;	
+	background-color: transparent;	
+	width: 0; 
+  height: 0; 
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;  
+  border-right: 35px solid rgb(0,190,0); 
+}
+
+#scrubRight {
+	position: relative;
+	background-color: transparent;	
+	width: 0; 
+  height: 0; 
+  border-top: 17px solid rgba(0,190,0,0);
+  border-bottom: 17px solid transparent;  
+  border-left: 35px solid rgb(0,190,0);	
+}
+
+#scrubRight:hover {
+	transition-property: transform filter;
+	transition-duration: 0.2s;	
+	filter: brightness(1.5);
+	transform: scale(1.15);
+}
+
+#scrubLeft:hover {
+	transition-property: transform filter;
+	transition-duration: 0.2s;	
+	filter: brightness(1.5); 
+	transform: scale(1.15);	
+}
+
+#scrubLeft:active, #scrubRight:active {
+	transition-property: transform filter;
+	transition-duration: 0.2s;	
+	filter: brightness(1.5); 
+	transform: scale(0.75);	
 }
 
 #horizontal {

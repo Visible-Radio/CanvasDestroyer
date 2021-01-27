@@ -1,7 +1,7 @@
 (function main(){
 
 	// YAY, this was global but now it's encapsulated!
-	let currentPermittedWidth = 0;
+	let currentPermittedWidth = 199;
 
 	// 'secret' image to get inserted
 	const secretImg = new Image()
@@ -59,8 +59,7 @@ function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {
 	const pixelScale = 6;
 	ctx.canvas.width = sourceData.width * pixelScale;
 	ctx.canvas.height = sourceData.height * pixelScale;
-	applySecretImage(sourceData, 164, secretImg);	
-	// applyText(sourceData, pixelScale);
+	applySecretImage(sourceData, 164, secretImg);		
 	draw(199, sourceData, ctx, pixelScale);
 	controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth);		
 }
@@ -68,14 +67,42 @@ function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {
 function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 	// button controls
 	const resolveImage = document.querySelector('#resolveImage');
-	const resolveSecret = document.querySelector('#resolveSecret');	
+	const resolveSecret = document.querySelector('#resolveSecret');
+	const scrubber = document.querySelector('#scrubber');
+	const scrubLeft = document.querySelector('#scrubLeft');
+	console.log(scrubLeft);
+
+	const setScrubber = () => {
+		scrubber.style.left =	`${currentPermittedWidth*pixelScale-50}px`;
+	}
+
+	scrubber.onmousedown = (e) => {
+		console.log(e);
+	}	
+	scrubLeft.onclick = (e) => {		
+		let scrubberPosition = getComputedStyle(scrubber).left;
+		if (currentPermittedWidth > 0) {
+			currentPermittedWidth--;
+			scrubberPosition -= pixelScale;			
+			draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+			setScrubber();	
+		}
+	}
+	scrubRight.onclick = (e) => {		
+		let scrubberPosition = getComputedStyle(scrubber).left;
+		if (currentPermittedWidth < canvas.width/pixelScale) {						
+			currentPermittedWidth++;
+			scrubberPosition += pixelScale;				
+			draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+			setScrubber();	
+		}
+	}
 
 	// click controls	
 	const container = document.querySelector('#destinationCanvas');
 	let direction = null;
 	let timerId = null;
- 	container.onclick = (e) => {
- 	console.log("click!");
+ 	container.onclick = (e) => { 	
  		if (timerId !== null) { 			
  			clearInterval(timerId);
  		} 		
@@ -92,11 +119,13 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 	 			} else {	 				
 	 				currentPermittedWidth+=direction;
 	 				draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+	 				setScrubber();
 	 			}
 	 		},50)
  		} else {
  			currentPermittedWidth = seek;
  			draw(seek, sourceData, ctx, pixelScale);
+ 			setScrubber();
  		} 		 		
  	}	
 
@@ -109,11 +138,13 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
  		if (e.keyCode === 38) {
  			currentPermittedWidth = canvas.width/pixelScale;
  			draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+ 			setScrubber();
  		}
  		// rewind to beginning
  		if (e.keyCode === 40) {
  			currentPermittedWidth = 0;
  			draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+ 			setScrubber();
  		}  		
 		//scrub right	
 		else if (currentPermittedWidth < canvas.width/pixelScale && e.keyCode === 39) {						
@@ -133,6 +164,7 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
  		}		
 		currentPermittedWidth = canvas.width/pixelScale;
  		draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+ 		setScrubber();
 	}
 
 	resolveSecret.onclick = (e) => {
@@ -141,6 +173,7 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
  		}		
 		currentPermittedWidth = 164;
  		draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+ 		setScrubber();
 	}
 }
 
@@ -159,98 +192,6 @@ function applySecretImage(sourceData, resolveWidth, secretImg) {
 	}	
 }		
 
-function applyText(sourceData, pixelScale) {		
- 	// set up the text layer canvas
-	const canvas = document.getElementById('textLayer')
-	const ctx = canvas.getContext('2d');	
-	ctx.canvas.width = sourceData.width * pixelScale;
-	ctx.canvas.height = sourceData.height * pixelScale;
-	const width = sourceData.width;
-				
-	const characterMaps = {
-		'0' : [0, 1, 2, 3, 4, width, width+3, width+4, (width*2), (width*2)+2, (width*2)+4, (width*3), (width*3)+1, (width*3)+4, (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4], 
-		'1': [1, 2, width+2, (width*2)+2, (width*3)+2, (width*4)+1, (width*4)+2, (width*4)+3],
-		'2': [0, 1, 2, 3, 4, width+4, (width*2), (width*2)+1, (width*2)+2, (width*2)+3, (width*2)+4, (width*3), (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4], 
-		'3': [0, 1, 2, 3, 4, width+4, (width*2)+2, (width*2)+3, (width*2)+4, (width*3)+4, (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4], 
-		'4': [0, 4, width, width+4, (width*2), (width*2)+1, (width*2)+2, (width*2)+3, (width*2)+4, (width*3)+4, (width*4)+4], 
-		'5': [0, 1, 2, 3, 4, width, (width*2), (width*2)+1, (width*2)+2, (width*2)+3, (width*3)+3, (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3],
-		'6': [0, 1, 2, 3, 4, width, (width*2), (width*2)+1, (width*2)+2, (width*2)+3, (width*2)+4, (width*3), (width*3)+4, (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4],      
-		'7': [0, 1, 2, 3, 4, width+4, (width*2)+4, (width*3)+4, (width*4)+4],
-		'8': [0, 1, 2, 3, 4, width, width+4, (width*2), (width*2)+1, (width*2)+2, (width*2)+3, (width*2)+4, (width*3), (width*3)+4, (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4],   
-		'9': [0, 1, 2, 3, 4, width, width+4, (width*2), (width*2)+1, (width*2)+2, (width*2)+3, (width*2)+4, (width*3)+4, (width*4)+4],
-		' ': [],
-		'.': [width*4+1],
-		',': [width*4+1, (width*5)+1],
-		"'": [1, width+1],
-		'A' : [2, width+1, width+3, width*2, (width*2)+4, width*3, (width*3)+1, (width*3)+2, (width*3)+3,(width*3)+4, (width*4), (width*4)+4],
-		'B' : [0,1,2,3, width, width+4, (width*2), (width*2)+1, (width*2)+2, (width*2)+3, (width*2)+4, (width*3), (width*3)+4, width*4, (width*4)+1, (width*4)+2, (width*4)+3],
-		'C' : [0, 1, 2, 3, 4, width, (width*2), (width*3), (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4],
-		'D' : [0, 1, 2, 3, width, width+4, (width*2), (width*2)+4, (width*3), (width*3)+4, (width*4), (width*4)+1, (width*4)+2, (width*4)+3],
-		'E' : [0, 1, 2, 3, 4, width, (width*2), (width*2), (width*2)+1, (width*2)+2, (width*3), (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4],
-		'F' : [0, 1, 2, 3, 4, width, (width*2), (width*2), (width*2)+1, (width*2)+2, (width*3), (width*4), (width*4)],
-		'G' : [0, 1, 2, 3, 4, width, (width*2), (width*2)+2, (width*2)+3, (width*2)+4, (width*3), (width*3)+4, (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4],
-		'H' : [0, 4, width, width+4, (width*2), (width*2)+1, (width*2)+2, (width*2)+3, (width*2)+4, (width*3), (width*3)+4, (width*4), (width*4),(width*4)+4],
-		'I' : [0, 1, 2, 3, 4, width+2, (width*2)+2, (width*3)+2, (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4],
-		'J' : [width+4, width*3, (width*2)+4, (width*3)+4, (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4],
-		'K' : [0, 4, width, width+3, (width*2), (width*2)+1, (width*2)+2, (width*3), (width*3)+3, (width*4), (width*4),(width*4)+4],
-		'L' : [0, width, (width*2), (width*3), (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4],
-		'M' : [0, 4, width, width+1, width+3, width+4, (width*2), (width*2)+2, (width*2)+4, (width*3), (width*3)+4, (width*4), (width*4),(width*4)+4],
-		'N' : [0, 4, width, width+1, width+4, (width*2), (width*2)+2, (width*2)+4, (width*3), (width*3)+3, (width*3)+4, (width*4), (width*4),(width*4)+4],
-		'O' : [0, 1, 2, 3, 4, width, width+4, (width*2), (width*2)+4, (width*3), (width*3)+4, (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4],
-		'P' : [0,1,2,3, width, width+4, (width*2), (width*2)+1, (width*2)+2, (width*2)+3, (width*2)+4, (width*3), width*4],
-		'Q' : [0, 1, 2, 3, 4, width, width+4, (width*2), (width*2)+4, (width*3), (width*3)+4, (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4, (width*5)+2, (width*3)+2],
-		'R' : [0,1,2,3, width, width+4, (width*2), (width*2)+1, (width*2)+2, (width*2)+3, (width*2)+4, width*3, (width*3)+3, width*4, (width*4)+4],
-		'S' : [0, 1, 2, 3, 4, width, (width*2), (width*2)+4, (width*2)+1, (width*2)+2, (width*2)+3, (width*3)+4, (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4],
-		'T' : [0, 1, 2, 3, 4, width+2, (width*2)+2, (width*3)+2, (width*4)+2],
-		'U' : [0, 4, width, width+4, (width*2), (width*2)+4, (width*3), (width*3)+4, (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4],
-		'V' : [0, 4, width, width+4, (width*2), (width*2)+4, (width*3)+1, (width*3)+3, (width*4)+2],
-		'W' : [0, 4, width, width+4, (width*2), (width*2)+4, width*3, (width*3)+1, (width*3)+3, (width*3)+4, (width*2)+2, width*4, (width*4)+4],
-		'X' : [0, 4, width+1, width+3, (width*2)+2, (width*3)+1, (width*3)+3, (width*2)+2, width*4, (width*4)+4],
-		'Y' : [0, 4, width, width+4, (width*2), (width*2)+1, (width*2)+2, (width*2)+3, (width*2)+4, (width*3)+2, (width*4)+2],
-		'Z' : [0, 1, 2, 3, 4, width+3, (width*2)+2, (width*3)+1, (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4],
-	}
-
-	drawString("Patrick Kaipainen",1+width*21, true);
-	drawString("Web developer,",1+width*22, true);
-	drawString("pixel enthusiast",1+width*23, true);
-	
-	function drawString(string, start, mono) {
-		const chars = Array.from(string.toUpperCase());
-		let counter = 0;
-		chars.forEach((char, i) => drawChar(char, ((i+start) * pixelScale), mono));
-	}
-
-	function drawChar(char, offset, mono) {		
-		let textPixels = [];		
-		characterMaps[char.toUpperCase()].forEach(point => {
-			textPixels[point+offset] = 255;
-		})
-		if (mono) {
-			ctx.fillStyle = `rgba(240,170,0,1)`;
-		} else {
-			ctx.fillStyle = generateRandomColors();
-		}		
-		textPixels.forEach((textPixel,i) => {			
-			const x = Math.floor(i % width) * pixelScale;
-			const y = Math.floor(i / width) * pixelScale;						
-			ctx.fillRect(x, y, pixelScale, pixelScale);
-		})		
-	}
-
-	function generateRandomColors(){
-    const random = () => {
-        const num = Math.floor(Math.random() * (350 - 50) + 50);
-        return num > 255 ? 255 : num;           
-    } 
-      const R = random();
-      const G = random();
-      const B = random();
-      const A = 0.0      
-      const color = `rgb(${R}, ${G}, ${B})`;      
-      return color;          
-  }
-}
-
 function draw(permittedWidth, sourceData, ctx, pixelScale) {
 // draw	a frame at a given permitted width		
 	const length = sourceData.pixelArr.length;		
@@ -263,8 +204,7 @@ function draw(permittedWidth, sourceData, ctx, pixelScale) {
 							// which pixel do I select from sourceData based on column and row?
 							let pixelIndex = row + (column*permittedWidth)
 							if (pixelIndex > pixelsToDraw) break outer;
-							let pixel = sourceData.pixelArr[pixelIndex]-10;
-							if (pixel > 200) pixel -= 50;
+							let pixel = sourceData.pixelArr[pixelIndex];							
 							ctx.fillStyle = `rgba(0,0,0,0)`;
 							ctx.fillRect(row*pixelScale, column*pixelScale, pixelScale, pixelScale);			
 							ctx.fillStyle = `rgba(${pixel-25},${pixel-25},${pixel+10},1)`;

@@ -9,7 +9,7 @@
 
 	// background image
 	const bgImg = new Image();
-	bgImg.src = './rhino.jpg';
+	bgImg.src = './rhino_copy.jpg';
 
 	let secretLoaded = false;
 	let bgLoaded = false;
@@ -70,16 +70,37 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 	const resolveSecret = document.querySelector('#resolveSecret');
 	const scrubber = document.querySelector('#scrubber');
 	const scrubLeft = document.querySelector('#scrubLeft');
+	const container = document.querySelector('#destinationCanvas');
 	console.log(scrubLeft);
 
 	const setScrubber = () => {
 		scrubber.style.left =	`${currentPermittedWidth*pixelScale-50}px`;
 	}
 
-	scrubber.onmousedown = (e) => {
-		console.log(e);
+	function handleMousemove(e) {
+		if (timerId !== null) { 			
+ 			clearInterval(timerId);
+ 		} 		
+		const seek =parseInt((e.offsetX/pixelScale), 10);
+		currentPermittedWidth = seek;
+		draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+		setScrubber();		
 	}	
-	scrubLeft.onclick = (e) => {		
+
+	let mousedown = false;
+	scrubber.onmousedown = (e) => {
+		mousedown = true;		
+		container.addEventListener('mousemove', mousedown && handleMousemove);
+	}	
+	document.onmouseup = (e) => {
+		mousedown = false;		
+		container.removeEventListener('mousemove', handleMousemove);		
+	}
+
+	scrubLeft.onclick = (e) => {
+		if (timerId !== null) { 			
+ 			clearInterval(timerId);
+ 		}		
 		let scrubberPosition = getComputedStyle(scrubber).left;
 		if (currentPermittedWidth > 0) {
 			currentPermittedWidth--;
@@ -88,7 +109,10 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 			setScrubber();	
 		}
 	}
-	scrubRight.onclick = (e) => {		
+	scrubRight.onclick = (e) => {
+		if (timerId !== null) { 			
+ 			clearInterval(timerId);
+ 		}		
 		let scrubberPosition = getComputedStyle(scrubber).left;
 		if (currentPermittedWidth < canvas.width/pixelScale) {						
 			currentPermittedWidth++;
@@ -99,7 +123,7 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 	}
 
 	// click controls	
-	const container = document.querySelector('#destinationCanvas');
+	
 	let direction = null;
 	let timerId = null;
  	container.onclick = (e) => { 	
@@ -150,10 +174,12 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 		else if (currentPermittedWidth < canvas.width/pixelScale && e.keyCode === 39) {						
 			currentPermittedWidth++;			
 			draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+			setScrubber();
 		//scrub left
 		} else if (currentPermittedWidth > 0 && e.keyCode === 37) {
 			currentPermittedWidth--;
-			draw(currentPermittedWidth, sourceData, ctx, pixelScale);			
+			draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+			setScrubber();			
 		}
 	}
 	document.addEventListener('keydown', control);
@@ -208,7 +234,7 @@ function draw(permittedWidth, sourceData, ctx, pixelScale) {
 							ctx.fillStyle = `rgba(0,0,0,0)`;
 							ctx.fillRect(row*pixelScale, column*pixelScale, pixelScale, pixelScale);			
 							ctx.fillStyle = `rgba(${pixel-25},${pixel-25},${pixel+10},1)`;
-							ctx.fillRect(row*pixelScale, column*pixelScale, pixelScale, pixelScale-4);
+							ctx.fillRect(row*pixelScale, column*pixelScale, pixelScale, pixelScale-3);
 							
 							counter++;		
 						}
@@ -223,7 +249,7 @@ function draw(permittedWidth, sourceData, ctx, pixelScale) {
 		for (let row = permittedWidth; row < sourceData.width; row++) {
 			let pixel = sourceData.pixelArr[length-remaining]/2;		
 			ctx.fillStyle = `rgb(${pixel-25},${pixel-25},${pixel},1)`;
-			ctx.fillRect(row*pixelScale, column*pixelScale, pixelScale, pixelScale-4);
+			ctx.fillRect(row*pixelScale, column*pixelScale, pixelScale, pixelScale-3);
 			remaining--;		
 			counter2++;
 		}

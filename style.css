@@ -1,9 +1,67 @@
+:root {
+  --orangeTextColor: rgb(220,190,0);
+  --imageDestroyerWidth: 1194px;
+  --blueBlack:  #141a2b;
+  --blueBlackAlpha:  #141a2bbb;
+  --myMagenta: rgb(160,0,90);
+  --scrubberGreen: rgb(0,190,0);
+  --thickOutline: #444a5b;
+}
+
 body {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;	
-	background-color: #141a2b;	
+	background-color: white;	
+	font-family: Roboto, sans-serif;
+}
+
+#masterContainer {
+	/*transform: scale(0.75);*/
+	/*border: 1px solid blue;	*/
+}
+
+header {}
+h1 {
+	color: rgb(0,225,0);
+	/*color: white;*/
+	margin-bottom: -10px;
+	/*margin-left: 15px;*/
+	background-color: var(--blueBlack);
+	border: 10px solid var(--blueBlack);
+	padding: 5px;
+	border-radius: 15px 15px 0 0;
+}
+
+.headerContainer {			
+	display: flex;
+	z-index: 5;
+	background-color: white;	
+	flex-flow: row wrap;
+	align-items: flex-end;
+	color: var(--orangeTextColor);		
+	height: 140px;	
+	/*border: 1px solid red;*/
+}
+
+div.menu {
+	margin-left: auto;			
+}
+
+ul.menu {	
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 10px;
+	margin-right: 5px;
+}
+
+.menu-item {
+	color: var(--blueBlack);
+	font-size: 28px;
+	list-style: none;	
+	margin: 0 10px 0 10px;
+	padding: 3px;	
 }
 
 #sourceCanvas {
@@ -12,43 +70,39 @@ body {
 #skullCanvas {
 	display: none;
 }
-#textCanvas {
-	display: none;
+#destinationCanvas {
+	background-color: var(--blueBlack);		
 }
-
-#destinationCanvas {	
-	/*border: 3px solid rgb(55,0,0);	*/	
-}
-
 #littleCanvas {
-	margin-top: 6px;
-	/*border: 3px solid rgb(55,0,0);	*/
+	margin-top: 6px;	
 }
 
-#littleContainer {
-	/*position: absolute;
-	top: 734px;*/
+#littleContainer {}
 
-	/*background-color: #141a2b88;*/
-	/*background-color: rgb(160,0,90)*/
+#borderDiv {
+	border-left: 15px solid var(--blueBlack);
+	border-right: 15px solid var(--blueBlack);
+	border-bottom: 15px solid var(--blueBlack);
+	border-top: 15px solid var(--blueBlack);
+	background-color: var(--blueBlack);
+	border-radius: 0px 0px 15px 15px;
 }
 
-#textLayer {	
-	top: 0px;
-	left: 0px;
-	/*	top: 560px;
-	left: -305px;*/
-	position: absolute;		
-	/*transform: scale(1.5);*/
-	/*border: 1px solid blue;*/
+#borderDivB {	
+	background-color: var(--thickOutline);
+	border-left: 15px solid var(--thickOutline);
+	border-right: 15px solid var(--thickOutline);
+	border-bottom: 20px solid var(--thickOutline);
+	border-radius: 0 0 25px 25px;
 }
 
-.layoutContainer {
+.layoutContainer {		
 	/*transform: scale(0.75);*/
 	margin-top: 0px;
 	position: relative;
-	/*width:100%;					*/
+	width: var(--imageDestroyerWidth);
 }
+
 .layoutContainer:hover {
 	cursor: pointer;
 }
@@ -84,7 +138,7 @@ button:focus {
 
 #resolveImage {
 	position: absolute;
-	top: 825px;
+	top: 700px;
 	left: 1150px;	
 	background-color: rgb(160,0,90);
 	color: rgb(90,0,20);
@@ -92,19 +146,19 @@ button:focus {
 
 #resolveSecret {
 	position: absolute;
-	top: 825px;
+	top: 700px;
 	left: 1100px;
 	background-color: rgb(220,190,0);
 	color: rgb(130,60,0);	
 }
 
 #scrubberRef {
-	position:relative;
+	position:relative;	
 }
 
 #scrubber {
 	position: absolute;
-	top: 700px;
+	top: 640px;
 	left: 1143px;
 	width: max-content;
 	/*border: 1px solid red;*/
@@ -151,12 +205,20 @@ button:focus {
 	transform: scale(0.75);	
 }
 
-#horizontal {
+.horizontal {
+	border: none;
 	width: 100%;
 	height: 6px;
 	margin-top: 0px;	
-	background-color: rgb(160,0,90);
+	background-color: var(--myMagenta);
 	z-index: 4;
+}
+
+.hrThick {
+	width: 100%;
+	height: 10px;	
+	margin-bottom: 0px;
+	border-radius: 5px 5px 0 0;
 }
 
 

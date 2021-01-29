@@ -49,6 +49,57 @@ function secretOnload(secretImg){
   }
 }
 
+function manageScale() {
+	//initial window setup here
+	const layoutContainer = document.querySelector('.layoutContainer');
+	let layoutContainerHeight = layoutContainer.getBoundingClientRect().height;	
+	handleResize(null,230);
+	
+	// subsequent resize events handled here
+	document.addEventListener('webkitfullscreenchange', (e)=> console.log('fired'));
+	window.addEventListener('resize', handleResize, event);
+	function handleResize(e, heightOffset=550) {
+		let initialWidth = window.innerWidth;
+		let initialHeight = window.innerHeight;	
+	
+	  // deduct space from top of page
+	  let toTop = (document.querySelector('#scaleContainer')	  
+		 .getBoundingClientRect().top);
+		document.documentElement.style
+	   .setProperty('--topMargin', `-${toTop}px`);
+	
+	  const imageDestroyerWidth = parseInt(getComputedStyle(document.documentElement)
+	    .getPropertyValue('--imageDestroyerWidth'),10);  
+	  
+	  layoutContainerHeight = layoutContainer.getBoundingClientRect().height;
+	   
+	  //calculate two scale properties, then use the smaller of the two
+	  let scaleH = 1;
+	  let scaleW = 1;
+		
+		scaleH =  initialHeight / (layoutContainerHeight + heightOffset);
+		scaleH *= 100;
+		scaleH = Math.trunc(scaleH)/100;
+
+  	scaleW = initialWidth / (imageDestroyerWidth+100);
+  	scaleW *= 100;
+		scaleW = Math.trunc(scaleW)/100;  	
+
+		const scaleUpdate = (scaleH < scaleW) ? scaleH : scaleW;	
+	 	document.documentElement.style
+	   .setProperty('--scale', `${scaleUpdate}`);
+
+	  //console.log(`scaleHeight ${scaleH}\nscaleWidth ${scaleW}\nscaleUpdate ${scaleUpdate}`);
+
+	  // deduct space from top of page
+	  toTop = (document.querySelector('#scaleContainer')	  
+			.getBoundingClientRect().top);
+
+		document.documentElement.style
+	   .setProperty('--topMargin', `-${toTop}px`);		
+	}
+}
+
 function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {	
 	// get the pixel information for the background image
 	const sourceData = (getSourceData("sourceCanvas", 199, bgImg));
@@ -58,10 +109,13 @@ function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {
 	const ctx = canvas.getContext('2d');
 	const pixelScale = 6;
 	ctx.canvas.width = sourceData.width * pixelScale;
-	ctx.canvas.height = sourceData.height * pixelScale;
+	ctx.canvas.height = sourceData.height * pixelScale;	
+	manageScale();	
 	applySecretImage(sourceData, 164, secretImg);		
 	draw(199, sourceData, ctx, pixelScale);
-	controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth);		
+
+	controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth);
+	
 }
 
 function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
@@ -70,8 +124,7 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 	const resolveSecret = document.querySelector('#resolveSecret');
 	const scrubber = document.querySelector('#scrubber');
 	const scrubLeft = document.querySelector('#scrubLeft');
-	const container = document.querySelector('#destinationCanvas');
-	console.log(scrubLeft);
+	const container = document.querySelector('#destinationCanvas');	
 
 	const setScrubber = () => {
 		scrubber.style.left =	`${currentPermittedWidth*pixelScale-50}px`;
@@ -310,25 +363,27 @@ function destroyImg(imageData) {
 /*
 width, pixelScale, canvas element id, input text string, optional array of 3 rgb values
 */
+justText(54, 7, 'portfolioCanvas', 'Portfolio');
+justText(54, 7, 'aboutCanvas', 'About Me');
+justText(54, 7, 'contactCanvas', 'Contact');
 
 justText(120, 10, 'littleCanvas', 'Patrick Kaipainen   Web Developer,      Pixel enthusiast',[220,190,0]);
 //justText(160, 10, 'littleCanvas', 'it me, hello world patrick k;jahdkjlahdfh;iua kjhasekjrhasldkfh');
 
 function justText(width, pixelScale, canvasName, inputText, color) {
-	if (color) {
+	/*if (color) {
 		console.log('color parameter is here, it is', color);
 	}
 	if (!color) {
 		console.log('no color parameter')
-	}
+	}	*/
 	/* each character is defined in a 5x5 grid
 	after each write a space of one pixel is added
 	so the canvas width should be a multiple of 6
 	to avoid any extra space at the edges of the canvas */
 
 	// calculate the closest appropriate width based on the input width
-	const remainder = width % 6;
-	console.log(remainder);
+	const remainder = width % 6;	
 	if (remainder === 0) {
 		width = width - 1;
 	} else if (remainder === 5) {
@@ -345,6 +400,10 @@ function justText(width, pixelScale, canvasName, inputText, color) {
 	
  	// set up the text layer canvas
 	const canvas = document.getElementById(canvasName)
+	if (canvas === null) {
+		console.log("couldn't get canvas element")
+		return;
+	} 
 	const ctx = canvas.getContext('2d');	
 	ctx.canvas.width = width * pixelScale;
 	ctx.canvas.height = height * pixelScale;

@@ -5,45 +5,71 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<div id="scaleContainer">
 <div id="masterContainer">
-	<header>
-		<div class="container headerContainer">
-			<h1>Patrick Kaipainen</h1>
-			<div class="menu">
-				<ul class="menu">
-					<li class="menu-item">Portfolio</li>
-					<li class="menu-item">About</li>
-					<li class="menu-item">Contact</li>
-				</ul>				
-			</div>			
-		</div>				
-	</header>	
-	<canvas id="sourceCanvas"></canvas>
-	<canvas id="skullCanvas"></canvas>
-	<hr class="horizontal hrThick">
-	<div id="borderDivB">		
-	<div id="borderDiv">		
-			<div class="layoutContainer">
-				<div id="scrubberRef">	
-					<div id="scrubber">
-						<button id="scrubLeft"></button>
-						<button id="scrubRight"></button>
-					</div>
-					<canvas id="destinationCanvas">A canvas element onto which a pixelated image is drawn. The pixel data that is rendered here actually contains two images interlaced with each other that resolve at different points depending on user input.</canvas>	
-					<button id="resolveImage"></button>
-					<button id="resolveSecret"></button>
-					<hr class="horizontal">
-					<div id="littleContainer">
-						<canvas id="littleCanvas">Patrick Kaipainen Web Developer, Pixel Enthusiast</canvas>
-					<div>
-				</div>
-			</div>		
-	</div>
-	</div>
-
 	
 
+
+		<header>
+			<div class="container headerContainer">
+				<h1>Patrick Kaipainen</h1>
+				<div class="menu">
+					<ul class="menu">
+						<li class="menu-item">Portfolio</li>
+						<li class="menu-item">About</li>
+						<li class="menu-item">Contact</li>
+					</ul>				
+				</div>			
+			</div>				
+		</header>
+
+	
+		<canvas id="sourceCanvas"></canvas>
+		<canvas id="skullCanvas"></canvas>
+		<hr class="horizontal hrThick">
+		<div id="borderDivB">		
+			<div id="borderDiv">		
+					<div class="layoutContainer">
+						<div id="scrubberRef">	
+							<div id="scrubber">
+								<button id="scrubLeft"></button>
+								<button id="scrubRight"></button>
+							</div>
+							<canvas id="destinationCanvas">A canvas element onto which a pixelated image is drawn. The pixel data that is rendered here actually contains two images interlaced with each other that resolve at different points depending on user input.</canvas>	
+							<button id="resolveImage"></button>
+							<button id="resolveSecret"></button>
+							<hr class="horizontal">
+							<div id="littleContainer">
+								<canvas id="littleCanvas">Patrick Kaipainen Web Developer, Pixel Enthusiast</canvas>
+							</div>
+						</div>		
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
+
+<!-- <div class="torso">
+	<canvas id="portfolioCanvas" class="sectionCanvas">Portfolio</canvas>
+
+	<section id="about" class="about">
+		<div class="aboutImage">
+			<img id="headshot" src="./coolin2.jpg">
+		</div>
+		<div class="aboutText">
+			<canvas id="aboutCanvas" class="sectionCanvas">About Me</canvas>
+			<p>Hello, I'm Patrick! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+	</section>
+	<canvas id="contactCanvas" class="sectionCanvas">Contact</canvas>
+</div> -->
 	<script type="text/javascript" src="script3.js"></script>
 </body>
 </html>

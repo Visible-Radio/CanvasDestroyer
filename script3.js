@@ -53,7 +53,7 @@ function manageScale() {
 	//initial window setup here
 	const layoutContainer = document.querySelector('.layoutContainer');
 	let layoutContainerHeight = layoutContainer.getBoundingClientRect().height;	
-	handleResize(null,230);
+	handleResize(null,250);
 	
 	// subsequent resize events handled here
 	document.addEventListener('webkitfullscreenchange', (e)=> console.log('fired'));
@@ -61,13 +61,6 @@ function manageScale() {
 	function handleResize(e, heightOffset=550) {
 		let initialWidth = window.innerWidth;
 		let initialHeight = window.innerHeight;	
-	
-		//turns out instead of doing this I should have set transform-origin: center top; in CSS
-	  // deduct space from top of page
-	  /*let toTop = (document.querySelector('#scaleContainer')	  
-		 .getBoundingClientRect().top);
-		document.documentElement.style
-	   .setProperty('--topMargin', `-${toTop}px`);*/
 	
 	  const imageDestroyerWidth = parseInt(getComputedStyle(document.documentElement)
 	    .getPropertyValue('--imageDestroyerWidth'),10);  
@@ -77,7 +70,7 @@ function manageScale() {
 	  //calculate two scale properties, then use the smaller of the two
 	  let scaleH = 1;
 	  let scaleW = 1;
-		
+				
 		scaleH =  initialHeight / (layoutContainerHeight + heightOffset);
 		scaleH *= 100;
 		scaleH = Math.trunc(scaleH)/100;
@@ -88,16 +81,7 @@ function manageScale() {
 
 		const scaleUpdate = (scaleH < scaleW) ? scaleH : scaleW;	
 	 	document.documentElement.style
-	   .setProperty('--scale', `${scaleUpdate}`);
-
-	  //console.log(`scaleHeight ${scaleH}\nscaleWidth ${scaleW}\nscaleUpdate ${scaleUpdate}`);
-
-	  // deduct space from top of page
-	  // turns out instead of doing this I should have set transform-origin: center top; in CSS
-	  /*toTop = (document.querySelector('#scaleContainer')	  
-			.getBoundingClientRect().top);
-		document.documentElement.style
-	   .setProperty('--topMargin', `-${toTop}px`);	*/	
+	   .setProperty('--scale', `${scaleUpdate}`);	   
 	}
 }
 
@@ -111,7 +95,11 @@ function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {
 	const pixelScale = 6;
 	ctx.canvas.width = sourceData.width * pixelScale;
 	ctx.canvas.height = sourceData.height * pixelScale;	
-	manageScale();	
+	// manageScale(); 
+	/*
+	manually implemented responsiveness for image destroyer
+	works pretty good, but better to do it with CSS if possible
+	*/
 	applySecretImage(sourceData, 164, secretImg);		
 	draw(199, sourceData, ctx, pixelScale);
 	controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth);	
@@ -124,16 +112,19 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 	const scrubber = document.querySelector('#scrubber');
 	const scrubLeft = document.querySelector('#scrubLeft');
 	const container = document.querySelector('#destinationCanvas');	
-
+	
 	const setScrubber = () => {
-		scrubber.style.left =	`${currentPermittedWidth*pixelScale-50}px`;
+		// need current true width of the canvas element
+		const scrubberScale = currentPermittedWidth*pixelScale/ctx.canvas.width;			
+		scrubber.style.left =	`${scrubberScale*100}%`;
 	}
 
 	function handleMousemove(e) {
 		if (timerId !== null) { 			
  			clearInterval(timerId);
  		} 		
-		const seek =parseInt((e.offsetX/pixelScale), 10);
+ 		const percentPosition = e.offsetX / canvas.clientWidth;
+ 		const seek = Math.round(percentPosition * ctx.canvas.width/pixelScale);	
 		currentPermittedWidth = seek;
 		draw(currentPermittedWidth, sourceData, ctx, pixelScale);
 		setScrubber();		
@@ -175,14 +166,22 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 	}
 
 	// click controls	
-	
 	let direction = null;
 	let timerId = null;
  	container.onclick = (e) => { 	
  		if (timerId !== null) { 			
  			clearInterval(timerId);
- 		} 		
- 		const seek = Math.round(e.offsetX/pixelScale);
+ 		}
+ 		const windowScale = canvas.clientWidth / ctx.canvas.width;
+ 		const percentPosition = e.offsetX / canvas.clientWidth;
+ 		const seek = Math.round(percentPosition * ctx.canvas.width/pixelScale);
+
+ 		console.log(`offsetX ${e.offsetX}\ncanvas.clientWidth ${canvas.clientWidth}\nctx.canvas.width ${ctx.canvas.width}`);
+ 		console.log('windowScale:', windowScale);
+ 		console.log('percentPosition', percentPosition);
+ 		console.log('seek:', seek);
+
+
  		if (!e.shiftKey) { 		
 	 		if (currentPermittedWidth < seek) {
 	 			direction = 1;
@@ -194,12 +193,13 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 	 				clearInterval(timerId);	 				
 	 			} else {	 				
 	 				currentPermittedWidth+=direction;
-	 				draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+	 				draw(currentPermittedWidth, sourceData, ctx, pixelScale);	 				
 	 				setScrubber();
 	 			}
 	 		},50)
  		} else {
  			currentPermittedWidth = seek;
+ 			console.log(currentPermittedWidth)
  			draw(seek, sourceData, ctx, pixelScale);
  			setScrubber();
  		} 		 		

@@ -62,11 +62,12 @@ function manageScale() {
 		let initialWidth = window.innerWidth;
 		let initialHeight = window.innerHeight;	
 	
+		//turns out instead of doing this I should have set transform-origin: center top; in CSS
 	  // deduct space from top of page
-	  let toTop = (document.querySelector('#scaleContainer')	  
+	  /*let toTop = (document.querySelector('#scaleContainer')	  
 		 .getBoundingClientRect().top);
 		document.documentElement.style
-	   .setProperty('--topMargin', `-${toTop}px`);
+	   .setProperty('--topMargin', `-${toTop}px`);*/
 	
 	  const imageDestroyerWidth = parseInt(getComputedStyle(document.documentElement)
 	    .getPropertyValue('--imageDestroyerWidth'),10);  
@@ -92,11 +93,11 @@ function manageScale() {
 	  //console.log(`scaleHeight ${scaleH}\nscaleWidth ${scaleW}\nscaleUpdate ${scaleUpdate}`);
 
 	  // deduct space from top of page
-	  toTop = (document.querySelector('#scaleContainer')	  
+	  // turns out instead of doing this I should have set transform-origin: center top; in CSS
+	  /*toTop = (document.querySelector('#scaleContainer')	  
 			.getBoundingClientRect().top);
-
 		document.documentElement.style
-	   .setProperty('--topMargin', `-${toTop}px`);		
+	   .setProperty('--topMargin', `-${toTop}px`);	*/	
 	}
 }
 
@@ -113,9 +114,7 @@ function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {
 	manageScale();	
 	applySecretImage(sourceData, 164, secretImg);		
 	draw(199, sourceData, ctx, pixelScale);
-
-	controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth);
-	
+	controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth);	
 }
 
 function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){

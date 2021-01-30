@@ -33,7 +33,8 @@ body {
 #scaleContainer {
 	min-height: 100vh;
 	margin-top: var(--topMargin);	
-	transform: scale(var(--scale));	
+	transform: scale(var(--scale));
+	transform-origin: center top;	
 }
 
 .layoutContainer {			

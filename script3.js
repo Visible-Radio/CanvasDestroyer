@@ -363,19 +363,23 @@ function destroyImg(imageData) {
 width, pixelScale, canvas element id, input text string, optional array of 3 rgb values
 */
 justText(54, 7, 'portfolioCanvas', 'Portfolio');
-justText(54, 7, 'aboutCanvas', 'About Me');
-justText(54, 7, 'contactCanvas', 'Contact');
+justText(50, 7, 'aboutCanvas', 'About Me',[200,0,120]);
+justText(107, 7, 'stackCanvas', 'My Stack and Tools');
 
 justText(120, 10, 'littleCanvas', 'Patrick Kaipainen   Web Developer,      Pixel enthusiast',[220,190,0]);
-//justText(160, 10, 'littleCanvas', 'it me, hello world patrick k;jahdkjlahdfh;iua kjhasekjrhasldkfh');
 
-function justText(width, pixelScale, canvasName, inputText, color) {
-	/*if (color) {
-		console.log('color parameter is here, it is', color);
+function justText(width, pixelScale, canvasName, inputText, color, scramble=false, locked=true) {
+	/*
+	rework this function to accept an object as a parameter
+	{
+		color:
+		scramble:
+		locked:
 	}
-	if (!color) {
-		console.log('no color parameter')
-	}	*/
+
+	*/
+
+
 	/* each character is defined in a 5x5 grid
 	after each write a space of one pixel is added
 	so the canvas width should be a multiple of 6
@@ -455,8 +459,12 @@ function justText(width, pixelScale, canvasName, inputText, color) {
 	let remaining = horizontalChars;	
 
 	writeString(inputText, textPixels);
+	if (scramble) width-=6;
 	draw(width, textPixels, ctx, pixelScale)
-	control();
+	if (!locked){
+		control();	
+	}
+	
 
 	let currentPermittedWidth = 0;
 	function control() {

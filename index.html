@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>imageDestroyer</title>
+	<title>Patrick Kaipainen, Web Developer</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet"> 
 </head>
 <body>
-
-	<div id="masterContainer">
-	
-
+		<div id="masterContainer">
 
 		<header>
 			<div class="container headerContainer">
-				<h1>Patrick Kaipainen</h1>
-				<div class="menu">
-					<ul class="menu">
+				<div class="spacer"></div>			
+				<div class="menu">										
+					<ul class="menu">						
 						<li class="menu-item">Portfolio</li>
 						<li class="menu-item">About</li>
 						<li class="menu-item">Contact</li>
@@ -23,13 +22,13 @@
 			</div>				
 		</header>
 
-	
 		<canvas id="sourceCanvas"></canvas>
-		<canvas id="skullCanvas"></canvas>
+		<canvas id="skullCanvas"></canvas>		
 		<hr class="horizontal hrThick">
-		<div id="borderDivB">		
-			<div id="borderDiv">		
+		<!-- <div id="borderDivB">		 -->
+			<!-- <div id="borderDiv"> -->
 					<div class="layoutContainer">
+						<!-- <div id="nameContainerBorder"><div id="nameContainer"><h1>Patrick Kaipainen</h1></div></div> -->
 						<div id="scrubberRef">	
 							<div id="scrubber">
 								<button id="scrubLeft"></button>
@@ -45,31 +44,45 @@
 						</div>		
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
+			<!-- </div> -->
+		<!-- </div> -->
+	</div>	
 
-
-
-<!-- <div class="torso">
-	<canvas id="portfolioCanvas" class="sectionCanvas">Portfolio</canvas>
+<div class="torso">
+	<!-- <canvas id="portfolioCanvas" class="sectionCanvas">Portfolio</canvas> -->
 
 	<section id="about" class="about">
-		<div class="aboutImage">
-			<img id="headshot" src="./coolin2.jpg">
+		<div class="imageHolder">
+			<div class="aboutImage">
+				<img id="headshot" src="./interlaceMe.png">
+			</div>
 		</div>
 		<div class="aboutText">
-			<canvas id="aboutCanvas" class="sectionCanvas">About Me</canvas>
-			<p>Hello, I'm Patrick! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<div class="canvasWrapper"><canvas id="aboutCanvas" class="sectionCanvas">About Me</canvas><div>
+			<p>Hello, I'm Patrick! I'm a web developer with a background in Visual Art.  I hold an MFA from Western University where I also taught courses in traditional darkroom photography. I am also a liscensed electrician in the province of Ontario. I love building things.</p>
 		</div>
 	</section>
-	<canvas id="contactCanvas" class="sectionCanvas">Contact</canvas>
-</div> -->
+	<section id="stack" class="stack">		
+		<div class="stackListContainer">
+			<div class="stackCanvas"><canvas id="stackCanvas" class="sectionCanvas">Stack and tools</canvas></div>
+			<ul class="stackList">
+				<li class="stackIcon"><img src="./logos/js.png"><span class="stackText">Javascript</span></li>
+				<li class="stackIcon"><img src="./logos/react.png"><span class="stackText">React</span></li>
+				<li class="stackIcon"><img src="./logos/chartjs.png"><span class="stackText">Chart.js</span></li>
+				<li class="stackIcon"><img src="./logos/node.png"><span class="stackText">Node.js</span></li>
+				<li class="stackIcon"><img src="./logos/sql.png"><span class="stackText">SQL</span></li>
+				<li class="stackIcon"><img src="./logos/postgres.png"><span class="stackText">PostgreSQL</span></li>				
+				<li class="stackIcon"><img src="./logos/html.png"><span class="stackText">HTML 5</span></li>
+				<li class="stackIcon"><img src="./logos/css.png"><span class="stackText">CSS 3</span></li>	
+				<li class="stackIcon"><img src="./logos/github.png"><span class="stackText">Github</span></li>
+				<li class="stackIcon"><img src="./logos/git.png"><span class="stackText">Git</span></li>
+				<li class="stackIcon"><img src="./logos/postman.png"><span class="stackText">Postman</span></li>
+				<li class="stackIcon"><img src="./logos/puppeteer.png"><span class="stackText">Puppeteer</span></li>
+			</ul>
+		<div>		
+	</section>	
+</div>
+
 	<script type="text/javascript" src="script3.js"></script>
 </body>
 </html>

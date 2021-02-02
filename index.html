@@ -7,49 +7,85 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet"> 
 </head>
 <body>
-		<div id="masterContainer">
-
-		<header>
-			<div class="container headerContainer">
-				<div class="spacer"></div>			
-				<div class="menu">										
-					<ul class="menu">						
-						<li class="menu-item">Portfolio</li>
-						<li class="menu-item">About</li>
-						<li class="menu-item">Contact</li>
-					</ul>				
-				</div>			
-			</div>				
-		</header>
-
+	<div id="masterContainer">
 		<canvas id="sourceCanvas"></canvas>
-		<canvas id="skullCanvas"></canvas>		
-		<hr class="horizontal hrThick">
-		<!-- <div id="borderDivB">		 -->
-			<!-- <div id="borderDiv"> -->
-					<div class="layoutContainer">
-						<!-- <div id="nameContainerBorder"><div id="nameContainer"><h1>Patrick Kaipainen</h1></div></div> -->
-						<div id="scrubberRef">	
-							<div id="scrubber">
-								<button id="scrubLeft"></button>
-								<button id="scrubRight"></button>
-							</div>
-							<canvas id="destinationCanvas">A canvas element onto which a pixelated image is drawn. The pixel data that is rendered here actually contains two images interlaced with each other that resolve at different points depending on user input.</canvas>	
-							<button id="resolveImage"></button>
-							<button id="resolveSecret"></button>
-							<hr class="horizontal">
-							<div id="littleContainer">
-								<canvas id="littleCanvas">Patrick Kaipainen Web Developer, Pixel Enthusiast</canvas>
-							</div>
-						</div>		
+		<canvas id="skullCanvas"></canvas>				
+		<div id="borderDivB">		
+			<div id="borderDiv">
+				<div class="layoutContainer">											
+					<div id="scrubber">
+						<button id="scrubLeft"></button>
+						<button id="scrubRight"></button>
 					</div>
+					<canvas id="destinationCanvas">A canvas element onto which a pixelated image is drawn. The pixel data that is rendered here actually contains two images interlaced with each other that resolve at different points depending on user input.</canvas>	
+					<button id="resolveImage"></button>
+					<button id="resolveSecret"></button>							
+					<div id="littleContainer">
+						<canvas id="littleCanvas">Patrick Kaipainen Web Developer, Pixel Enthusiast</canvas>
+					</div>
+					<div class="displayInstructionsCanvas"><canvas id="displayInstructionsCanvas"></canvas></div>
+					<header>
+						<div class="headerBorder">
+							<div class="container headerContainer">												
+								<div class="menu">											
+									<ul class="menu">						
+										<li class="menu-item">Portfolio</li>
+										<li class="menu-item">About</li>
+										<li class="menu-item">Contact</li>
+									</ul>				
+								</div>			
+							</div>
+						</div>				
+					</header>
 				</div>
-			<!-- </div> -->
-		<!-- </div> -->
+			</div>			
+		</div>		
 	</div>	
 
 <div class="torso">
 	<!-- <canvas id="portfolioCanvas" class="sectionCanvas">Portfolio</canvas> -->
+
+	<section id="portfolio" class="portfolio">
+		<div class="projectCard lg">
+			<h3 class="projectName">IBEW Job Calls Database</h3>
+			<p class="description">I built the front end of my fullstack Job Calls application in React with Chart.js.  It displays data relevant to the various classifications of members represented by the union about available jobs, and also serves as an index into the state of the construction sector in the Toronto area.  Users can search by date, worker classification and company.  Returned results can be filtered further by keywords.</p>
+			<p class="tech">React Chart.js</p>
+			<p class="reference"><p>Github</p><p>See it Live</p></p><span>Please note this is hosted on a free tier at Heroku and apps are put to sleep after 30 minutes of inactivity</span>
+
+		</div>
+		<div class="projectCard lg">
+			<h3 class="projectName"> Job Calls API</h3>
+			<p class="description">The API for my Job Calls application started as a Node script that uses Puppeteer to automatically sign into the IBEW Local Union 353 website, parse the DOM and extract information about jobs available to electricians, line workers and communications workers.  Each day the script writes the selected HTML elements to a new JSON file.  This data is then used to populate a Postgres database.  The API returns JSON data after recieving requests at either of two endpoints.</p>
+			<p class="tech">Node Express.js Puppeteer Knex.js Postgres</p>
+			<p class="reference"><p>Github</p><p>See it Live</p></p><span>Please note this is hosted on a free tier at Heroku and apps are put to sleep after 30 minutes of inactivity</span>
+		</div>
+		<div class="projectCard">
+			<h3 class="projectName">Image Destroyer</h3>
+			<p class="description">When I took CS50 in 2020, I was fascinated by a series of projects related to iterating though information representing image data. My background in photography probably accounts for this fascination.  Looping through image data made me feel <em>close</em> to the material of the image itself in a way that was familiar from my days spent in the darkroom and in photoshop.</p>
+			<p>In one CS50 project, we had to search for jpeg headers in a disk image to recover lost images.  In another we implemented a series of filter algorthims which mutated image information pixel by pixel. Doing this in C was exciting due to all the trouble you can get into with pointers or otherwise accessing the wrong area in memory. It felt like being <em>close to the materiality of the machine.</em></p>
+			<p>I wanted to try a similar project in Javascript. Image Destroyer reads pixel data from a canvas element, and renders a div element for every pixel.  By constraining the divs in a flexible container, they form a grid, and when the width of this flexible container coresponds to the width of the original image, the 'div image' resolves.  By manipulating this width, it is possible to scramble the image.  The text is rendered in the same grid, by calculating from a string which divs should be assigned a special 'text pixel' class.  Obviously this is not the most efficient way of rendering text or images, but I was excited by the visual effect of it.</p>			
+			<p class="tech">Vanilla JS, HTML, CSS</p>
+			<p class="reference"><p>Github</p><p>See it Live</p></p>
+		</div>
+		<div class="projectCard">
+			<h3 class="projectName">High Voltage Analog</h3>
+			<p class="description">This is the evolution of one of the first things I built with javascript.  I love archaic technology and analog electronics.  It was a fun exercise in manual DOM manipulation and CSS styling.</p>
+			<p class="tech">Vanilla JS, HTML, CSS</p>
+			<p class="reference"><p>Github</p><p>See it Live</p></p>
+		</div>
+		<div class="projectCard">
+			<h3 class="projectName">Canvas Destroyer</h3>
+			<p class="description"></p>
+		</div>
+		<div class="projectCard">
+			<h3 class="projectName">Smart Brain</h3>
+			<p class="description"></p>
+		</div>
+		
+	</section>
+
+
+
 
 	<section id="about" class="about">
 		<div class="imageHolder">
@@ -62,6 +98,7 @@
 			<p>Hello, I'm Patrick! I'm a web developer with a background in Visual Art.  I hold an MFA from Western University where I also taught courses in traditional darkroom photography. I am also a liscensed electrician in the province of Ontario. I love building things.</p>
 		</div>
 	</section>
+
 	<section id="stack" class="stack">		
 		<div class="stackListContainer">
 			<div class="stackCanvas"><canvas id="stackCanvas" class="sectionCanvas">Stack and tools</canvas></div>
@@ -80,8 +117,10 @@
 				<li class="stackIcon"><img src="./logos/puppeteer.png"><span class="stackText">Puppeteer</span></li>
 			</ul>
 		<div>		
-	</section>	
-</div>
+	</section>
+
+</div> <!-- end of torso -->
+
 
 	<script type="text/javascript" src="script3.js"></script>
 </body>

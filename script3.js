@@ -1,7 +1,7 @@
 (function main(){
 
 	// YAY, this was global but now it's encapsulated!
-	let currentPermittedWidth = 199;
+	let currentPermittedWidth = 0;
 
 	// 'secret' image to get inserted
 	const secretImg = new Image()
@@ -101,7 +101,7 @@ function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {
 	works pretty good, but better to do it with CSS if possible
 	*/
 	applySecretImage(sourceData, 164, secretImg);		
-	draw(199, sourceData, ctx, pixelScale);
+	draw(0, sourceData, ctx, pixelScale);
 	controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth);	
 }
 
@@ -362,6 +362,7 @@ function destroyImg(imageData) {
 /*
 width, pixelScale, canvas element id, input text string, optional array of 3 rgb values
 */
+justText(218, 3, 'displayInstructionsCanvas', 'Shift click to jump, click to seek', [190,0,90]);
 justText(54, 7, 'portfolioCanvas', 'Portfolio');
 justText(50, 7, 'aboutCanvas', 'About Me',[200,0,120]);
 justText(107, 7, 'stackCanvas', 'My Stack and Tools');
@@ -495,8 +496,6 @@ function justText(width, pixelScale, canvasName, inputText, color, scramble=fals
  		} 		 		
  	}	
 	}
-
-
 
 	function writeString(inputText, textPixels) {
 		let position = 0;

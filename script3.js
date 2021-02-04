@@ -1,7 +1,7 @@
 (function main(){
 
 	// YAY, this was global but now it's encapsulated!
-	let currentPermittedWidth = 199;
+	let currentPermittedWidth = 0;
 
 	// 'secret' image to get inserted
 	const secretImg = new Image()
@@ -101,7 +101,7 @@ function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {
 	works pretty good, but better to do it with CSS if possible
 	*/
 	applySecretImage(sourceData, 164, secretImg);		
-	draw(199, sourceData, ctx, pixelScale);
+	draw(0, sourceData, ctx, pixelScale);
 	controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth);	
 }
 
@@ -176,10 +176,10 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
  		const percentPosition = e.offsetX / canvas.clientWidth;
  		const seek = Math.round(percentPosition * ctx.canvas.width/pixelScale);
 
- 		console.log(`offsetX ${e.offsetX}\ncanvas.clientWidth ${canvas.clientWidth}\nctx.canvas.width ${ctx.canvas.width}`);
+ 	/*	console.log(`offsetX ${e.offsetX}\ncanvas.clientWidth ${canvas.clientWidth}\nctx.canvas.width ${ctx.canvas.width}`);
  		console.log('windowScale:', windowScale);
  		console.log('percentPosition', percentPosition);
- 		console.log('seek:', seek);
+ 		console.log('seek:', seek);*/
 
 
  		if (!e.shiftKey) { 		
@@ -198,8 +198,7 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 	 			}
 	 		},50)
  		} else {
- 			currentPermittedWidth = seek;
- 			console.log(currentPermittedWidth)
+ 			currentPermittedWidth = seek; 			
  			draw(seek, sourceData, ctx, pixelScale);
  			setScrubber();
  		} 		 		
@@ -362,8 +361,9 @@ function destroyImg(imageData) {
 /*
 width, pixelScale, canvas element id, input text string, optional array of 3 rgb values
 */
-justText(54, 7, 'portfolioCanvas', 'Portfolio');
-justText(50, 7, 'aboutCanvas', 'About Me',[200,0,120]);
+justText(218, 3, 'displayInstructionsCanvas', 'Shift click to jump, click to seek', [190,0,90]);
+justText(47, 7, 'portfolioCanvas', 'Projects');
+justText(50, 7, 'aboutCanvas', 'About Me', [220,190,0]);
 justText(107, 7, 'stackCanvas', 'My Stack and Tools');
 
 justText(120, 10, 'littleCanvas', 'Patrick Kaipainen   Web Developer,      Pixel enthusiast',[220,190,0]);
@@ -495,8 +495,6 @@ function justText(width, pixelScale, canvasName, inputText, color, scramble=fals
  		} 		 		
  	}	
 	}
-
-
 
 	function writeString(inputText, textPixels) {
 		let position = 0;

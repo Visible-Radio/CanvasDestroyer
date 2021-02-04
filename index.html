@@ -7,64 +7,47 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet"> 
 </head>
 <body>
-		<div id="masterContainer">
-
-		<header>
-			<div class="container headerContainer">
-				<div class="spacer"></div>			
-				<div class="menu">										
-					<ul class="menu">						
-						<li class="menu-item">Portfolio</li>
-						<li class="menu-item">About</li>
-						<li class="menu-item">Contact</li>
-					</ul>				
-				</div>			
-			</div>				
-		</header>
-
+	<div id="masterContainer">
 		<canvas id="sourceCanvas"></canvas>
-		<canvas id="skullCanvas"></canvas>		
-		<hr class="horizontal hrThick">
-		<!-- <div id="borderDivB">		 -->
-			<!-- <div id="borderDiv"> -->
-					<div class="layoutContainer">
-						<!-- <div id="nameContainerBorder"><div id="nameContainer"><h1>Patrick Kaipainen</h1></div></div> -->
-						<div id="scrubberRef">	
-							<div id="scrubber">
-								<button id="scrubLeft"></button>
-								<button id="scrubRight"></button>
-							</div>
-							<canvas id="destinationCanvas">A canvas element onto which a pixelated image is drawn. The pixel data that is rendered here actually contains two images interlaced with each other that resolve at different points depending on user input.</canvas>	
-							<button id="resolveImage"></button>
-							<button id="resolveSecret"></button>
-							<hr class="horizontal">
-							<div id="littleContainer">
-								<canvas id="littleCanvas">Patrick Kaipainen Web Developer, Pixel Enthusiast</canvas>
-							</div>
-						</div>		
+		<canvas id="skullCanvas"></canvas>				
+		<div id="borderDivB">		
+			<div id="borderDiv">
+				<div class="layoutContainer">											
+					<div id="scrubber">
+						<button id="scrubLeft"></button>
+						<button id="scrubRight"></button>
 					</div>
+					<canvas id="destinationCanvas">A canvas element onto which a pixelated image is drawn. The pixel data that is rendered here actually contains two images interlaced with each other that resolve at different points depending on user input.</canvas>	
+					<button id="resolveImage"></button>
+					<button id="resolveSecret"></button>							
+					<div id="littleContainer">
+						<canvas id="littleCanvas">Patrick Kaipainen Web Developer, Pixel Enthusiast</canvas>
+					</div>
+					<div class="displayInstructionsCanvas"><canvas id="displayInstructionsCanvas"></canvas></div>
+					<header>
+						<div class="headerBorder">
+							<div class="container headerContainer">												
+								<div class="menu">											
+									<ul class="menu">						
+										<li class="menu-item"><a href="#portfolio">Projects</a></li>
+										<li class="menu-item"><a href="#about">About</a></li>
+										<li class="menu-item"><a href="#contact">Contact</a></li>
+									</ul>				
+								</div>			
+							</div>
+						</div>				
+					</header>
 				</div>
-			<!-- </div> -->
-		<!-- </div> -->
+			</div>			
+		</div>		
 	</div>	
 
 <div class="torso">
 	<!-- <canvas id="portfolioCanvas" class="sectionCanvas">Portfolio</canvas> -->
-
-	<section id="about" class="about">
-		<div class="imageHolder">
-			<div class="aboutImage">
-				<img id="headshot" src="./interlaceMe.png">
-			</div>
-		</div>
-		<div class="aboutText">
-			<div class="canvasWrapper"><canvas id="aboutCanvas" class="sectionCanvas">About Me</canvas><div>
-			<p>Hello, I'm Patrick! I'm a web developer with a background in Visual Art.  I hold an MFA from Western University where I also taught courses in traditional darkroom photography. I am also a liscensed electrician in the province of Ontario. I love building things.</p>
-		</div>
-	</section>
-	<section id="stack" class="stack">		
-		<div class="stackListContainer">
-			<div class="stackCanvas"><canvas id="stackCanvas" class="sectionCanvas">Stack and tools</canvas></div>
+	<section id="stack" class="stack">
+		<div class="stackCanvas">
+			<canvas id="stackCanvas">Stack and tools</canvas>
+		</div>		
 			<ul class="stackList">
 				<li class="stackIcon"><img src="./logos/js.png"><span class="stackText">Javascript</span></li>
 				<li class="stackIcon"><img src="./logos/react.png"><span class="stackText">React</span></li>
@@ -79,10 +62,116 @@
 				<li class="stackIcon"><img src="./logos/postman.png"><span class="stackText">Postman</span></li>
 				<li class="stackIcon"><img src="./logos/puppeteer.png"><span class="stackText">Puppeteer</span></li>
 			</ul>
-		<div>		
-	</section>	
-</div>
+	</section>
+
+	<section id="portfolio" class="portfolio">
+		<div id="portfolioCanvasBox">
+			<div class="portfolioCanvas">
+				<canvas id="portfolioCanvas">Projects</canvas>
+			</div>
+		</div>
+
+		<div class="projectCard lg">
+			<div class="cardTop">
+				<h3 class="projectName">IBEW Local Union 353 Job Calls Database</h3>
+			</div>
+			<p class="description">A dashboard for tracking employment trends in the Construction sector.</p>
+			<p class="tech">React Chart.js</p>
+			<div class="portfolioImage">
+				<img id="portfolioImage" src="./media/job-calls.png">
+			</div>
+			<p class="reference"><p><a href="https://github.com/Visible-Radio/job-calls-fe">Github</a></p><p><a href="https://job-calls-front-end.herokuapp.com/">See it Live</a></p></p>
+		</div>
+		<div class="projectCard lg">
+			<h3 class="projectName">Job Calls API / Database / Scraper</h3>
+			<p class="description">An API that returns JSON data pertaining to the employment of workers in the electrical and communications trades.</p>
+			<p class="tech">Node Express.js Puppeteer Knex.js Postgres</p>
+			<div class="portfolioImage">
+				<img id="portfolioImage" src="./media/job-calls-api.png">
+			</div>
+			<p class="reference"><p><a href="https://github.com/Visible-Radio/job-calls-api">Github</a></p></p>
+		</div>
+
+		<div class="projectCard lg">
+			<h3 class="projectName">Image Destroyer</h3>
+			<p class="description">An experiement in direct pixel manipulation of images pulled from a NASA image API.  Image destroyer renders images on a grid of div elements, and can draw text of arbitrary length to the display.</p>
+			<p class="tech">Vanilla JS, HTML, CSS</p>
+			<div class="portfolioImage">
+				<img id="portfolioImage" src="./media/image-destroyer.png">
+			</div>
+			<p class="reference"><p><a href="https://github.com/Visible-Radio/ImageDestroyer/tree/responsive">Github</a></p><p><a href="https://visible-radio.github.io/ImageDestroyer/">See it Live</a></p></p>
+		</div>
+
+		<div class="projectCard lg">
+			<h3 class="projectName">Canvas Destroyer</h3>
+			<p class="description">A refactored, more performant implementation of Image Destroyer using canvas elements. Capable of rendering text from strings and embedding a 'secret' image in another image.</p>
+			<p class="tech">Vanilla JS, HTML, CSS</p>
+			<p class="reference"><p><a href="https://github.com/Visible-Radio/CanvasDestroyer/tree/responsiveCSS">Github</a></p><p><a href="#destinationCanvas">See it Live at the top of this page!</a></p></p>
+		</div>
+
+		<div class="projectCard lg">
+			<h3 class="projectName">High Voltage Analog</h3>
+			<p class="description">HVA takes a string of arbitrary length and renders it on a grid of 14 segment displays.  The display can be customized by adding or removing 14 segment modules</p>
+			<p class="tech">Vanilla JS, HTML, CSS</p>
+			<div class="portfolioImage">
+				<img id="portfolioImage" src="./media/hva.png">
+			</div>
+			<p class="reference"><p><a href="https://github.com/Visible-Radio/HighVoltageAnalog/tree/updates">Github</a></p><p><a href="https://visible-radio.github.io/HighVoltageAnalog/">See it Live</a></p></p>
+		</div>
+
+		
+
+		<div class="projectCard lg">
+			<h3 class="projectName">Smart Brain</h3>
+			<p class="description">
+				<p>The fullstack final project in the Zero to Mastery Complete Web Developer course.</p>
+				<p class="tech">React Node Express.js Bcrypt Knex.js Postgres</p>
+				<div class="portfolioImage">
+					<img id="portfolioImage" src="./media/smart-brain.png">
+				</div>
+				<p class="reference">
+					<p>Front End <a href="https://github.com/Visible-Radio/smart-brain">Github</a></p>
+					<p>Back End <a href="https://github.com/Visible-Radio/smart-brain-api">Github</a></p>
+					<p><a href="https://ztm-smart-brain-fe.herokuapp.com/">See it Live</a></p></p>					
+				</p>
+		</div>
+
+		<div class="projectCard lg">
+			<h3 class="projectName">Ben Eater's SAP-1 8-Bit Breadboard Computer</h3>
+			<p class="description">This is a progammable computer built on breadboards out of rudimentary TTL integrated circuits.  It has 16 <em>BYTES</em> of RAM for programs and data.
+			</p>
+			<p>
+			This was my bridge between an interest in electronics and exposure to programmable logic controllers in the electrical trade on the one hand, and programming on the other. This kit gave me so much insight into how computers work at the hardware level. Building this literally entails defining the bit patterns (ie <em>instructions</em>!!) that the machine responds to.</p>
+			<p>Here it is performing a complex calculation...multiplying 8 x 8. It's a close one, with exactly 8 bits of memory left unused!</p>
+			<video width="320" height="240" controls>
+			  <source src="./media/SAP-1.mp4" type="video/mp4">			  
+				Your browser does not support the video tag.
+			</video>
+			<p class="tech">Logic Gates, Assembly, Arduino, C++</p>
+			<p><a href="https://eater.net/8bit">Go see Ben Eater</a></p></p>
+		</div>
+		
+	</section>
+
+
+	<section id="about" class="about">
+			<div class="aboutImage">
+				<img id="headshot" src="./interlaceMe.png">
+			</div>
+		<div class="aboutText">
+			<div class="aboutCanvas">
+				<canvas id="aboutCanvas">About Me</canvas>
+			</div>
+			<p>Hello, I'm Patrick! I'm a web developer with a background in Visual Art.  I hold an MFA from Western University where I also taught courses in traditional darkroom photography. I am also a liscensed electrician in the province of Ontario. I love building things.</p>
+		</div>
+	</section>
+
+	
+
+</div> <!-- end of torso -->
+
 
 	<script type="text/javascript" src="script3.js"></script>
+	<script type="text/javascript" src="cardExpand.js"></script>
 </body>
 </html>

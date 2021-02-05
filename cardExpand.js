@@ -5,6 +5,9 @@ cards.forEach(card => card.addEventListener('click', handleCardClick));
 
 let openCard=null;
 function handleCardClick(e) {
+	// don't open the card if a link is clicked directly
+	if (e.toElement.nodeName === 'A') return;
+
 	if (openCard !== this && openCard !== null) {
 		openCard.addEventListener('click', handleCardClick);
 	}
@@ -24,13 +27,6 @@ function handleCardClick(e) {
 
 	// hide the original card
 	this.classList.toggle('clicked');	
-
-	// get the position of the CARD relative to viewport
-	// console.log('card to top of viewport:', this.getBoundingClientRect().top);
-	// get the position of the GALLERY relative to viewport
-	// console.log('portfolio height:', portfolio.getBoundingClientRect().height);
-	// get the position of the CARD relative to the GALLERY
-	// console.log('card to top of portfolio: ', this.offsetTop);
 
 	// convert card position to percentage
 	const portfolioHeight = portfolio.getBoundingClientRect().height;
@@ -56,8 +52,12 @@ function handleCardClick(e) {
 	openCard = this;
 
 	// add event listener to clone to close it
-	cardClone.addEventListener('click', () => {
-		this.classList.toggle('clicked');		
+	cardClone.addEventListener('click', (e) => {
+		// don't close the card if a link is clicked directly
+		if (e.toElement.nodeName === 'A') return;
+		// make the small card visible again
+		this.classList.toggle('clicked');
+		// re-apply the event listener to the small card		
 		this.addEventListener('click', handleCardClick);
 		// remove the clone
 		cardClone.remove();

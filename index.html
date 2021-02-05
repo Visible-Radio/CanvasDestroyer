@@ -28,7 +28,7 @@
 						<div class="headerBorder">
 							<div class="container headerContainer">												
 								<div class="menu">											
-									<ul class="menu">						
+									<ul class="menu">																
 										<li class="menu-item"><a href="#portfolio">Projects</a></li>
 										<li class="menu-item"><a href="#about">About</a></li>
 										<li class="menu-item"><a href="#contact">Contact</a></li>
@@ -42,7 +42,7 @@
 		</div>		
 	</div>	
 
-<div class="torso">
+<div id="torso" class="torso">
 	<!-- <canvas id="portfolioCanvas" class="sectionCanvas">Portfolio</canvas> -->
 	<section id="stack" class="stack">
 		<div class="stackCanvas">
@@ -101,7 +101,7 @@
 				<p class="description">An API that returns JSON data pertaining to the employment of workers in the electrical and communications trades.
 				</p>
 				<p class="longText">
-					A Node script uses Puppeteer to automatically sign into the IBEW Local Union 353 website, parse the DOM and extract information about jobs available to electricians, line workers and communications workers. Each day the script writes the selected HTML elements to a new JSON file. This data is then used to populate a Postgres database. The API returns JSON data after recieving requests at either of two endpoints.
+					A Node script uses Puppeteer to automatically sign into the IBEW Local Union 353 website, parse the DOM and extract information about jobs available to electricians, line workers and communications workers. Each day the script writes the selected HTML elements to a new JSON file. This data is then used to populate a Postgres database. The API returns JSON data after receiving requests at either of two endpoints.
 				</p>
 				<p class="tech">
 					<span>Node</span>
@@ -124,10 +124,10 @@
 		<div class="projectCard lg">
 			<div class="cardTop">
 				<h3 class="projectName">Image Destroyer</h3>
-				<p class="description">An experiement in direct pixel manipulation of images pulled from a NASA image API.  Image destroyer renders images on a grid of div elements, and can draw text of arbitrary length to the display.
+				<p class="description">An experiment in direct pixel manipulation of images pulled from a NASA image API.  Image destroyer renders images on a grid of div elements, and can draw text of arbitrary length to the display.
 				</p>
 				<p class="longText">
-					When I took CS50 in 2020, I was fascinated by a series of projects related to iterating though information representing image data. My background in photography probably accounts for this fascination. Looping through image data made me feel close to the material of the image itself in a way that was familiar from my days spent in the darkroom and in photoshop.  I wanted to continue to explore image manipulation using javascript.
+					When I took CS50 in 2020, I was fascinated by a series of projects related to iterating through information that represented images. My background in photography probably accounts for this fascination. Looping through image data made me feel close to the material of the image itself in a way that was familiar from my days spent in the darkroom and in photoshop. I wanted to continue to explore image manipulation using javascript.
 				</p>
 				<p class="tech">
 					<span>Vanilla JS</span>
@@ -152,7 +152,7 @@
 				<p class="description">A refactored, more performant implementation of Image Destroyer using canvas elements. Capable of rendering text from strings and embedding a 'secret' image in another image.
 				</p>
 				<p class="longText">
-					There is a famous 16th century oil painting by Hans Holbein called <em>The Ambassadors</em>. It contains an unsual element - an anamorphic skull. When viewed straight on, this skull is illegible. It looks like an oblique stain accross the painting's surface. When viewed from the correct angle however, the skull can be seen.  Similarly, Canvas Destroyer creates a pixel array which renders different images depending on the width of the area that the data is mapped into. 
+					There is a famous 16th century oil painting by Hans Holbein called <em>The Ambassadors</em>. It contains an unusual element - an anamorphic skull. When viewed straight on, this skull is illegible. It looks like an oblique stain across the painting's surface. When viewed from the correct angle however, the skull can be seen.  Similarly, Canvas Destroyer creates a pixel array which renders different images depending on the width of the area that the data is mapped into.
 				</p>
 				<p class="tech">
 					<span>Vanilla JS</span>
@@ -228,7 +228,7 @@
 		<div class="projectCard lg">
 				<div class="cardTop">				
 				<h3 class="projectName">Ben Eater's 8-Bit Breadboard Computer</h3>
-					<p class="description">A progammable computer built on breadboards out of rudimentary TTL integrated circuits.  It has 16 <em>BYTES</em> of RAM for programs and data.
+					<p class="description">A programmable computer built on breadboards out of rudimentary TTL integrated circuits.  It has 16 <em>BYTES</em> of RAM for programs and data.
 					</p>
 					<p class="longText">
 						This was my bridge between an interest in electronics and exposure to programmable logic controllers in the electrical trade on the one hand, and programming on the other. This kit gave me so much insight into how computers work at the hardware level. Building this literally entails defining the bit patterns (ie <em>instructions</em>!!) that the machine responds to.
@@ -245,9 +245,8 @@
 						<img id="portfolioImage" src="./media/SAP-1.png">
 					</div>
 					<p class="reference">
-						<span><a >My Build on Youtube</a></span>					
+						<span><a href="https://youtu.be/zZT7HTNLUvs">My Build on Youtube</a></span>					
 						<span><a href="https://eater.net/8bit">Ben Eater</a></span>
-						<!-- <spa><a href="https://github.com/Visible-Radio/smart-brain-api">Github BE</a></span> -->	
 					</p>	
 				</div>	<!-- end of card bottom -->
 			</div> <!-- end of card -->
@@ -264,7 +263,7 @@
 			<div class="aboutCanvas">
 				<canvas id="aboutCanvas">About Me</canvas>
 			</div>
-			<p>Hello, I'm Patrick! I'm a web developer with a background in Visual Art.  I hold an MFA from Western University where I also taught courses in traditional darkroom photography. I am also a liscensed electrician in the province of Ontario. I love building things.</p>
+			<p>Hello, I'm Patrick! I'm a web developer with a background in Visual Art.  I earned an MFA from Western University where I later taught courses in traditional darkroom photography. I am also a licensed electrician in the province of Ontario. The common thread is that I love making things!</p>
 		</div>
 	</section>
 

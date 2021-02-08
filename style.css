@@ -17,7 +17,7 @@
 }
 
 /*=============================Layout/Global==================================*/
-html {}
+/* html {} */
 
 body {
 	margin: 0;
@@ -113,7 +113,7 @@ ul.menu {
 	font-size: 24px;
 	list-style: none;	
 	font-family: 'Inconsolata', monospace;
-	letter-spacing: 2px
+	letter-spacing: 2px;
 	margin: 0 10px 0 10px;
 }
 .menu-item > a {
@@ -293,25 +293,20 @@ button:focus {
 
 /*=============================ABOUT==================================*/
 section.about {
-	/*border: none;*/
-					/*outline: 1px solid red;*/
 	justify-content: space-around;
 	align-content: center;
 	align-items: center;
 	padding: 4% 2% 2% 2%;
 	background-color: rgb(0,20,40);
-	border-radius: 0 25px 5px 25px;
-
 }
 div.aboutImage {	
 	margin: 0 15px 0 15px;			
 }
 #headshot {		
 	max-width: 100%;
-	max-height:300px;
+	max-height:284px;
 	border: var(--borderWidth3) solid var(--myMagenta);
-	border-radius: 0 25px 5px 25px;
-	/*border-radius: 50%;*/
+	border-radius: 25px;
 	background-color: var(--blueBlack);
 }
 div.aboutText {	
@@ -428,8 +423,7 @@ div.portfolioCanvas {
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	align-self: center
-	border: 16px solid red;
+	align-self: center;	
 }
 .cardTop {
 		padding: 1%;
@@ -473,7 +467,7 @@ div.portfolioCanvas {
 	transform-origin: top left;	
 	color: rgb(0,225,0);		
 	max-width: 25%;
-	min-width: 250px;
+	min-width: 300px;
 	min-height: 500px;	
 	border: var(--borderWidth3) solid var(--myMagenta);
 	border-radius: 0 40px 10px;
@@ -498,7 +492,7 @@ p.reference {
 }
 .reference a {
 	transition-property: all;
-	transition-duration: 0.1`s;
+	transition-duration: 0.1s;
 	display: flex;		
 	text-decoration: none;
 	color: black;
@@ -556,12 +550,73 @@ p.reference {
 	opacity: 0;
 }
 h3.projectName {		
-	width: content-fill;
+	width: fit-content;
 	max-width: 85%;
 	margin: 0;
 	padding: 5px;
 	font-size: 20px;
 	background-color: black;
 }
-p.description {	
+/* ==================================Contact Section========================================= */
+section.contact {
+	display: flex;
+	justify-content: space-between;	
+	border: none;	
+	width: 100%;
+	max-width: 100%;
+	margin-top: 1%;
+	color: var(--orangeTextColor);	
+	box-sizing: border-box;
+	padding: 0 3.5% 0 3.5%;
+}
+.contact h2 {	
+	margin-top: 0;
+	width: fit-content;	
+}
+.contactItem ul {
+	margin: 0;
+	padding: 0;
+}
+.contact li {
+	list-style-type: none;
+}
+div.contactItem {
+	padding: 2%;	
+}
+footer {
+	width: 100%;	
+}
+.footerContainer {	
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;	 
+}
+/* .footerRight {
+	
+}
+.footerLeft {
+	
+} */
+.footerContainer a {
+	display: inline-block;
+	transition-property: all;
+	transition-duration: 0.1s;	
+	text-decoration: none;
+	color: var(--blueBlack);
+	background-color: var(--orangeTextColor);
+	padding: 10px;
+	margin: 3px;
+	border-radius: 0 5px 1px;
+}
+.footerContainer a:hover {
+	transform: scale(1.05);	
+	filter: brightness(1.5);	
+}
+.footerContainer a:active {
+	transform: scale(0.9);
+}
+.footerRight p {	
+	color:var(--orangeTextColor);
 }

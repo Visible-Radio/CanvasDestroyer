@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- images need to be downsampled -->
+	<!-- need to deploy, gonna have CORS canvas issue probably -->
+	<!-- contact section -->
+	<meta name="viewport" content="width=device-width">
 	<title>Patrick Kaipainen, Web Developer</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -265,14 +269,50 @@
 			</div>
 			<p>Hello, I'm Patrick! I'm a web developer with a background in Visual Art.  I earned an MFA from Western University where I later taught courses in traditional darkroom photography. I am also a licensed electrician in the province of Ontario. The common thread is that I love making things!</p>
 		</div>
+		<section class="contact">
+			<div class="contactItem skills">
+				<h2 class="subhead">Skills</h2>
+				<ul>
+					<li>Wed Development</li>
+					<li>Javascript</li>
+					<li>React</li>
+					<li>HTML</li>
+					<li>CSS</li>
+					<li>Node</li>
+				</ul>
+			</div>
+			<div class="contactItem interests">
+				<h2 class="subhead">Interests</h2>
+				<ul>
+					<li>Front End Development</li>
+					<li>Fullstack Development</li>
+					<li>Arduino</li>
+					<li>Retro electronics</li>
+					<li>Drawf Conifers</li>
+				</ul>
+			</div>
+			<div class="contactItem status">
+				<h2 class="subhead">Status</h2>
+				<p>Learning lots of things</p>
+			</div>
+		</section>
 	</section>
 
-	
 
+<footer>
+	<div class="footerContainer">
+		<div class="footerLeft">
+			<a href="mailto:patrick.kaipainen@gmail.com">patrick.kaipainen@gmail.com</a>
+			<a href="https://github.com/Visible-Radio">Github</a>
+			<a href="https://www.youtube.com/channel/UC4399H6TkQnNXYP5uThOI4w">YouTube</a>
+		</div>
+		<div class="footerRight">
+			<p>© Patrick Kaipainen 2021.</p>
+		</div>		
+	</div>	
+</footer>
 </div> <!-- end of torso -->
-
-
-	<script type="text/javascript" src="script3.js"></script>
+	<script type="text/javascript" src="canvasDestroyer.js"></script>
 	<script type="text/javascript" src="cardExpand.js"></script>
 </body>
 </html>

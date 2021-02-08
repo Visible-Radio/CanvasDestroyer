@@ -1,69 +1,151 @@
+/*=============================variables==================================*/
+
 :root {
   --orangeTextColor: rgb(220,190,0);
-  --imageDestroyerWidth: 1194px;
+  --pageWidth: 1210px;
+  --borderWidth1: 1px;
+  --borderWidth2: 2px;
+  --borderWidth3: 3px;
   --blueBlack:  #141a2b;
   --blueBlackAlpha:  #141a2bbb;
+  --blueBlacklight:  #14002b;;
   --myMagenta: rgb(160,0,90);
   --scrubberGreen: rgb(0,190,0);
   --thickOutline: #444a5b;
+  --scale: 1;
+ 	--topMargin: 0;
 }
+
+/*=============================Layout/Global==================================*/
+/* html {} */
 
 body {
+	margin: 0;
+	padding: 0 0 50px 0;
+	overflow-x: hidden;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	flex-direction: column;		
 	align-items: center;	
-	background-color: white;	
-	font-family: Roboto, sans-serif;
-}
-
-#masterContainer {
-	/*transform: scale(0.75);*/
-	/*border: 1px solid blue;	*/
-}
-
-header {}
-h1 {
-	color: rgb(0,225,0);
-	/*color: white;*/
-	margin-bottom: -10px;
-	/*margin-left: 15px;*/
+	box-sizing: border-box;	
+	font-family: 'Inconsolata', monospace;
 	background-color: var(--blueBlack);
-	border: 10px solid var(--blueBlack);
-	padding: 5px;
-	border-radius: 15px 15px 0 0;
+					/*border: 5px solid green;*/
 }
-
-.headerContainer {			
+.torso {
+	margin: 0;
+	padding: 0;
+	width:95%;	
+	max-width: var(--pageWidth);
 	display: flex;
-	z-index: 5;
-	background-color: white;	
+	align-content: center;
+	align-items: center;
+	flex-direction: column		
+					/*border: 1px solid green;	*/
+}
+section {
+	display: flex;
 	flex-flow: row wrap;
-	align-items: flex-end;
-	color: var(--orangeTextColor);		
-	height: 140px;	
-	/*border: 1px solid red;*/
+	justify-content: space-around;	
+	align-items: baseline;
+	align-content: center;	
+	font-size: 16px;		
+	border: var(--borderWidth3) solid var(--myMagenta);
+	border-radius: 25px;	
+	margin: 0;
+	margin-top: 150px;
+	max-width:100%;	
 }
-
-div.menu {
-	margin-left: auto;			
+/*=============================Header/menu==================================*/
+header {
+	transform-origin: top left;	
+	position: absolute;		
+	max-width: 90%;
+	top: -0.75%;
+	left: -0.5%;
+	z-index: 3;
+	width: 50%;
 }
-
-ul.menu {	
+@media screen and (max-width: 900px){
+	header{
+		transform: scale(0.85);
+		width: 60%;
+	}
+}
+@media screen and (max-width: 650px){
+	header {		
+		width: 100%;
+	}
+}
+.headerBorder {	
+	padding: 1% 2% 1% 1%;
+	border: var(--borderWidth1) solid var(--scrubberGreen);
+	border-radius: 0 0 35px 0;
+	width: 100%;
+}
+.headerContainer {	
+	position: relative;
+	border: var(--borderWidth2) solid var(--scrubberGreen);
+	border-radius: 0 0 30px 0;
 	display: flex;
-	justify-content: space-around;
-	margin-bottom: 10px;
-	margin-right: 5px;
+	z-index: 3;
+	flex-flow: row;
+	align-items: flex-start;
+	justify-content: flex-start;
+	background-color: var(--blueBlackAlpha);
+	color: var(--orangeTextColor);
+	width: 100%;									
 }
-
-.menu-item {
-	color: var(--blueBlack);
-	font-size: 28px;
+div.menu {
+width: 100%;
+display: flex;
+justify-content: flex-start;
+padding: 0 10% 0 0;
+}
+ul.menu {
+	width: 100%;		
+	display: flex;
+	justify-content: space-between;
+	margin: 0;
+	padding: 2% 4% 2% 3%;	
+}
+.menu-item {	
+	color: rgb(0,225,0);
+	font-size: 24px;
 	list-style: none;	
+	font-family: 'Inconsolata', monospace;
+	letter-spacing: 2px;
 	margin: 0 10px 0 10px;
-	padding: 3px;	
+}
+.menu-item > a {
+	color: rgb(0,225,0);
+	text-decoration: none;
+	padding: 15px;	
+	border: var(--borderWidth1) solid transparent;
+}
+.menu-item > a:hover {
+	transition-property: all;
+	transition-duration: 0.2s;
+	color: rgb(255,255,0);
+	text-decoration: underline;
+	background-color: black;
+	border: var(--borderWidth1) solid var(--scrubberGreen);
+
+	
 }
 
+/*=============================CanvasDestroyer==================================*/
+#masterContainer {
+	padding: 2px;
+	margin-top: 0;
+	width: 95%;
+	max-width: var(--pageWidth);
+	min-height: 100vh;
+				
+}
+.layoutContainer {				
+	margin-top: 0;				
+	position: relative;		
+}
 #sourceCanvas {
 	display: none;
 }
@@ -71,52 +153,65 @@ ul.menu {
 	display: none;
 }
 #destinationCanvas {
-	background-color: var(--blueBlack);		
+	background-color: var(--blueBlack);
+	width:100%;
+	height:100%;
+	z-index: 2;		
+}
+#littleContainer {
+	width:98%;
+	position: absolute;
+	padding: 1%;
+	z-index:3;
+	top: 35%;		
+	background-color: var(--blueBlackAlpha);
+	transition-property: opacity;
+	transition-duration: 1s;	
+}
+#littleContainer:hover {
+	cursor: default;
+	transition-property: opacity;
+	transition-duration: 1s;
+	opacity: 0;
 }
 #littleCanvas {
-	margin-top: 6px;	
-}
-
-#littleContainer {}
-
-#borderDiv {
-	border-left: 15px solid var(--blueBlack);
-	border-right: 15px solid var(--blueBlack);
-	border-bottom: 15px solid var(--blueBlack);
-	border-top: 15px solid var(--blueBlack);
-	background-color: var(--blueBlack);
-	border-radius: 0px 0px 15px 15px;
-}
-
-#borderDivB {	
-	background-color: var(--thickOutline);
-	border-left: 15px solid var(--thickOutline);
-	border-right: 15px solid var(--thickOutline);
-	border-bottom: 20px solid var(--thickOutline);
-	border-radius: 0 0 25px 25px;
-}
-
-.layoutContainer {		
-	/*transform: scale(0.75);*/
-	margin-top: 0px;
 	position: relative;
-	width: var(--imageDestroyerWidth);
+	margin-top: 6px;	
+	width:100%;
+	z-index:3;	
 }
-
+div.displayInstructionsCanvas {
+	position: absolute;
+	max-width: 95%;
+	top: 95%;
+	left: 1%;
+	background-color: var(--blueBlackAlpha);
+}
+#displayInstructionsCanvas {
+	position: relative;
+	width:100%;
+}
+#borderDiv {
+	padding: 0.5%;	
+	background-color: var(--blueBlack);
+	border-radius: 0px 0px 2% 2%;
+	z-index: 0;
+}
+#borderDivB {	
+	background-color: var(--myMagenta);
+	padding: 0.5%;	
+	border-radius: 0 0 2% 2%;		
+	z-index: 0;	
+}
 .layoutContainer:hover {
 	cursor: pointer;
 }
-
 button {
-	height: 35px;
-	width: 35px;		
-	font-size: 20px;
-	border: none;	
-	font-family: courier;	
-	color: #141a2b;
+	height: 5.2%;
+	width: 3.5%;			
+	border: none;		
 	z-index: 3;
 }
-
 #resolveImage:hover, #resolveSecret:hover {		
 	transition-property: transform filter width;
 	transition-duration: 0.2s;
@@ -124,80 +219,72 @@ button {
 	filter: brightness(1.5);	
 	border-radius: 50%;
 }
-
 #resolveImage:active, #resolveSecret:active{
 	transition-property: transform filter;
 	transition-duration: 0.1s;
 	transform: scale(0.98);
 	filter: brightness(0.8);
 }
-
 button:focus {
 	outline: none;	
 }
-
 #resolveImage {
 	position: absolute;
-	top: 700px;
-	left: 1150px;	
+	top: 81%;
+	left: 95%;	
 	background-color: rgb(160,0,90);
 	color: rgb(90,0,20);
 }
-
 #resolveSecret {
 	position: absolute;
-	top: 700px;
-	left: 1100px;
+	top: 81%;
+	left: 90%;
 	background-color: rgb(220,190,0);
 	color: rgb(130,60,0);	
 }
-
 #scrubberRef {
 	position:relative;	
 }
-
 #scrubber {
-	position: absolute;
-	top: 640px;
-	left: 1143px;
-	width: max-content;
-	/*border: 1px solid red;*/
+	position: absolute;	
+	top: 70%;
+	left: 0%;
+	transform: translate(-50%, 0);
+	width: max-content;	
 }
-
-#scrubLeft {
-	position: relative;	
-	background-color: transparent;	
+#scrubLeft {	
+	background-color: transparent;		
 	width: 0; 
   height: 0; 
   border-top: 17px solid transparent;
   border-bottom: 17px solid transparent;  
   border-right: 35px solid rgb(0,190,0); 
 }
-
-#scrubRight {
-	position: relative;
-	background-color: transparent;	
+@media screen and (max-height: 600px), screen and (max-width: 800px){
+	#scrubber{
+		transform: scale(0.5) translate(-100%, 0);
+	}
+}
+#scrubRight {	
+	background-color: transparent;		
 	width: 0; 
   height: 0; 
   border-top: 17px solid rgba(0,190,0,0);
   border-bottom: 17px solid transparent;  
   border-left: 35px solid rgb(0,190,0);	
 }
-
 #scrubRight:hover {
 	transition-property: transform filter;
 	transition-duration: 0.2s;	
 	filter: brightness(1.5);
 	transform: scale(1.15);
 }
-
 #scrubLeft:hover {
 	transition-property: transform filter;
 	transition-duration: 0.2s;	
 	filter: brightness(1.5); 
 	transform: scale(1.15);	
 }
-
 #scrubLeft:active, #scrubRight:active {
 	transition-property: transform filter;
 	transition-duration: 0.2s;	
@@ -205,21 +292,332 @@ button:focus {
 	transform: scale(0.75);	
 }
 
-.horizontal {
+/*=============================ABOUT==================================*/
+section.about {
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;
+	padding: 4% 2% 2% 2%;
+	background-color: rgb(0,20,40);
+}
+div.aboutImage {	
+	margin: 0 15px 0 15px;			
+}
+#headshot {		
+	max-width: 100%;
+	max-height:284px;
+	border: var(--borderWidth3) solid var(--myMagenta);
+	border-radius: 25px;
+	background-color: var(--blueBlack);
+}
+div.aboutText {	
+	/*flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 1;*/
+	display: flex;
+	justify-content: center;
+	align-self: center;	
+	order: 0;	
+	flex-direction: column;
+	max-width: 50%;
+	min-width: 400px;	
+	line-height: 1.5;
+	color: var(--orangeTextColor);
+	font-family: 'Inconsolata', monospace;
+	border: var(--borderWidth3) solid var(--myMagenta);
+	padding: 0 3% 3% 3%;	
+	border-radius: 0px 25px 5px 25px;
+	font-size: 20px;
+	/*background-color: var(--blueBlack);*/
+	background-color: rgb(0,20,40);
+}
+
+.aboutText > p {
+	margin: -10px 5px 5px 5px;
+}
+
+div.aboutCanvas {
+	text-align: center;
+	width: 100%;
+	transform: translateY(-45%);	
+}
+#aboutCanvas {			
+	width: 50%;	
+	background-color: var(--blueBlack);	
+	border: var(--borderWidth3) solid var(--myMagenta);
+	padding: 2%;	
+	background-color: rgb(0,20,40);		
+}
+
+/*=============================STACK==================================*/
+section.stack {
+	background-color: rgb(0,20,40);
+}
+
+ul.stackList {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	list-style: none;	
+	margin: 0 0 0 0;
+	padding: 0 2% 2% 2%;	
+			/*border: 1px solid red;*/
+}
+li.stackIcon {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	height: 100px;
+	width: 75px;	
+	padding: 4%;
+	font-size: 20px;
+	color: var(--scrubberGreen);
+	border: var(--borderWidth2) solid var(--myMagenta);
+	border-radius: 25px;
+	margin: 5px;
+
+
+}
+.stackIcon > img {
+	margin: none;
+	max-width: 65px;
+	max-height: 65px;
+}
+span.stackText {
+	margin-top: 10px;
+	font-size: 18px;
+}
+#stackCanvas {
+	width: 70%;
+	border: var(--borderWidth3) solid var(--myMagenta);
+	padding: 2%;
+	background-color: rgb(0,20,40);
+}
+div.stackCanvas {
+	text-align: center;
+	width: 100%;
+	transform: translateY(-50%);
+}
+
+/*=============================PORTFOLIO==================================*/
+section.portfolio {
+	position: relative;	
+	padding: 0;
 	border: none;
+	justify-content: space-around;
+}
+#portfolioCanvas {
+	width: 100%;	
+	border: var(--borderWidth3) solid var(--myMagenta);
+	padding: 6%;
+	background-color: rgb(0,20,40);
+}
+div.portfolioCanvas {	
+	width: 32%;	
+}
+#portfolioCanvasBox {
 	width: 100%;
-	height: 6px;
-	margin-top: 0px;	
+	display: flex;
+	justify-content: center;
+	align-self: center;	
+}
+.cardTop {
+		padding: 1%;
+}
+.cardBottom {
+	display: flex;
+	flex-direction: column;
+	align-items: space-around;
+	justify-content: space-around;
+}
+
+@media screen and (min-width: 580px) {
+	.clone > .cardTop {
+	max-width: 35%;	
+	max-height: 100%;
+							/*border: 1px solid red;*/
+	}
+.clone > .cardBottom {
+	max-width: 62%;
+	max-height: 100%;	
+	display: flex;
+	flex-direction: column;
+	align-items: space-around;
+	justify-content: flex-start;
+							/*border: 1px solid green;*/
+	}
+}
+.longText {
+	display: none;
+}
+@media screen and (min-width:800px) {
+		.expanded .longText {
+		display: block;
+	}
+}
+
+.projectCard {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	transform-origin: top left;	
+	color: rgb(0,225,0);		
+	max-width: 25%;
+	min-width: 300px;
+	min-height: 500px;	
+	border: var(--borderWidth3) solid var(--myMagenta);
+	border-radius: 0 40px 10px;
+	margin: 2px;
+	box-sizing: border-box;
+	padding: 1% 1% 1% 1%;
+	/*going to have to move padding to container divs inside cards*/
+	background-color: rgb(0,20,40);
+	z-index: 0;
+	overflow: hidden;	
+}
+p.reference {	
+	display: flex;
+	justify-content: space-around;
+}
+.tech > span {
+	color: black;
+	background-color: var(--orangeTextColor);
+	padding: 2px;
+	border-radius: 3px;
+	line-height: 1.75;
+}
+.reference a {
+	transition-property: all;
+	transition-duration: 0.1s;
+	display: flex;		
+	text-decoration: none;
+	color: black;
 	background-color: var(--myMagenta);
-	z-index: 4;
+	padding: 4px;	
+	border-radius: 0 5px 1px;
+}
+.reference a:hover {
+	transform: scale(1.05);	
+	filter: brightness(2);	
+}
+.reference a:active {
+	transform: scale(0.9);
 }
 
-.hrThick {
+.lg {
+	transition-property: all;
+	transition-duration: 0.2s;	
+	margin: 2% 0 2% 0;	
+
+}
+.lg:hover {
+	transition-property: all;
+	transition-duration: 0.2s;
+	transform: scale(1.05);
+	filter: contrast(1.05) brightness(1.5);
+	margin: 2% 0 2% 0;
+	z-index:1;
+}
+.portfolioImage > img {
+	max-width: 100%;
+	max-height: 400px;
+	border-radius: 25px;
+}
+.clone {
+	transition-duration: 0.1s;
+	z-index: 2;
+}
+.absolute{	
+	position: absolute;	
+}
+.expanded {			
+	max-width: var(--pageWidth);
 	width: 100%;
-	height: 10px;	
-	margin-bottom: 0px;
-	border-radius: 5px 5px 0 0;
+	height: 510px;
+	max-height: 510px;
+	transform: translateY(-5px);
+	filter: contrast(1.05) brightness(1.5);
+	z-index:3;
 }
-
-
-
+.expanded:hover {
+	transform: translateY(-5px);
+}
+.clicked {
+	opacity: 0;
+}
+h3.projectName {		
+	width: fit-content;
+	max-width: 85%;
+	margin: 0;
+	padding: 5px;
+	font-size: 20px;
+	background-color: black;
+}
+/* ==================================Contact Section========================================= */
+section.contact {
+	display: flex;
+	justify-content: space-between;	
+	border: none;	
+	width: 100%;
+	max-width: 100%;
+	margin-top: 1%;
+	color: var(--orangeTextColor);	
+	box-sizing: border-box;
+	padding: 0 3.5% 0 3.5%;
+}
+.contact h2 {	
+	margin-top: 0;
+	width: fit-content;	
+}
+.contactItem ul {
+	margin: 0;
+	padding: 0;
+}
+.contact li {
+	list-style-type: none;
+}
+div.contactItem {
+	padding: 2%;	
+}
+footer {
+	width: 100%;	
+}
+.footerContainer {	
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;	 
+}
+/* .footerRight {
+	
+}
+.footerLeft {
+	
+} */
+.footerContainer a {
+	display: inline-block;
+	transition-property: all;
+	transition-duration: 0.1s;	
+	text-decoration: none;
+	color: var(--blueBlack);
+	background-color: var(--orangeTextColor);
+	padding: 10px;
+	margin: 3px;
+	border-radius: 0 5px 1px;
+}
+.footerContainer a:hover {
+	transform: scale(1.05);	
+	filter: brightness(1.5);	
+}
+.footerContainer a:active {
+	transform: scale(0.9);
+}
+.footerRight p {	
+	color:var(--orangeTextColor);
+}

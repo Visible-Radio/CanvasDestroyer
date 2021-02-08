@@ -139,7 +139,8 @@ ul.menu {
 	margin-top: 0;
 	width: 95%;
 	max-width: var(--pageWidth);
-				/*border: 1px solid blue;	*/
+	min-height: 100vh;
+				
 }
 .layoutContainer {				
 	margin-top: 0;				

@@ -2,66 +2,65 @@
 <html>
 <head>
 	<!-- images need to be downsampled -->
-	<!-- need to deploy, gonna have CORS canvas issue probably -->
-	<!-- contact section -->
+
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Patrick Kaipainen, Web Developer</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div id="masterContainer">
 		<canvas id="sourceCanvas"></canvas>
-		<canvas id="skullCanvas"></canvas>				
-		<div id="borderDivB">		
+		<canvas id="skullCanvas"></canvas>
+		<div id="borderDivB">
 			<div id="borderDiv">
-				<div class="layoutContainer">											
+				<div class="layoutContainer">
 					<div id="scrubber">
 						<button id="scrubLeft"></button>
 						<button id="scrubRight"></button>
 					</div>
-					<canvas id="destinationCanvas">A canvas element onto which a pixelated image is drawn. The pixel data that is rendered here actually contains two images interlaced with each other that resolve at different points depending on user input.</canvas>	
+					<canvas id="destinationCanvas">A canvas element onto which a pixelated image is drawn. The pixel data that is rendered here actually contains two images interlaced with each other that resolve at different points depending on user input.</canvas>
 					<button id="resolveImage"></button>
-					<button id="resolveSecret"></button>							
+					<button id="resolveSecret"></button>
 					<div id="littleContainer">
 						<canvas id="littleCanvas">Patrick Kaipainen Web Developer, Pixel Enthusiast</canvas>
 					</div>
 					<div class="displayInstructionsCanvas"><canvas id="displayInstructionsCanvas"></canvas></div>
 					<header>
 						<div class="headerBorder">
-							<div class="container headerContainer">												
-								<div class="menu">											
-									<ul class="menu">																
+							<div class="container headerContainer">
+								<div class="menu">
+									<ul class="menu">
 										<li class="menu-item"><a href="#portfolio">Projects</a></li>
 										<li class="menu-item"><a href="#about">About</a></li>
 										<li class="menu-item"><a href="#contact">Contact</a></li>
-									</ul>				
-								</div>			
+									</ul>
+								</div>
 							</div>
-						</div>				
+						</div>
 					</header>
 				</div>
-			</div>			
-		</div>		
-	</div>	
+			</div>
+		</div>
+	</div>
 
 <div id="torso" class="torso">
 	<!-- <canvas id="portfolioCanvas" class="sectionCanvas">Portfolio</canvas> -->
 	<section id="stack" class="stack">
 		<div class="stackCanvas">
 			<canvas id="stackCanvas">Stack and tools</canvas>
-		</div>		
+		</div>
 			<ul class="stackList">
 				<li class="stackIcon"><img src="./logos/js.png"><span class="stackText">Javascript</span></li>
 				<li class="stackIcon"><img src="./logos/react.png"><span class="stackText">React</span></li>
 				<li class="stackIcon"><img src="./logos/chartjs.png"><span class="stackText">Chart.js</span></li>
 				<li class="stackIcon"><img src="./logos/node.png"><span class="stackText">Node.js</span></li>
 				<li class="stackIcon"><img src="./logos/sql.png"><span class="stackText">SQL</span></li>
-				<li class="stackIcon"><img src="./logos/postgres.png"><span class="stackText">PostgreSQL</span></li>				
+				<li class="stackIcon"><img src="./logos/postgres.png"><span class="stackText">PostgreSQL</span></li>
 				<li class="stackIcon"><img src="./logos/html.png"><span class="stackText">HTML 5</span></li>
-				<li class="stackIcon"><img src="./logos/css.png"><span class="stackText">CSS 3</span></li>	
+				<li class="stackIcon"><img src="./logos/css.png"><span class="stackText">CSS 3</span></li>
 				<li class="stackIcon"><img src="./logos/github.png"><span class="stackText">Github</span></li>
 				<li class="stackIcon"><img src="./logos/git.png"><span class="stackText">Git</span></li>
 				<li class="stackIcon"><img src="./logos/postman.png"><span class="stackText">Postman</span></li>
@@ -87,7 +86,7 @@
 				<p class="tech">
 					<span>React</span>
 					<span>Chart.js</span>
-				</p>				
+				</p>
 			</div> <!-- end of card top -->
 			<div class="cardBottom">
 				<div class="portfolioImage">
@@ -96,7 +95,7 @@
 				<p class="reference">
 					<span><a href="https://github.com/Visible-Radio/job-calls-fe">Github</a></span>
 					<span><a href="https://job-calls-front-end.herokuapp.com/">See it Live</a></span>
-				</p>	
+				</p>
 			</div>	<!-- end of card bottom -->
 		</div> <!-- end of card -->
 
@@ -114,15 +113,15 @@
 					<span>Postgres</span>
 					<span>Knex.js</span>
 					<span>Puppeteer</span>
-				</p>				
+				</p>
 			</div> <!-- end of card top -->
 			<div class="cardBottom">
 				<div class="portfolioImage">
 					<img id="portfolioImage" src="./media/job-calls-api.png">
 				</div>
 				<p class="reference">
-					<span><a href="https://github.com/Visible-Radio/job-calls-api">Github</a></span>							
-				</p>	
+					<span><a href="https://github.com/Visible-Radio/job-calls-api">Github</a></span>
+				</p>
 			</div>	<!-- end of card bottom -->
 		</div> <!-- end of card -->
 
@@ -138,7 +137,7 @@
 					<span>Vanilla JS</span>
 					<span>HTML</span>
 					<span>CSS</span>
-				</p>				
+				</p>
 			</div> <!-- end of card top -->
 			<div class="cardBottom">
 				<div class="portfolioImage">
@@ -146,8 +145,8 @@
 				</div>
 				<p class="reference">
 					<span><a href="https://github.com/Visible-Radio/ImageDestroyer/tree/responsive">Github</a></span>
-					<span><a href="https://visible-radio.github.io/ImageDestroyer/">See it Live</a></span>							
-				</p>	
+					<span><a href="https://visible-radio.github.io/ImageDestroyer/">See it Live</a></span>
+				</p>
 			</div>	<!-- end of card bottom -->
 		</div> <!-- end of card -->
 
@@ -163,7 +162,7 @@
 					<span>Vanilla JS</span>
 					<span>HTML</span>
 					<span>CSS</span>
-				</p>				
+				</p>
 			</div> <!-- end of card top -->
 			<div class="cardBottom">
 				<div class="portfolioImage">
@@ -171,13 +170,13 @@
 				</div>
 				<p class="reference">
 					<span><a href="https://github.com/Visible-Radio/CanvasDestroyer/tree/responsiveCSS">Github</a></span>
-					<span><a href="#destinationCanvas">See it Live</a></span>							
-				</p>	
+					<span><a href="#destinationCanvas">See it Live</a></span>
+				</p>
 			</div>	<!-- end of card bottom -->
 		</div> <!-- end of card -->
 
 		<div class="projectCard lg">
-			<div class="cardTop">				
+			<div class="cardTop">
 			<h3 class="projectName">High Voltage Analog</h3>
 				<p class="description">HVA takes a string of arbitrary length and renders it on a grid of 14 segment displays.  The display can be customized by adding or removing 14 segment modules.
 				</p>
@@ -188,7 +187,7 @@
 					<span>Vanilla JS</span>
 					<span>HTML</span>
 					<span>CSS</span>
-				</p>				
+				</p>
 			</div> <!-- end of card top -->
 			<div class="cardBottom">
 				<div class="portfolioImage">
@@ -196,13 +195,13 @@
 				</div>
 				<p class="reference">
 					<span><a href="https://github.com/Visible-Radio/HighVoltageAnalog/tree/updates">Github</a></span>
-					<span><a href="https://visible-radio.github.io/HighVoltageAnalog/">See it Live</a></span>							
-				</p>	
+					<span><a href="https://visible-radio.github.io/HighVoltageAnalog/">See it Live</a></span>
+				</p>
 			</div>	<!-- end of card bottom -->
 		</div> <!-- end of card -->
 
 		<div class="projectCard lg">
-			<div class="cardTop">				
+			<div class="cardTop">
 			<h3 class="projectName">Smart Brain</h3>
 				<p class="description">The fullstack final project in the Zero to Mastery Complete Web Developer course.
 				</p>
@@ -216,22 +215,22 @@
 					<span>Bcrypt</span>
 					<span>Knex.js</span>
 					<span>Postgres</span>
-				</p>				
+				</p>
 			</div> <!-- end of card top -->
 			<div class="cardBottom">
 				<div class="portfolioImage">
 					<img id="portfolioImage" src="./media/smart-brain.png">
 				</div>
 				<p class="reference">
-					<span><a href="https://github.com/Visible-Radio/smart-brain">Github</a></span>					
+					<span><a href="https://github.com/Visible-Radio/smart-brain">Github</a></span>
 					<span><a href="https://ztm-smart-brain-fe.herokuapp.com/">See it Live</a></span>
-					<!-- <spa><a href="https://github.com/Visible-Radio/smart-brain-api">Github BE</a></span> -->	
-				</p>	
+					<!-- <spa><a href="https://github.com/Visible-Radio/smart-brain-api">Github BE</a></span> -->
+				</p>
 			</div>	<!-- end of card bottom -->
 		</div> <!-- end of card -->
 
 		<div class="projectCard lg">
-				<div class="cardTop">				
+				<div class="cardTop">
 				<h3 class="projectName">Ben Eater's 8-Bit Breadboard Computer</h3>
 					<p class="description">A programmable computer built on breadboards out of rudimentary TTL integrated circuits.  It has 16 <em>BYTES</em> of RAM for programs and data.
 					</p>
@@ -243,20 +242,20 @@
 						<span>Adruino</span>
 						<span>Electronics</span>
 						<span>C++</span>
-					</p>				
+					</p>
 				</div> <!-- end of card top -->
 				<div class="cardBottom">
 					<div class="portfolioImage">
 						<img id="portfolioImage" src="./media/SAP-1.png">
 					</div>
 					<p class="reference">
-						<span><a href="https://youtu.be/zZT7HTNLUvs">My Build on Youtube</a></span>					
+						<span><a href="https://youtu.be/zZT7HTNLUvs">My Build on Youtube</a></span>
 						<span><a href="https://eater.net/8bit">Ben Eater</a></span>
-					</p>	
+					</p>
 				</div>	<!-- end of card bottom -->
 			</div> <!-- end of card -->
 
-		
+
 	</section>
 
 
@@ -285,8 +284,9 @@
 			<div class="contactItem interests">
 				<h2 class="subhead">Interests</h2>
 				<ul>
-					<li>Front End Development</li>
-					<li>Fullstack Development</li>
+					<li>Front End</li>
+					<li>Back End</li>
+					<li>Computer Science</li>
 					<li>Arduino</li>
 					<li>Retro electronics</li>
 					<li>Dwarf Conifers</li>
@@ -309,8 +309,8 @@
 		</div>
 		<div class="footerRight">
 			<p>© Patrick Kaipainen 2021.</p>
-		</div>		
-	</div>	
+		</div>
+	</div>
 </footer>
 </div> <!-- end of torso -->
 	<script type="text/javascript" src="canvasDestroyer.js"></script>

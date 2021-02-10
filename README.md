@@ -1,6 +1,5 @@
 # CanvasDestroyer
 *Currently canvas destroyer is integrated into my personal website.  At some point I'll break it out into a package or react component for others to use.
-Canvas version of the flexbox static effect from ImageDestroyer
 
 What happens when you map pixel data from one source into a new source with a different width? The 'columns' no longer line up properly. If the difference in width is slight, the image is distorted diagonally, though it remains somewhat legible. If the difference in width is great, the image is completely scrambled. Canvas Destroyer is sitting at the top of this page. It is essentially a more performant version of Image Destroyer implemented with canvas elements. Given a source image, it allows the pixels in that image to be drawn into a grid of any width up to the original width of the image.
 

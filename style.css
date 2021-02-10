@@ -24,115 +24,132 @@ body {
 	padding: 0 0 50px 0;
 	overflow-x: hidden;
 	display: flex;
-	flex-direction: column;		
-	align-items: center;	
-	box-sizing: border-box;	
+	flex-direction: column;
+	align-items: center;
+	box-sizing: border-box;
 	font-family: 'Inconsolata', monospace;
 	background-color: var(--blueBlack);
-					/*border: 5px solid green;*/
+}
+.siteWrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-sizing: border-box;
+	overflow-x: hidden;
 }
 .torso {
 	margin: 0;
 	padding: 0;
-	width:95%;	
+	width:95%;
 	max-width: var(--pageWidth);
 	display: flex;
 	align-content: center;
 	align-items: center;
-	flex-direction: column		
-					/*border: 1px solid green;	*/
+	flex-direction: column
 }
 section {
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-around;	
+	justify-content: space-around;
 	align-items: baseline;
-	align-content: center;	
-	font-size: 16px;		
+	align-content: center;
+	font-size: 16px;
 	border: var(--borderWidth3) solid var(--myMagenta);
-	border-radius: 25px;	
+	border-radius: 25px;
 	margin: 0;
 	margin-top: 150px;
-	max-width:100%;	
+	max-width:100%;
 }
 /*=============================Header/menu==================================*/
 header {
-	transform-origin: top left;	
-	position: absolute;		
-	max-width: 90%;
-	top: -0.75%;
-	left: -0.5%;
+	transform-origin: top left;
+	position: absolute;
 	z-index: 3;
-	width: 50%;
+	max-width: 100%;
+	min-width: 50%
 }
-@media screen and (max-width: 900px){
-	header{
-		transform: scale(0.85);
-		width: 60%;
-	}
-}
-@media screen and (max-width: 650px){
-	header {		
-		width: 100%;
-	}
-}
-.headerBorder {	
-	padding: 1% 2% 1% 1%;
-	border: var(--borderWidth1) solid var(--scrubberGreen);
+.headerBorder {
+	padding: 10px;
 	border-radius: 0 0 35px 0;
-	width: 100%;
+	max-width: 100%;
 }
-.headerContainer {	
-	position: relative;
-	border: var(--borderWidth2) solid var(--scrubberGreen);
+.headerContainer {
+	border: var(--borderWidth3) solid var(--myMagenta);
 	border-radius: 0 0 30px 0;
-	display: flex;
 	z-index: 3;
 	flex-flow: row;
 	align-items: flex-start;
 	justify-content: flex-start;
 	background-color: var(--blueBlackAlpha);
 	color: var(--orangeTextColor);
-	width: 100%;									
-}
-div.menu {
-width: 100%;
-display: flex;
-justify-content: flex-start;
-padding: 0 10% 0 0;
+	max-width: 100%;
+	margin: 0 0 0 0;
+	padding: 0 2% 0 0;
 }
 ul.menu {
-	width: 100%;		
+	max-width: 100%;
 	display: flex;
 	justify-content: space-between;
 	margin: 0;
-	padding: 2% 4% 2% 3%;	
+	padding: 0;
+	padding: 5px 15px 5px 5px;
 }
-.menu-item {	
+.menu-item {
 	color: rgb(0,225,0);
-	font-size: 24px;
-	list-style: none;	
+	font-size: 22px;
+	list-style: none;
 	font-family: 'Inconsolata', monospace;
 	letter-spacing: 2px;
-	margin: 0 10px 0 10px;
+	margin: 5px;
 }
 .menu-item > a {
+	display: block;
 	color: rgb(0,225,0);
 	text-decoration: none;
-	padding: 15px;	
 	border: var(--borderWidth1) solid transparent;
+	margin: 0;
 }
 .menu-item > a:hover {
+	transform: scale(1.1);
 	transition-property: all;
 	transition-duration: 0.2s;
 	color: rgb(255,255,0);
 	text-decoration: underline;
 	background-color: black;
-	border: var(--borderWidth1) solid var(--scrubberGreen);
-
-	
+	/* border: var(--borderWidth1) solid var(--scrubberGreen); */
 }
-
+.menu-item > a:active {
+	transform: scale(0.9);
+}
+@media screen and (max-width: 500px) {
+	.headerBorder {
+		padding: 2px;
+		border: none;
+		max-width: 100%;
+	}
+	.headerContainer {
+		border-width: 2px
+	}
+	.menu-item {
+		font-size: 18px;
+	}
+}
+@media screen and (max-width: 300px) {
+	.headerBorder {
+		padding: 0;
+		border: none;
+		max-width: 100%;
+	}
+	.headerContainer {
+		box-sizing: border-box;
+		max-width: 100%;
+		border-radius: 0 0 0 0;
+	}
+	.menu-item {
+		font-size: 14px;
+	}
+}
 /*=============================CanvasDestroyer==================================*/
 #masterContainer {
 	padding: 2px;
@@ -140,11 +157,11 @@ ul.menu {
 	width: 95%;
 	max-width: var(--pageWidth);
 	min-height: 100vh;
-				
 }
-.layoutContainer {				
-	margin-top: 0;				
-	position: relative;		
+.layoutContainer {
+	margin-top: 0;
+	position: relative;
+	width: fit-content;
 }
 #sourceCanvas {
 	display: none;
@@ -156,17 +173,17 @@ ul.menu {
 	background-color: var(--blueBlack);
 	width:100%;
 	height:100%;
-	z-index: 2;		
+	z-index: 2;
 }
 #littleContainer {
 	width:98%;
 	position: absolute;
 	padding: 1%;
 	z-index:3;
-	top: 35%;		
+	top: 35%;
 	background-color: var(--blueBlackAlpha);
 	transition-property: opacity;
-	transition-duration: 1s;	
+	transition-duration: 1s;
 }
 #littleContainer:hover {
 	cursor: default;
@@ -176,47 +193,47 @@ ul.menu {
 }
 #littleCanvas {
 	position: relative;
-	margin-top: 6px;	
+	margin-top: 6px;
 	width:100%;
-	z-index:3;	
+	z-index:3;
 }
 div.displayInstructionsCanvas {
 	position: absolute;
-	max-width: 95%;
-	top: 95%;
+	width: 50%;
+	top: 90%;
 	left: 1%;
 	background-color: var(--blueBlackAlpha);
 }
 #displayInstructionsCanvas {
-	position: relative;
-	width:100%;
+	max-width:100%;
 }
 #borderDiv {
-	padding: 0.5%;	
+	padding: 0.5%;
 	background-color: var(--blueBlack);
 	border-radius: 0px 0px 2% 2%;
 	z-index: 0;
 }
-#borderDivB {	
+#borderDivB {
+	position: relative;
 	background-color: var(--myMagenta);
-	padding: 0.5%;	
-	border-radius: 0 0 2% 2%;		
-	z-index: 0;	
+	padding: 0.5%;
+	border-radius: 0 0 2% 2%;
+	z-index: 0;
 }
 .layoutContainer:hover {
 	cursor: pointer;
 }
 button {
 	height: 5.2%;
-	width: 3.5%;			
-	border: none;		
+	width: 3.5%;
+	border: none;
 	z-index: 3;
 }
-#resolveImage:hover, #resolveSecret:hover {		
+#resolveImage:hover, #resolveSecret:hover {
 	transition-property: transform filter width;
 	transition-duration: 0.2s;
 	transform: scale(1.15);
-	filter: brightness(1.5);	
+	filter: brightness(1.5);
 	border-radius: 50%;
 }
 #resolveImage:active, #resolveSecret:active{
@@ -226,12 +243,12 @@ button {
 	filter: brightness(0.8);
 }
 button:focus {
-	outline: none;	
+	outline: none;
 }
 #resolveImage {
 	position: absolute;
 	top: 81%;
-	left: 95%;	
+	left: 95%;
 	background-color: rgb(160,0,90);
 	color: rgb(90,0,20);
 }
@@ -240,56 +257,56 @@ button:focus {
 	top: 81%;
 	left: 90%;
 	background-color: rgb(220,190,0);
-	color: rgb(130,60,0);	
+	color: rgb(130,60,0);
 }
 #scrubberRef {
-	position:relative;	
+	position:relative;
 }
 #scrubber {
-	position: absolute;	
+	position: absolute;
 	top: 70%;
 	left: 0%;
 	transform: translate(-50%, 0);
-	width: max-content;	
+	width: max-content;
 }
-#scrubLeft {	
-	background-color: transparent;		
-	width: 0; 
-  height: 0; 
+#scrubLeft {
+	background-color: transparent;
+	width: 0;
+  height: 0;
   border-top: 17px solid transparent;
-  border-bottom: 17px solid transparent;  
-  border-right: 35px solid rgb(0,190,0); 
+  border-bottom: 17px solid transparent;
+  border-right: 35px solid rgb(0,190,0);
 }
 @media screen and (max-height: 600px), screen and (max-width: 800px){
 	#scrubber{
 		transform: scale(0.5) translate(-100%, 0);
 	}
 }
-#scrubRight {	
-	background-color: transparent;		
-	width: 0; 
-  height: 0; 
+#scrubRight {
+	background-color: transparent;
+	width: 0;
+  height: 0;
   border-top: 17px solid rgba(0,190,0,0);
-  border-bottom: 17px solid transparent;  
-  border-left: 35px solid rgb(0,190,0);	
+  border-bottom: 17px solid transparent;
+  border-left: 35px solid rgb(0,190,0);
 }
 #scrubRight:hover {
 	transition-property: transform filter;
-	transition-duration: 0.2s;	
+	transition-duration: 0.2s;
 	filter: brightness(1.5);
 	transform: scale(1.15);
 }
 #scrubLeft:hover {
 	transition-property: transform filter;
-	transition-duration: 0.2s;	
-	filter: brightness(1.5); 
-	transform: scale(1.15);	
+	transition-duration: 0.2s;
+	filter: brightness(1.5);
+	transform: scale(1.15);
 }
 #scrubLeft:active, #scrubRight:active {
 	transition-property: transform filter;
-	transition-duration: 0.2s;	
-	filter: brightness(1.5); 
-	transform: scale(0.75);	
+	transition-duration: 0.2s;
+	filter: brightness(1.5);
+	transform: scale(0.75);
 }
 
 /*=============================ABOUT==================================*/
@@ -299,37 +316,41 @@ section.about {
 	align-items: center;
 	padding: 4% 2% 2% 2%;
 	background-color: rgb(0,20,40);
+	max-width: 100%
 }
-div.aboutImage {	
-	margin: 0 15px 0 15px;			
+div.aboutImage {
+	margin: 0 15px 0 15px;
 }
-#headshot {		
+#headshot {
 	max-width: 100%;
 	max-height:284px;
 	border: var(--borderWidth3) solid var(--myMagenta);
 	border-radius: 25px;
 	background-color: var(--blueBlack);
 }
-div.aboutText {	
-	/*flex-grow: 1;
+div.aboutText {
+	flex-grow: 1;
 	flex-shrink: 1;
-	flex-basis: 1;*/
+	flex-basis: 1;
 	display: flex;
 	justify-content: center;
-	align-self: center;	
-	order: 0;	
+	align-self: center;
+	order: 0;
 	flex-direction: column;
 	max-width: 50%;
-	min-width: 400px;	
 	line-height: 1.5;
 	color: var(--orangeTextColor);
 	font-family: 'Inconsolata', monospace;
 	border: var(--borderWidth3) solid var(--myMagenta);
-	padding: 0 3% 3% 3%;	
+	padding: 0 3% 3% 3%;
 	border-radius: 0px 25px 5px 25px;
 	font-size: 20px;
-	/*background-color: var(--blueBlack);*/
 	background-color: rgb(0,20,40);
+}
+@media screen and (max-width: 820px) {
+	div.aboutText {
+		min-width: 90%;
+	}
 }
 
 .aboutText > p {
@@ -339,14 +360,14 @@ div.aboutText {
 div.aboutCanvas {
 	text-align: center;
 	width: 100%;
-	transform: translateY(-45%);	
+	transform: translateY(-45%);
 }
-#aboutCanvas {			
-	width: 50%;	
-	background-color: var(--blueBlack);	
+#aboutCanvas {
+	width: 50%;
+	background-color: var(--blueBlack);
 	border: var(--borderWidth3) solid var(--myMagenta);
-	padding: 2%;	
-	background-color: rgb(0,20,40);		
+	padding: 2%;
+	background-color: rgb(0,20,40);
 }
 
 /*=============================STACK==================================*/
@@ -359,9 +380,9 @@ ul.stackList {
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
-	list-style: none;	
+	list-style: none;
 	margin: 0 0 0 0;
-	padding: 0 2% 2% 2%;	
+	padding: 0 2% 2% 2%;
 			/*border: 1px solid red;*/
 }
 li.stackIcon {
@@ -373,7 +394,7 @@ li.stackIcon {
 	align-items: center;
 	justify-content: space-around;
 	height: 100px;
-	width: 75px;	
+	width: 75px;
 	padding: 4%;
 	font-size: 20px;
 	color: var(--scrubberGreen);
@@ -406,25 +427,25 @@ div.stackCanvas {
 
 /*=============================PORTFOLIO==================================*/
 section.portfolio {
-	position: relative;	
+	position: relative;
 	padding: 0;
 	border: none;
 	justify-content: space-around;
 }
 #portfolioCanvas {
-	width: 100%;	
+	width: 100%;
 	border: var(--borderWidth3) solid var(--myMagenta);
 	padding: 6%;
 	background-color: rgb(0,20,40);
 }
-div.portfolioCanvas {	
-	width: 32%;	
+div.portfolioCanvas {
+	width: 32%;
 }
 #portfolioCanvasBox {
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	align-self: center;	
+	align-self: center;
 }
 .cardTop {
 		padding: 1%;
@@ -438,13 +459,13 @@ div.portfolioCanvas {
 
 @media screen and (min-width: 580px) {
 	.clone > .cardTop {
-	max-width: 35%;	
+	max-width: 35%;
 	max-height: 100%;
 							/*border: 1px solid red;*/
 	}
 .clone > .cardBottom {
 	max-width: 62%;
-	max-height: 100%;	
+	max-height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: space-around;
@@ -465,11 +486,11 @@ div.portfolioCanvas {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;
-	transform-origin: top left;	
-	color: rgb(0,225,0);		
+	transform-origin: top left;
+	color: rgb(0,225,0);
 	max-width: 25%;
 	min-width: 300px;
-	min-height: 500px;	
+	min-height: 500px;
 	border: var(--borderWidth3) solid var(--myMagenta);
 	border-radius: 0 40px 10px;
 	margin: 2px;
@@ -478,9 +499,9 @@ div.portfolioCanvas {
 	/*going to have to move padding to container divs inside cards*/
 	background-color: rgb(0,20,40);
 	z-index: 0;
-	overflow: hidden;	
+	overflow: hidden;
 }
-p.reference {	
+p.reference {
 	display: flex;
 	justify-content: space-around;
 }
@@ -494,16 +515,16 @@ p.reference {
 .reference a {
 	transition-property: all;
 	transition-duration: 0.1s;
-	display: flex;		
+	display: flex;
 	text-decoration: none;
 	color: black;
 	background-color: var(--myMagenta);
-	padding: 4px;	
+	padding: 4px;
 	border-radius: 0 5px 1px;
 }
 .reference a:hover {
-	transform: scale(1.05);	
-	filter: brightness(2);	
+	transform: scale(1.05);
+	filter: brightness(2);
 }
 .reference a:active {
 	transform: scale(0.9);
@@ -511,8 +532,8 @@ p.reference {
 
 .lg {
 	transition-property: all;
-	transition-duration: 0.2s;	
-	margin: 2% 0 2% 0;	
+	transition-duration: 0.2s;
+	margin: 2% 0 2% 0;
 
 }
 .lg:hover {
@@ -532,10 +553,10 @@ p.reference {
 	transition-duration: 0.1s;
 	z-index: 2;
 }
-.absolute{	
-	position: absolute;	
+.absolute{
+	position: absolute;
 }
-.expanded {			
+.expanded {
 	max-width: var(--pageWidth);
 	width: 100%;
 	height: 510px;
@@ -550,7 +571,7 @@ p.reference {
 .clicked {
 	opacity: 0;
 }
-h3.projectName {		
+h3.projectName {
 	width: fit-content;
 	max-width: 85%;
 	margin: 0;
@@ -561,18 +582,18 @@ h3.projectName {
 /* ==================================Contact Section========================================= */
 section.contact {
 	display: flex;
-	justify-content: space-between;	
-	border: none;	
+	justify-content: space-between;
+	border: none;
 	width: 100%;
 	max-width: 100%;
 	margin-top: 1%;
-	color: var(--orangeTextColor);	
+	color: var(--orangeTextColor);
 	box-sizing: border-box;
 	padding: 0 3.5% 0 3.5%;
 }
-.contact h2 {	
+.contact h2 {
 	margin-top: 0;
-	width: fit-content;	
+	width: fit-content;
 }
 .contactItem ul {
 	margin: 0;
@@ -582,28 +603,28 @@ section.contact {
 	list-style-type: none;
 }
 div.contactItem {
-	padding: 2%;	
+	padding: 2%;
 }
 footer {
-	width: 100%;	
+	width: 100%;
 }
-.footerContainer {	
+.footerContainer {
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
 	align-content: center;
-	align-items: center;	 
+	align-items: center;
 }
 /* .footerRight {
-	
+
 }
 .footerLeft {
-	
+
 } */
 .footerContainer a {
 	display: inline-block;
 	transition-property: all;
-	transition-duration: 0.1s;	
+	transition-duration: 0.1s;
 	text-decoration: none;
 	color: var(--blueBlack);
 	background-color: var(--orangeTextColor);
@@ -612,12 +633,12 @@ footer {
 	border-radius: 0 5px 1px;
 }
 .footerContainer a:hover {
-	transform: scale(1.05);	
-	filter: brightness(1.5);	
+	transform: scale(1.05);
+	filter: brightness(1.5);
 }
 .footerContainer a:active {
 	transform: scale(0.9);
 }
-.footerRight p {	
+.footerRight p {
 	color:var(--orangeTextColor);
 }

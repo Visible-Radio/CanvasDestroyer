@@ -1,3 +1,5 @@
+import renderText from './renderFunction.js';
+
 const cards = document.querySelectorAll('.projectCard');
 const blank = document.querySelector('.blankCard');
 const portfolio = document.querySelector('#portfolio');
@@ -50,6 +52,13 @@ function handleCardClick(e) {
 	setTimeout(() => cardClone.classList.add('expanded'),0);
 
 	openCard = this;
+
+	const canvasHolder = document.querySelector('.clone .textRendererDemoHolder');
+	if (canvasHolder) {
+		canvasHolder.innerHTML = "<canvas id='expandedRendererDemo'></canvas>";
+		console.log(document.getElementById('expandedRendererDemo'));
+		renderText(6 * 10, 10, 'expandedRendererDemo', 'its good, its bad, its ugly, its a pixel text renderer', null, true);
+	}
 
 	// add event listener to clone to close it
 	cardClone.addEventListener('click', (e) => {

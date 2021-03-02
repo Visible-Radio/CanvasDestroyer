@@ -446,9 +446,12 @@ div.portfolioCanvas {
 	display: flex;
 	justify-content: center;
 	align-self: center;
+	z-index: -1;
+	margin-bottom: 30px;
 }
 .cardTop {
 		padding: 1%;
+		overflow: hidden;
 }
 .cardBottom {
 	display: flex;
@@ -457,15 +460,16 @@ div.portfolioCanvas {
 	justify-content: space-around;
 	padding: 0.5%;
 	max-height: 50%;
+	overflow: hidden;
 }
 
 @media screen and (min-width: 580px) {
-	.clone > .cardTop {
+	.clone .cardTop {
 	max-width: 35%;
 	max-height: 100%;
 							/*border: 1px solid red;*/
 	}
-.clone > .cardBottom {
+.clone .cardBottom {
 	max-width: 62%;
 	max-height: 100%;
 	display: flex;
@@ -484,7 +488,7 @@ div.portfolioCanvas {
 	}
 }
 
-.projectCard {
+/* .projectCard {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
@@ -495,18 +499,78 @@ div.portfolioCanvas {
 	min-height: 500px;
 	border: var(--borderWidth3) solid var(--myMagenta);
 	border-radius: 0 40px 10px;
-	margin: 2px;
+	margin: 0 2px 0 2px;
 	box-sizing: border-box;
 	padding: 1% 1% 1% 1%;
-	/*going to have to move padding to container divs inside cards*/
 	background-color: rgb(0,20,40);
-	z-index: 0;
-	overflow: hidden;
+	position: relative;
+} */
+
+.projectCard {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	transform-origin: top left;
+	color: rgb(0,225,0);
+	min-width: 300px;
+	min-height: 500px;
+	border: var(--borderWidth3) solid var(--myMagenta);
+	border-radius: 0 40px 10px;
+	margin: 0;
+	box-sizing: border-box;
+	padding: 1% 1% 1% 1%;
+	padding: 12px;
+	background-color: rgb(0,20,40);
 }
+
+.badgeReference {
+	display: flex;
+	justify-content: center;
+	max-width: 25%;
+	min-width: 300px;
+	position: relative;
+	padding: 0;
+	margin-bottom: 50px;
+}
+
+.badge {
+	position: absolute;
+	background-color: rgb(0,0,0);
+	border: 3px solid var(--myMagenta);
+	color: var(--scrubberGreen);
+	padding: 0 15px 0 15px;
+	border-radius: 5px;
+	top: 0;
+	margin: 0;
+	height: 100px;
+	transition-property: all;
+	transition-duration: 0.2s;
+	transition-timing-function: cubic-bezier(0.4, 1.55, 0.58, 1);
+	z-index: -1;
+}
+.badge > p {
+	margin: 10px 10px 10px 10px;
+}
+
+.badgeReference:hover .badge {
+	top: -8%;
+	transform-origin: center left;
+}
+.badgeReference:hover {
+	z-index: 2;
+}
+
+.clone .badge {
+	top: -8%;
+	transform-origin: center left;
+	/* transform: rotate(-30deg); */
+}
+
 p.reference {
 	display: flex;
 	justify-content: space-around;
 }
+
 .tech > span {
 	color: black;
 	background-color: var(--orangeTextColor);
@@ -535,16 +599,14 @@ p.reference {
 .lg {
 	transition-property: all;
 	transition-duration: 0.2s;
-	margin: 2% 0 2% 0;
 
 }
-.lg:hover {
+.projectCard:hover {
 	transition-property: all;
 	transition-duration: 0.2s;
 	transform: scale(1.05);
 	filter: contrast(1.05) brightness(1.5);
-	margin: 2% 0 2% 0;
-	z-index:1;
+	z-index: 2;
 }
 .portfolioImage > img {
 	max-width: 100%;
@@ -561,15 +623,19 @@ p.reference {
 .expanded {
 	max-width: var(--pageWidth);
 	width: 100%;
-	/* height: 510px; */
-	max-height: 710px;
-	transform: translateY(-5px);
+	max-height: 510px;
 	filter: contrast(1.05) brightness(1.5);
 	z-index:3;
 }
-.expanded:hover {
-	transform: translateY(-5px);
+.clone .reduceContrast {
+	filter: contrast(0.95) brightness(0.67);
 }
+
+.expanded .projectCard:hover {
+	transform: none;
+	filter: none;
+}
+
 .clicked {
 	opacity: 0;
 }
@@ -588,12 +654,12 @@ h3.projectName {
 	display: flex;
 	justify-content: center;
 	width: 100%;
+
 }
 #textRendererDemo {
 	/* thumbnail */
 	display: flex;
 	max-width: 98%;
-	margin-top: -45px;
 	box-sizing: border-box;
 	background: black;
 	border: 15px solid black;

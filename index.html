@@ -75,211 +75,234 @@
 			</div>
 		</div>
 
-		<div class="projectCard lg">
-			<div class="cardTop">
-				<h3 class="projectName">IBEW Local Union 353 Job Calls Database</h3>
-				<p class="description">A dashboard for tracking employment trends in the Construction sector.
-				</p>
-				<p class="longText">
-					It displays data relevant to the various classifications of members represented by the union about available jobs. Users can search by date, worker classification and company. Returned results can be filtered further in order to glean information about specific types of construction projects.
-				</p>
-				<p class="tech">
-					<span>React</span>
-					<span>Chart.js</span>
-				</p>
-			</div> <!-- end of card top -->
-			<div class="cardBottom">
-				<div class="portfolioImage">
-					<img id="portfolioImage" src="./media/job-calls.png">
-				</div>
-				<p class="reference">
-					<span><a href="https://github.com/Visible-Radio/job-calls-fe">Github</a></span>
-					<span><a href="https://job-calls-front-end.herokuapp.com/">See it Live</a></span>
-				</p>
-			</div>	<!-- end of card bottom -->
-		</div> <!-- end of card -->
-
-		<div class="projectCard lg">
-			<div class="cardTop">
-				<h3 class="projectName">Job Calls API / Database / Scraper</h3>
-				<p class="description">An API that returns JSON data pertaining to the employment of workers in the electrical and communications trades.
-				</p>
-				<p class="longText">
-					A Node script uses Puppeteer to automatically sign into the IBEW Local Union 353 website, parse the DOM and extract information about jobs available to electricians, line workers and communications workers. Each day the script writes the selected HTML elements to a new JSON file. This data is then used to populate a Postgres database. The API returns JSON data after receiving requests at either of two endpoints.
-				</p>
-				<p class="tech">
-					<span>Node</span>
-					<span>Express.js</span>
-					<span>Postgres</span>
-					<span>Knex.js</span>
-					<span>Puppeteer</span>
-				</p>
-			</div> <!-- end of card top -->
-			<div class="cardBottom">
-				<div class="portfolioImage">
-					<img id="portfolioImage" src="./media/job-calls-api.png">
-				</div>
-				<p class="reference">
-					<span><a href="https://github.com/Visible-Radio/job-calls-api">Github</a></span>
-				</p>
-			</div>	<!-- end of card bottom -->
-		</div> <!-- end of card -->
-
-		<div class="projectCard lg">
-			<div class="cardTop">
-				<h3 class="projectName">Image Destroyer</h3>
-				<p class="description">An experiment in direct pixel manipulation of images pulled from a NASA image API.  Image destroyer renders images on a grid of div elements, and can draw text of arbitrary length to the display.
-				</p>
-				<p class="longText">
-					When I took CS50 in 2020, I was fascinated by a series of projects related to iterating through information that represented images. My background in photography probably accounts for this fascination. Looping through image data made me feel close to the material of the image itself in a way that was familiar from my days spent in the darkroom and in photoshop. I wanted to continue to explore image manipulation using javascript.
-				</p>
-				<p class="tech">
-					<span>Vanilla JS</span>
-					<span>HTML</span>
-					<span>CSS</span>
-				</p>
-			</div> <!-- end of card top -->
-			<div class="cardBottom">
-				<div class="portfolioImage">
-					<img id="portfolioImage" src="./media/image-destroyer.png">
-				</div>
-				<p class="reference">
-					<span><a href="https://github.com/Visible-Radio/ImageDestroyer/tree/responsive">Github</a></span>
-					<span><a href="https://visible-radio.github.io/ImageDestroyer/">See it Live</a></span>
-				</p>
-			</div>	<!-- end of card bottom -->
-		</div> <!-- end of card -->
-
-		<div class="projectCard lg">
-			<div class="cardTop">
-				<h3 class="projectName">Canvas Destroyer</h3>
-				<p class="description">A refactored, more performant implementation of Image Destroyer using canvas elements. Capable of rendering text from strings and embedding a 'secret' image in another image.
-				</p>
-				<p class="longText">
-					There is a famous 16th century oil painting by Hans Holbein called <em>The Ambassadors</em>. It contains an unusual element - an anamorphic skull. When viewed straight on, this skull is illegible. It looks like an oblique stain across the painting's surface. When viewed from the correct angle however, the skull can be seen.  Similarly, Canvas Destroyer creates a pixel array which renders different images depending on the width of the area that the data is mapped into.
-				</p>
-				<p class="tech">
-					<span>Vanilla JS</span>
-					<span>HTML</span>
-					<span>CSS</span>
-				</p>
-			</div> <!-- end of card top -->
-			<div class="cardBottom">
-				<div class="portfolioImage">
-					<img id="portfolioImage" src="./media/canvas-destroyer.png">
-				</div>
-				<p class="reference">
-					<span><a href="https://github.com/Visible-Radio/CanvasDestroyer/tree/responsiveCSS">Github</a></span>
-					<span><a href="#destinationCanvas">See it Live</a></span>
-				</p>
-			</div>	<!-- end of card bottom -->
-		</div> <!-- end of card -->
-
-		<div class="projectCard lg">
-			<div class="cardTop">
-			<h3 class="projectName">High Voltage Analog</h3>
-				<p class="description">HVA takes a string of arbitrary length and renders it on a grid of 14 segment displays.  The display can be customized by adding or removing 14 segment modules.
-				</p>
-				<p class="longText">
-					This is the evolution of one of the first things I built with javascript. I love archaic technology and analog electronics. It was a fun exercise in manual DOM manipulation and CSS styling.
-				</p>
-				<p class="tech">
-					<span>Vanilla JS</span>
-					<span>HTML</span>
-					<span>CSS</span>
-				</p>
-			</div> <!-- end of card top -->
-			<div class="cardBottom">
-				<div class="portfolioImage">
-					<img id="portfolioImage" src="./media/hva.png">
-				</div>
-				<p class="reference">
-					<span><a href="https://github.com/Visible-Radio/HighVoltageAnalog/tree/updates">Github</a></span>
-					<span><a href="https://visible-radio.github.io/HighVoltageAnalog/">See it Live</a></span>
-				</p>
-			</div>	<!-- end of card bottom -->
-		</div> <!-- end of card -->
-
-		<div class="projectCard lg">
-			<div class="cardTop">
-			<h3 class="projectName">Pixel Text Renderer</h3>
-				<p class="description">A reusable React component that renders a string to a canvas element.
-				</p>
-				<p>Try it out!</p>
-				<p class="npm"><em>npm i react-pixel-text-renderer</em></p>
-				<p class="longText">
-
-				</p>
-				<p class="tech">
-					<span>React</span>
-				</p>
-			</div> <!-- end of card top -->
-			<div class="cardBottom">
-				<div class="textRendererDemoHolder">
-					<canvas id="textRendererDemo">Canvas element that renders pixelated text</canvas>
-				</div>
-				<p class="reference">
-					<span><a href="https://github.com/Visible-Radio/react-pixel-text-renderer">Github</a></span>
-					<span><a href="https://www.npmjs.com/package/react-pixel-text-renderer">NPM</a></span>
-				</p>
-			</div>	<!-- end of card bottom -->
-		</div> <!-- end of card -->
-
-		<div class="projectCard lg">
-			<div class="cardTop">
-			<h3 class="projectName">Smart Brain</h3>
-				<p class="description">The fullstack final project in the Zero to Mastery Complete Web Developer course.
-				</p>
-				<p class="longText">
-					When given the URL to an image, Smart Brain connects to an image recognition API which returns coordinates for faces in the image.  It uses a relational database to store user information and securely hashes login credentials.
-				</p>
-				<p class="tech">
-					<span>React</span>
-					<span>Node</span>
-					<span>Express.js</span>
-					<span>Bcrypt</span>
-					<span>Knex.js</span>
-					<span>Postgres</span>
-				</p>
-			</div> <!-- end of card top -->
-			<div class="cardBottom">
-				<div class="portfolioImage">
-					<img id="portfolioImage" src="./media/smart-brain.png">
-				</div>
-				<p class="reference">
-					<span><a href="https://github.com/Visible-Radio/smart-brain">Github</a></span>
-					<span><a href="https://ztm-smart-brain-fe.herokuapp.com/">See it Live</a></span>
-					<!-- <spa><a href="https://github.com/Visible-Radio/smart-brain-api">Github BE</a></span> -->
-				</p>
-			</div>	<!-- end of card bottom -->
-		</div> <!-- end of card -->
-
-		<div class="projectCard lg">
+		<div class="badgeReference lg">
+			<div class="badge"><p>100% Original</p></div>
+			<div class="projectCard lg">
 				<div class="cardTop">
-				<h3 class="projectName">Ben Eater's 8-Bit Breadboard Computer</h3>
-					<p class="description">A programmable computer built on breadboards out of rudimentary TTL integrated circuits.  It has 16 <em>BYTES</em> of RAM for programs and data.
+					<h3 class="projectName">IBEW Local Union 353 Job Calls Database</h3>
+					<p class="description">A dashboard for tracking employment trends in the Construction sector.
 					</p>
 					<p class="longText">
-						This was my bridge between an interest in electronics and exposure to programmable logic controllers in the electrical trade on the one hand, and programming on the other. This kit gave me so much insight into how computers work at the hardware level. Building this literally entails defining the bit patterns (ie <em>instructions</em>!!) that the machine responds to.
+						It displays data relevant to the various classifications of members represented by the union about available jobs. Users can search by date, worker classification and company. Returned results can be filtered further in order to glean information about specific types of construction projects.
 					</p>
 					<p class="tech">
-						<span>Assembly</span>
-						<span>Adruino</span>
-						<span>Electronics</span>
-						<span>C++</span>
+						<span>React</span>
+						<span>Chart.js</span>
 					</p>
 				</div> <!-- end of card top -->
 				<div class="cardBottom">
 					<div class="portfolioImage">
-						<img id="portfolioImage" src="./media/SAP-1.png">
+						<img id="portfolioImage" src="./media/job-calls.png">
 					</div>
 					<p class="reference">
-						<span><a href="https://youtu.be/zZT7HTNLUvs">My Build on Youtube</a></span>
-						<span><a href="https://eater.net/8bit">Ben Eater</a></span>
+						<span><a href="https://github.com/Visible-Radio/job-calls-fe">Github</a></span>
+						<span><a href="https://job-calls-front-end.herokuapp.com/">See it Live</a></span>
 					</p>
 				</div>	<!-- end of card bottom -->
 			</div> <!-- end of card -->
+		</div> <!-- end of badge reference -->
 
+		<div class="badgeReference lg">
+			<div class="badge"><p>100% Original</p></div>
+			<div class="projectCard lg">
+				<div class="cardTop">
+					<h3 class="projectName">Job Calls API / Database / Scraper</h3>
+					<p class="description">An API that returns JSON data pertaining to the employment of workers in the electrical and communications trades.
+					</p>
+					<p class="longText">
+						A Node script uses Puppeteer to automatically sign into the IBEW Local Union 353 website, parse the DOM and extract information about jobs available to electricians, line workers and communications workers. Each day the script writes the selected HTML elements to a new JSON file. This data is then used to populate a Postgres database. The API returns JSON data after receiving requests at either of two endpoints.
+					</p>
+					<p class="tech">
+						<span>Node</span>
+						<span>Express.js</span>
+						<span>Postgres</span>
+						<span>Knex.js</span>
+						<span>Puppeteer</span>
+					</p>
+				</div> <!-- end of card top -->
+				<div class="cardBottom">
+					<div class="portfolioImage">
+						<img id="portfolioImage" src="./media/job-calls-api.png">
+					</div>
+					<p class="reference">
+						<span><a href="https://github.com/Visible-Radio/job-calls-api">Github</a></span>
+					</p>
+				</div>	<!-- end of card bottom -->
+			</div> <!-- end of card -->
+		</div> <!-- end of badge reference -->
+
+		<div class="badgeReference lg">
+			<div class="badge"><p>100% Original</p></div>
+			<div class="projectCard lg">
+				<div class="cardTop">
+				<h3 class="projectName">Pixel Text Renderer</h3>
+					<p class="description">A reusable React component that renders a string to a canvas element.
+					</p>
+					<p>Try it out!</p>
+					<p class="npm"><em>npm i react-pixel-text-renderer</em></p>
+					<p class="longText">
+
+					</p>
+					<p class="tech">
+						<span>React</span>
+					</p>
+				</div> <!-- end of card top -->
+				<div class="cardBottom">
+					<div class="textRendererDemoHolder">
+						<canvas id="textRendererDemo">Canvas element that renders pixelated text</canvas>
+					</div>
+					<p class="reference">
+						<span><a href="https://github.com/Visible-Radio/react-pixel-text-renderer">Github</a></span>
+						<span><a href="https://www.npmjs.com/package/react-pixel-text-renderer">NPM</a></span>
+					</p>
+				</div>	<!-- end of card bottom -->
+			</div> <!-- end of card -->
+		</div> <!-- end of badge reference -->
+
+		<div class="badgeReference lg">
+			<div class="badge"><p>100% Original</p></div>
+			<div class="projectCard lg">
+				<div class="cardTop">
+					<h3 class="projectName">Image Destroyer</h3>
+					<p class="description">An experiment in direct pixel manipulation of images pulled from a NASA image API.  Image destroyer renders images on a grid of div elements, and can draw text of arbitrary length to the display.
+					</p>
+					<p class="longText">
+						When I took CS50 in 2020, I was fascinated by a series of projects related to iterating through information that represented images. My background in photography probably accounts for this fascination. Looping through image data made me feel close to the material of the image itself in a way that was familiar from my days spent in the darkroom and in photoshop. I wanted to continue to explore image manipulation using javascript.
+					</p>
+					<p class="tech">
+						<span>Vanilla JS</span>
+						<span>HTML</span>
+						<span>CSS</span>
+					</p>
+				</div> <!-- end of card top -->
+				<div class="cardBottom">
+					<div class="portfolioImage">
+						<img id="portfolioImage" src="./media/image-destroyer.png">
+					</div>
+					<p class="reference">
+						<span><a href="https://github.com/Visible-Radio/ImageDestroyer/tree/responsive">Github</a></span>
+						<span><a href="https://visible-radio.github.io/ImageDestroyer/">See it Live</a></span>
+					</p>
+				</div>	<!-- end of card bottom -->
+			</div> <!-- end of card -->
+		</div> <!-- end of badge reference -->
+
+		<div class="badgeReference lg">
+			<div class="badge"><p>100% Original</p></div>
+			<div class="projectCard lg">
+				<div class="cardTop">
+					<h3 class="projectName">Canvas Destroyer</h3>
+					<p class="description">A refactored, more performant implementation of Image Destroyer using canvas elements. Capable of rendering text from strings and embedding a 'secret' image in another image.
+					</p>
+					<p class="longText">
+						There is a famous 16th century oil painting by Hans Holbein called <em>The Ambassadors</em>. It contains an unusual element - an anamorphic skull. When viewed straight on, this skull is illegible. It looks like an oblique stain across the painting's surface. When viewed from the correct angle however, the skull can be seen.  Similarly, Canvas Destroyer creates a pixel array which renders different images depending on the width of the area that the data is mapped into.
+					</p>
+					<p class="tech">
+						<span>Vanilla JS</span>
+						<span>HTML</span>
+						<span>CSS</span>
+					</p>
+				</div> <!-- end of card top -->
+				<div class="cardBottom">
+					<div class="portfolioImage">
+						<img id="portfolioImage" src="./media/canvas-destroyer.png">
+					</div>
+					<p class="reference">
+						<span><a href="https://github.com/Visible-Radio/CanvasDestroyer/tree/responsiveCSS">Github</a></span>
+						<span><a href="#destinationCanvas">See it Live</a></span>
+					</p>
+				</div>	<!-- end of card bottom -->
+			</div> <!-- end of card -->
+		</div> <!-- end of badge reference -->
+
+		<div class="badgeReference lg">
+			<div class="badge"><p>100% Original</p></div>
+			<div class="projectCard lg">
+				<div class="cardTop">
+				<h3 class="projectName">High Voltage Analog</h3>
+					<p class="description">HVA takes a string of arbitrary length and renders it on a grid of 14 segment displays.  The display can be customized by adding or removing 14 segment modules.
+					</p>
+					<p class="longText">
+						This is the evolution of one of the first things I built with javascript. I love archaic technology and analog electronics. It was a fun exercise in manual DOM manipulation and CSS styling.
+					</p>
+					<p class="tech">
+						<span>Vanilla JS</span>
+						<span>HTML</span>
+						<span>CSS</span>
+					</p>
+				</div> <!-- end of card top -->
+				<div class="cardBottom">
+					<div class="portfolioImage">
+						<img id="portfolioImage" src="./media/hva.png">
+					</div>
+					<p class="reference">
+						<span><a href="https://github.com/Visible-Radio/HighVoltageAnalog/tree/updates">Github</a></span>
+						<span><a href="https://visible-radio.github.io/HighVoltageAnalog/">See it Live</a></span>
+					</p>
+				</div>	<!-- end of card bottom -->
+			</div> <!-- end of card -->
+		</div> <!-- end of badge reference -->
+
+		<div class="badgeReference lg">
+			<div class="badge"><p>Code Along</p></div>
+			<div class="projectCard lg">
+				<div class="cardTop">
+				<h3 class="projectName">Smart Brain</h3>
+					<p class="description">The fullstack final project in the Zero to Mastery Complete Web Developer course.
+					</p>
+					<p class="longText">
+						When given the URL to an image, Smart Brain connects to an image recognition API which returns coordinates for faces in the image.  It uses a relational database to store user information and securely hashes login credentials.
+					</p>
+					<p class="tech">
+						<span>React</span>
+						<span>Node</span>
+						<span>Express.js</span>
+						<span>Bcrypt</span>
+						<span>Knex.js</span>
+						<span>Postgres</span>
+					</p>
+				</div> <!-- end of card top -->
+				<div class="cardBottom">
+					<div class="portfolioImage">
+						<img class="reduceContrast" id="portfolioImage" src="./media/smart-brain.png">
+					</div>
+					<p class="reference">
+						<span><a href="https://github.com/Visible-Radio/smart-brain">Github</a></span>
+						<span><a href="https://ztm-smart-brain-fe.herokuapp.com/">See it Live</a></span>
+						<!-- <spa><a href="https://github.com/Visible-Radio/smart-brain-api">Github BE</a></span> -->
+					</p>
+				</div>	<!-- end of card bottom -->
+			</div> <!-- end of card -->
+		</div> <!-- end of badge reference -->
+
+		<div class="badgeReference lg">
+			<div class="badge"><p>Code Along / Kit</p></div>
+			<div class="projectCard lg">
+					<div class="cardTop">
+					<h3 class="projectName">Ben Eater's 8-Bit Breadboard Computer</h3>
+						<p class="description">A programmable computer built on breadboards out of rudimentary TTL integrated circuits.  It has 16 <em>BYTES</em> of RAM for programs and data.
+						</p>
+						<p class="longText">
+							This was my bridge between an interest in electronics and exposure to programmable logic controllers in the electrical trade on the one hand, and programming on the other. This kit gave me so much insight into how computers work at the hardware level. Building this literally entails defining the bit patterns (ie <em>instructions</em>!!) that the machine responds to.
+						</p>
+						<p class="tech">
+							<span>Assembly</span>
+							<span>Adruino</span>
+							<span>Electronics</span>
+							<span>C++</span>
+						</p>
+					</div> <!-- end of card top -->
+					<div class="cardBottom">
+						<div class="portfolioImage">
+							<img class="reduceContrast" id="portfolioImage" src="./media/SAP-1.png">
+						</div>
+						<p class="reference">
+							<span><a href="https://youtu.be/zZT7HTNLUvs">My Build on Youtube</a></span>
+							<span><a href="https://eater.net/8bit">Ben Eater</a></span>
+						</p>
+					</div>	<!-- end of card bottom -->
+				</div> <!-- end of card -->
+		</div> <!-- end of badge reference -->
 
 	</section>
 

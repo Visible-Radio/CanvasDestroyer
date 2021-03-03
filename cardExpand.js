@@ -1,7 +1,6 @@
 import renderText from './renderFunction.js';
 
-const cards = document.querySelectorAll('.projectCard');
-const blank = document.querySelector('.blankCard');
+const cards = document.querySelectorAll('.badgeReference');
 const portfolio = document.querySelector('#portfolio');
 cards.forEach(card => card.addEventListener('click', handleCardClick));
 
@@ -37,7 +36,7 @@ function handleCardClick(e) {
 	// console.log('percentPosition', percentPosition);
 
 	//	set position of expanded card
-	cardClone.style.top = `${percentPosition + 4}%`;
+	cardClone.style.top = `${percentPosition + 6}%`;
 
 	// pop the clone out of document flow
 	cardClone.classList.add('absolute');

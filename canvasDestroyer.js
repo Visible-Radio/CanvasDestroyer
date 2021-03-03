@@ -364,7 +364,7 @@ width, pixelScale, canvas element id, input text string, optional array of 3 rgb
 justText(218, 3, 'displayInstructionsCanvas', 'Shift click to jump, click to seek', [190,0,90]);
 justText(47, 7, 'portfolioCanvas', 'Projects');
 justText(50, 7, 'aboutCanvas', 'About Me', [220,190,0]);
-justText(107, 7, 'stackCanvas', 'My Stack and Tools');
+justText(6 * 9, 7, 'stackCanvas', 'My Skills');
 justText(70, 4, 'textRendererDemo', 'Its good its bad its ugly, its a pixel text renderer');
 
 justText(120, 10, 'littleCanvas', 'Patrick Kaipainen   Web Developer,      Pixel enthusiast',[220,190,0]);

@@ -414,7 +414,7 @@ span.stackText {
 	font-size: 18px;
 }
 #stackCanvas {
-	width: 70%;
+	width: 35%;
 	border: var(--borderWidth3) solid var(--myMagenta);
 	padding: 2%;
 	background-color: rgb(0,20,40);
@@ -438,16 +438,31 @@ section.portfolio {
 	padding: 6%;
 	background-color: rgb(0,20,40);
 }
-div.portfolioCanvas {
-	width: 32%;
-}
+
 #portfolioCanvasBox {
-	width: 100%;
+	width: 30%;
 	display: flex;
 	justify-content: center;
 	align-self: center;
 	z-index: -1;
-	margin-bottom: 30px;
+	margin-bottom: 0;
+}
+.projectDidactic {
+	width: auto;
+	text-align: center;
+	color: var(--myMagenta);
+	border: var(--borderWidth2) solid var(--myMagenta);
+	background-color: rgb(0,20,40);
+	border-radius: 10px;
+	margin-bottom: 50px;
+	margin-top: -40px;
+	z-index: -3;
+	padding: 40px 40px 10px 40px;
+}
+.projectDidactic > p {
+	/* margin: 0; */
+	font-size: 18px;
+
 }
 .cardTop {
 		padding: 1%;
@@ -488,24 +503,6 @@ div.portfolioCanvas {
 	}
 }
 
-/* .projectCard {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: center;
-	transform-origin: top left;
-	color: rgb(0,225,0);
-	max-width: 25%;
-	min-width: 300px;
-	min-height: 500px;
-	border: var(--borderWidth3) solid var(--myMagenta);
-	border-radius: 0 40px 10px;
-	margin: 0 2px 0 2px;
-	box-sizing: border-box;
-	padding: 1% 1% 1% 1%;
-	background-color: rgb(0,20,40);
-	position: relative;
-} */
-
 .projectCard {
 	display: flex;
 	flex-flow: row wrap;
@@ -530,7 +527,7 @@ div.portfolioCanvas {
 	min-width: 300px;
 	position: relative;
 	padding: 0;
-	margin-bottom: 50px;
+	margin-bottom: 80px;
 }
 
 .badge {
@@ -561,7 +558,7 @@ div.portfolioCanvas {
 }
 
 .clone .badge {
-	top: -8%;
+	top: 0;
 	transform-origin: center left;
 	/* transform: rotate(-30deg); */
 }

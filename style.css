@@ -555,6 +555,7 @@ section.portfolio {
 }
 .badgeReference:hover {
 	z-index: 2;
+	cursor: pointer;
 }
 
 .clone .badge {

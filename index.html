@@ -30,12 +30,13 @@
 			<div id="borderDiv">
 				<div class="layoutContainer">
 					<div id="scrubber">
-						<button id="scrubLeft"></button>
-						<button id="scrubRight"></button>
+						<button id="scrubLeft"><div class="toolTip"><p>Scrub Left</p></div></button>
+						<button id="scrubRight"><div class="toolTip"><p>Scrub Right</p></div></button>
 					</div>
 					<canvas id="destinationCanvas">A canvas element onto which a pixelated image is drawn. The pixel data that is rendered here actually contains two images interlaced with each other that resolve at different points depending on user input.</canvas>
-					<button id="resolveImage"></button>
-					<button id="resolveSecret"></button>
+					<button id="resolveImage"><div class="toolTip"><p>Resolve Image</p></div></button>
+					<button id="resolveSecret"><div class="toolTip"><p>Resolve Secret Image</p></div></button>
+					<button id="toggleInfo"><span>i</span><div class="toolTip"><p>What is this?</p></div></button>
 					<div id="littleContainer">
 						<canvas id="littleCanvas">Patrick Kaipainen Web Developer, Pixel Enthusiast</canvas>
 					</div>
@@ -47,7 +48,6 @@
 	</div>
 
 <div id="torso" class="torso">
-	<!-- <canvas id="portfolioCanvas" class="sectionCanvas">Portfolio</canvas> -->
 	<section id="stack" class="stack">
 		<div class="stackCanvas">
 			<canvas id="stackCanvas">Stack and tools</canvas>
@@ -55,16 +55,37 @@
 			<ul class="stackList">
 				<li class="stackIcon"><img src="./logos/js.png"><span class="stackText">Javascript</span></li>
 				<li class="stackIcon"><img src="./logos/react.png"><span class="stackText">React</span></li>
-				<li class="stackIcon"><img src="./logos/chartjs.png"><span class="stackText">Chart.js</span></li>
 				<li class="stackIcon"><img src="./logos/node.png"><span class="stackText">Node.js</span></li>
-				<li class="stackIcon"><img src="./logos/sql.png"><span class="stackText">SQL</span></li>
+				<li class="stackIcon link">
+					<a href="https://chartjs.org/">
+						<img src="./logos/chartjs.png">
+						<span class="stackText">Chart.js</span>
+					</a>
+				</li>
+				<li class="stackIcon link">
+					<a href="https://expressjs.com/">
+						<img src="./logos/express.webp">
+						<span class="stackText">Express.js</span>
+					</a>
+				</li>
+				<li class="stackIcon link">
+					<a href="https://knexjs.org/">
+						<img src="./logos/knex.png">
+						<span class="stackText">Knex.js</span>
+					</a>
+				</li>
 				<li class="stackIcon"><img src="./logos/postgres.png"><span class="stackText">PostgreSQL</span></li>
 				<li class="stackIcon"><img src="./logos/html.png"><span class="stackText">HTML 5</span></li>
 				<li class="stackIcon"><img src="./logos/css.png"><span class="stackText">CSS 3</span></li>
-				<li class="stackIcon"><img src="./logos/github.png"><span class="stackText">Github</span></li>
 				<li class="stackIcon"><img src="./logos/git.png"><span class="stackText">Git</span></li>
-				<li class="stackIcon"><img src="./logos/postman.png"><span class="stackText">Postman</span></li>
-				<li class="stackIcon"><img src="./logos/puppeteer.png"><span class="stackText">Puppeteer</span></li>
+				<li class="stackIcon"><img src="./logos/rest.webp"><span class="stackText">REST APIs</span></li>
+				<li class="stackIcon link">
+					<a href="https://developers.google.com/web/tools/puppeteer">
+						<img src="./logos/puppeteer.png">
+						<span class="stackText">Puppeteer</span>
+					</a>
+				</li>
+				<!-- <li class="stackIcon"><img style="filter:hue-rotate(90deg)" src="./logos/canvas.png"><span class="stackText">Canvas API</span></li> -->
 			</ul>
 	</section>
 
@@ -73,7 +94,6 @@
 				<canvas id="portfolioCanvas">Projects</canvas>
 		</div>
 		<div class="projectDidactic"><p>These projects are entirely my own except where it is noted that they were completed as part of a code-along.</p></div>
-		<!-- insert some copy about clicking for more info and that most of the projects are roll your own, no templates, no libraries etc -->
 
 		<div class="badgeReference lg">
 			<div class="badge"><p>100% Original</p></div>
@@ -137,16 +157,16 @@
 			<div class="projectCard lg">
 				<div class="cardTop">
 				<h3 class="projectName">Pixel Text Renderer</h3>
-					<p class="description">A reusable React component that renders a string to a canvas element.
+					<p class="description">A reusable React component that renders a string to a canvas element.  The section headings on this page are rendered with the vanilla JS version.
 					</p>
 					<p>Try it out!</p>
 					<p class="npm"><em>npm i react-pixel-text-renderer</em></p>
 					<p class="longText">
 
 					</p>
-					<p class="tech">
+					<!-- <p class="tech">
 						<span>React</span>
-					</p>
+					</p> -->
 				</div> <!-- end of card top -->
 				<div class="cardBottom">
 					<div class="textRendererDemoHolder">
@@ -307,7 +327,6 @@
 
 	</section>
 
-
 	<section id="about" class="about">
 			<div class="aboutImage">
 				<img id="headshot" src="./interlaceMe.png">
@@ -348,7 +367,6 @@
 		</section>
 	</section>
 
-
 <footer id="contact">
 	<div class="footerContainer">
 		<div class="footerLeft">
@@ -367,6 +385,7 @@
 	<script type="text/javascript" src="canvasDestroyer.js"></script>
 	<script type="module" src="renderFunction.js"></script>
 	<script type="module" src="cardExpand.js"></script>
+	<script type="module" src="infoButton.js"></script>
 
 </div> <!-- siteWrapper -->
 </body>

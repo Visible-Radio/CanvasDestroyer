@@ -229,21 +229,36 @@ button {
 	border: none;
 	z-index: 3;
 }
-#resolveImage:hover, #resolveSecret:hover {
+
+#resolveImage:hover, #resolveSecret:hover, #toggleInfo:hover {
 	transition-property: transform filter width;
 	transition-duration: 0.2s;
 	transform: scale(1.15);
 	filter: brightness(1.5);
 	border-radius: 50%;
 }
-#resolveImage:active, #resolveSecret:active{
+#resolveImage:active, #resolveSecret:active, #toggleInfo:active{
 	transition-property: transform filter;
 	transition-duration: 0.1s;
 	transform: scale(0.98);
 	filter: brightness(0.8);
 }
+
 button:focus {
 	outline: none;
+}
+#toggleInfo {
+	position: absolute;
+	top: 81%;
+	left:1%;
+	background-color: var(--blueBlackAlpha);
+	border: 4px solid rgb(250,0,100);
+	border-radius: 50%;
+	color: rgb(90,0,20);
+}
+#toggleInfo > span {
+	color: rgb(250,0,100);
+	font-size: 27px;
 }
 #resolveImage {
 	position: absolute;
@@ -251,6 +266,17 @@ button:focus {
 	left: 95%;
 	background-color: rgb(160,0,90);
 	color: rgb(90,0,20);
+}
+#resolveImage:focus {
+	border: 2px solid var(--blueBlackAlpha);
+	outline: 3px solid var(--myMagenta);
+}
+#resolveSecret:focus {
+	border: 2px solid var(--blueBlackAlpha);
+	outline: 3px solid rgb(220,190,0);
+}
+#toggleInfo:focus {
+	outline: 4px solid rgb(250,0,100);
 }
 #resolveSecret {
 	position: absolute;
@@ -268,6 +294,9 @@ button:focus {
 	left: 0%;
 	transform: translate(-50%, 0);
 	width: max-content;
+}
+#scrubLeft:focus, #scrubRight:focus {
+	outline: 3px solid var(--scrubberGreen);
 }
 #scrubLeft {
 	background-color: transparent;
@@ -401,17 +430,38 @@ li.stackIcon {
 	border: var(--borderWidth2) solid var(--myMagenta);
 	border-radius: 25px;
 	margin: 5px;
-
-
+	transition-property: all;
+	transition-duration: 0.2s;
+	background-color: rgb(0,20,40);
 }
-.stackIcon > img {
+.stackIcon img {
 	margin: none;
 	max-width: 65px;
 	max-height: 65px;
 }
+.stackIcon > a {
+	text-decoration: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	width: auto;
+	height: auto;
+	color: var(--scrubberGreen);
+}
+
+li.link:hover {
+	text-decoration: underline;
+	transition-property: all;
+	transition-duration: 0.1s;
+	filter: contrast(1.05) brightness(1.25);
+}
+
+
 span.stackText {
 	margin-top: 10px;
 	font-size: 18px;
+	width: max-content;
 }
 #stackCanvas {
 	width: 35%;
@@ -738,4 +788,32 @@ footer {
 }
 .footerRight p {
 	color:var(--orangeTextColor);
+}
+
+
+.toolTip {
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	top: 115%;
+	left: -60%;
+	background-color: var(--blueBlack);
+	padding: 5px;
+	transition-property: opacity;
+	transition-duration: 0s;
+	transition-timing-function: cubic-bezier(1, 0.01, 1, 1);
+}
+.toolTip > p {
+	color: var(--scrubberGreen);
+	padding: 0;
+	margin: 0;
+	width: max-content;
+}
+button:hover .toolTip {
+	visibility: visible;
+	opacity: 1;
+	transition-duration: 0.5s;
+}
+.hidden {
+	visibility: hidden;
 }

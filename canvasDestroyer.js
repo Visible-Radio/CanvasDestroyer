@@ -112,6 +112,8 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 	const scrubber = document.querySelector('#scrubber');
 	const scrubLeft = document.querySelector('#scrubLeft');
 	const container = document.querySelector('#destinationCanvas');
+	const infoButton = document.querySelector('#toggleInfo');
+	let infoState = 0;
 
 	const setScrubber = () => {
 		// need current true width of the canvas element
@@ -165,7 +167,7 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 		}
 	}
 
-	// click controls
+	// click controls //
 	let direction = null;
 	let timerId = null;
  	container.onclick = (e) => {
@@ -175,12 +177,6 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
  		const windowScale = canvas.clientWidth / ctx.canvas.width;
  		const percentPosition = e.offsetX / canvas.clientWidth;
  		const seek = Math.round(percentPosition * ctx.canvas.width/pixelScale);
-
- 	/*	console.log(`offsetX ${e.offsetX}\ncanvas.clientWidth ${canvas.clientWidth}\nctx.canvas.width ${ctx.canvas.width}`);
- 		console.log('windowScale:', windowScale);
- 		console.log('percentPosition', percentPosition);
- 		console.log('seek:', seek);*/
-
 
  		if (!e.shiftKey) {
 	 		if (currentPermittedWidth < seek) {
@@ -239,6 +235,9 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 		if (timerId !== null) {
  			clearInterval(timerId);
  		}
+		if (infoState !== 0) {
+			resetStory();
+		}
 		currentPermittedWidth = canvas.width/pixelScale;
  		draw(currentPermittedWidth, sourceData, ctx, pixelScale);
  		setScrubber();
@@ -248,9 +247,114 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 		if (timerId !== null) {
  			clearInterval(timerId);
  		}
+		if (infoState !== 0) {
+			resetStory();
+		}
 		currentPermittedWidth = 164;
  		draw(currentPermittedWidth, sourceData, ctx, pixelScale);
  		setScrubber();
+	}
+
+	const infoText = [{
+			text: 'This is canvas destroyer. It pulls image data from two different images and combines it in a single array, which it draws to a canvas element. The images are configured to resolve at different widths.',
+			width: 10,
+			hidden: false,
+		},
+		{
+			text: "Imagine taking every pixel from an image, and laying it out in a space that is only 1 pixel wide. You'd end up with a narrow 'picture' 1 pixel wide and n pixels long, where n would be the total number of pixels in the image.",
+			width: 34,
+			hidden: false,
+		},
+		{
+			text: "Canvas destroyer draws the pixel data of an image into a space of any width from 1, to the original width of the image. When the width of the space is the same as the width of the original image, the image resolves corectly.",
+			width: 99,
+			hidden: false,
+		},
+		{
+			text: "Imagine your pixels are divs in a flex container. If the width of the container shrinks, the divs wrap onto lines below. If the width grows, the divs lay out horizontally.",
+			width: 120,
+			hidden: false,
+		},
+		{
+			text: "Canvas Destroyer also embeds a second image, which it configures to resolve at a different width.",
+			width: 160,
+			hidden: false,
+		},
+		{
+			text: "",
+			width: 164,
+			hidden: true,
+		},
+		{
+			text: "Did you see it?",
+			width: 191,
+			hidden: false,
+		},
+		{
+			text: "You can click on the image to redraw the pixel data at a new width. Use the pink square to resolve the background, and the yellow square to resolve the 'secret'",
+			width: 199,
+			hidden: false,
+		},
+	];
+	const textHolder = document.getElementById('littleContainer');
+	infoButton.onclick = async (e) => {
+		infoButton.firstChild.textContent = infoState;
+		if (infoState === infoText.length) {
+			resetStory();
+			return;
+		}
+		if (currentPermittedWidth > infoText[infoState].width) {
+			currentPermittedWidth = infoText[infoState].width - 10;
+			draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+			setScrubber();
+		}
+
+		textHolder.classList.add('hidden');
+		await animateToWidth(infoText[infoState].width);
+		textHolder.classList.remove('hidden');
+
+		if (infoText[infoState].hidden === true) {
+			textHolder.classList.add('hidden');
+		}
+		justText(240, 10, 'littleCanvas', infoText[infoState].text, [220,190,0]);
+		infoState++;
+	}
+
+	function resetStory() {
+		if (timerId !== null) {
+			clearInterval(timerId);
+		}
+		infoState = 0;
+		infoButton.firstChild.textContent = 'i';
+		textHolder.classList.remove('hidden');
+		justText(120, 10, 'littleCanvas', 'Patrick Kaipainen   Web Developer,      Pixel enthusiast',[220,190,0]);
+		currentPermittedWidth = 0;
+		draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+		setScrubber();
+	}
+
+	async function animateToWidth(seek) {
+		return new Promise((resolve, reject) => {
+			if (timerId !== null) {
+				clearInterval(timerId);
+			}
+			if (currentPermittedWidth < seek) {
+				direction = 1;
+			} else {
+				direction = -1
+			}
+
+			timerId = setInterval(() => {
+				if (currentPermittedWidth === seek) {
+					clearInterval(timerId);
+					resolve('done');
+				} else {
+					currentPermittedWidth+=direction;
+					draw(currentPermittedWidth, sourceData, ctx, pixelScale);
+					setScrubber();
+				}
+			},10)
+		})
 	}
 }
 
@@ -370,23 +474,7 @@ justText(70, 4, 'textRendererDemo', 'Its good its bad its ugly, its a pixel text
 justText(120, 10, 'littleCanvas', 'Patrick Kaipainen   Web Developer,      Pixel enthusiast',[220,190,0]);
 
 function justText(width, pixelScale, canvasName, inputText, color, scramble=false, locked=true) {
-	/*
-	rework this function to accept an object as a parameter
-	{
-		color:
-		scramble:
-		locked:
-	}
 
-	*/
-
-
-	/* each character is defined in a 5x5 grid
-	after each write a space of one pixel is added
-	so the canvas width should be a multiple of 6
-	to avoid any extra space at the edges of the canvas */
-
-	// calculate the closest appropriate width based on the input width
 	const remainder = width % 6;
 	if (remainder === 0) {
 		width = width - 1;
@@ -428,6 +516,8 @@ function justText(width, pixelScale, canvasName, inputText, color, scramble=fals
 		'.': [width*4+1],
 		',': [width*4+1, (width*5)+1],
 		"'": [1, width+1],
+		'?': [1, 2, 3, width, width+4, (width*2) + 3, (width*3) + 2, (width*4
+			)+2],
 		'A' : [2, width+1, width+3, width*2, (width*2)+4, width*3, (width*3)+1, (width*3)+2, (width*3)+3,(width*3)+4, (width*4), (width*4)+4],
 		'B' : [0,1,2,3, width, width+4, (width*2), (width*2)+1, (width*2)+2, (width*2)+3, (width*2)+4, (width*3), (width*3)+4, width*4, (width*4)+1, (width*4)+2, (width*4)+3],
 		'C' : [0, 1, 2, 3, 4, width, (width*2), (width*3), (width*4), (width*4), (width*4)+1, (width*4)+2, (width*4)+3, (width*4)+4],

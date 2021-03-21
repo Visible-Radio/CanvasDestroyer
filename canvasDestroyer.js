@@ -13,7 +13,6 @@
 
 	let secretLoaded = false;
 	let bgLoaded = false;
-	let textLoaded = false;
 
 	secretImg.addEventListener('load', (event) => {
 		secretLoaded = true;
@@ -23,6 +22,7 @@
 		bgLoaded = true;
 	});
 
+	// make sure both images are loaded
 	const loadMonitorTimer = setInterval(()=> {
 		if (secretLoaded && bgLoaded) {
 			clearInterval(loadMonitorTimer);
@@ -33,9 +33,11 @@
 }());
 
 function secretOnload(secretImg){
+	// getSourceData draws the skull onto a hidden canvas and returns the raw pixel data
   const secretPixels = getSourceData('skullCanvas', 112, secretImg);
   // create an array of functions
   // each function describes where that pixel should be in a grid given a width
+	// width * row + offset gives the index of where that pixel belongs in an image data aray
   functionArr = [];
   secretPixels.pixelArr.forEach((pixel, index) => {
   	const row = Math.floor(index/secretPixels.width);
@@ -49,44 +51,8 @@ function secretOnload(secretImg){
   }
 }
 
-function manageScale() {
-	//initial window setup here
-	const layoutContainer = document.querySelector('.layoutContainer');
-	let layoutContainerHeight = layoutContainer.getBoundingClientRect().height;
-	handleResize(null,250);
-
-	// subsequent resize events handled here
-	document.addEventListener('webkitfullscreenchange', (e)=> console.log('fired'));
-	window.addEventListener('resize', handleResize, event);
-	function handleResize(e, heightOffset=550) {
-		let initialWidth = window.innerWidth;
-		let initialHeight = window.innerHeight;
-
-	  const imageDestroyerWidth = parseInt(getComputedStyle(document.documentElement)
-	    .getPropertyValue('--imageDestroyerWidth'),10);
-
-	  layoutContainerHeight = layoutContainer.getBoundingClientRect().height;
-
-	  //calculate two scale properties, then use the smaller of the two
-	  let scaleH = 1;
-	  let scaleW = 1;
-
-		scaleH =  initialHeight / (layoutContainerHeight + heightOffset);
-		scaleH *= 100;
-		scaleH = Math.trunc(scaleH)/100;
-
-  	scaleW = initialWidth / (imageDestroyerWidth+100);
-  	scaleW *= 100;
-		scaleW = Math.trunc(scaleW)/100;
-
-		const scaleUpdate = (scaleH < scaleW) ? scaleH : scaleW;
-	 	document.documentElement.style
-	   .setProperty('--scale', `${scaleUpdate}`);
-	}
-}
-
 function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {
-	// get the pixel information for the background image
+	// draws the background onto a hidden canvas and returns the raw pixel data
 	const sourceData = (getSourceData("sourceCanvas", 199, bgImg));
 
 	// set up the destination canvas
@@ -95,11 +61,8 @@ function backgroundOnload(bgImg, secretImg, currentPermittedWidth) {
 	const pixelScale = 6;
 	ctx.canvas.width = sourceData.width * pixelScale;
 	ctx.canvas.height = sourceData.height * pixelScale;
-	// manageScale();
-	/*
-	manually implemented responsiveness for image destroyer
-	works pretty good, but better to do it with CSS if possible
-	*/
+
+	//write the pixel data from the secret image into the background
 	applySecretImage(sourceData, 164, secretImg);
 	draw(0, sourceData, ctx, pixelScale);
 	controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth);
@@ -113,6 +76,7 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 	const scrubLeft = document.querySelector('#scrubLeft');
 	const container = document.querySelector('#destinationCanvas');
 	const infoButton = document.querySelector('#toggleInfo');
+	const textHolder = document.getElementById('littleContainer');
 	let infoState = 0;
 
 	const setScrubber = () => {
@@ -146,22 +110,19 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 		if (timerId !== null) {
  			clearInterval(timerId);
  		}
-		let scrubberPosition = getComputedStyle(scrubber).left;
 		if (currentPermittedWidth > 0) {
 			currentPermittedWidth--;
-			scrubberPosition -= pixelScale;
 			draw(currentPermittedWidth, sourceData, ctx, pixelScale);
 			setScrubber();
 		}
 	}
+
 	scrubRight.onclick = (e) => {
 		if (timerId !== null) {
  			clearInterval(timerId);
  		}
-		let scrubberPosition = getComputedStyle(scrubber).left;
 		if (currentPermittedWidth < canvas.width/pixelScale) {
 			currentPermittedWidth++;
-			scrubberPosition += pixelScale;
 			draw(currentPermittedWidth, sourceData, ctx, pixelScale);
 			setScrubber();
 		}
@@ -174,7 +135,7 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
  		if (timerId !== null) {
  			clearInterval(timerId);
  		}
- 		const windowScale = canvas.clientWidth / ctx.canvas.width;
+
  		const percentPosition = e.offsetX / canvas.clientWidth;
  		const seek = Math.round(percentPosition * ctx.canvas.width/pixelScale);
 
@@ -296,13 +257,14 @@ function controls(sourceData, ctx, pixelScale, canvas, currentPermittedWidth){
 			hidden: false,
 		},
 	];
-	const textHolder = document.getElementById('littleContainer');
+
 	infoButton.onclick = async (e) => {
 		infoButton.firstChild.textContent = infoState;
 		if (infoState === infoText.length) {
 			resetStory();
 			return;
 		}
+
 		if (currentPermittedWidth > infoText[infoState].width) {
 			currentPermittedWidth = infoText[infoState].width - 10;
 			draw(currentPermittedWidth, sourceData, ctx, pixelScale);
@@ -395,18 +357,15 @@ function draw(permittedWidth, sourceData, ctx, pixelScale) {
 						}
 	}
 
-	// use the remaining pixels to "fill in" the empty part of the canvass
-
+	// use the remaining pixels to "fill in" the empty part of the canvas
 	let remaining = length - counter;
 
-	let counter2 = 0;
 	for (let column = 0; column < sourceData.height; column++) {
 		for (let row = permittedWidth; row < sourceData.width; row++) {
 			let pixel = sourceData.pixelArr[length-remaining]/2;
 			ctx.fillStyle = `rgb(${pixel-25},${pixel-25},${pixel},1)`;
 			ctx.fillRect(row*pixelScale, column*pixelScale, pixelScale, pixelScale-3);
 			remaining--;
-			counter2++;
 		}
 	}
 }
@@ -556,35 +515,34 @@ function justText(width, pixelScale, canvasName, inputText, color, scramble=fals
 		control();
 	}
 
-
 	let currentPermittedWidth = 0;
 	function control() {
 		let timerId = null;
 		let direction = null;
 		canvas.onclick = (e) => {
- 		if (timerId !== null) {
- 			clearInterval(timerId);
+			if (timerId !== null) {
+				clearInterval(timerId);
+			}
+			const seek = Math.round(e.offsetX/pixelScale);
+			if (!e.shiftKey) {
+				if (currentPermittedWidth < seek) {
+					direction = 1;
+				} else {
+					direction = -1
+				}
+				timerId = setInterval(() => {
+					if (currentPermittedWidth === seek) {
+						clearInterval(timerId);
+					} else {
+						currentPermittedWidth+=direction;
+						draw(currentPermittedWidth, textPixels, ctx, pixelScale);
+					}
+				},50)
+			} else {
+				currentPermittedWidth = seek;
+				draw(seek, textPixels, ctx, pixelScale);
+			}
  		}
- 		const seek = Math.round(e.offsetX/pixelScale);
- 		if (!e.shiftKey) {
-	 		if (currentPermittedWidth < seek) {
-	 			direction = 1;
-	 		} else {
-	 			direction = -1
-	 		}
-			timerId = setInterval(() => {
-	 			if (currentPermittedWidth === seek) {
-	 				clearInterval(timerId);
-	 			} else {
-	 				currentPermittedWidth+=direction;
-	 				draw(currentPermittedWidth, textPixels, ctx, pixelScale);
-	 			}
-	 		},50)
- 		} else {
- 			currentPermittedWidth = seek;
- 			draw(seek, textPixels, ctx, pixelScale);
- 		}
- 	}
 	}
 
 	function writeString(inputText, textPixels) {
@@ -653,6 +611,3 @@ function draw(permittedWidth, textPixels, ctx, pixelScale) {
       return color;
   }
 }
-
-
-

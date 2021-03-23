@@ -249,6 +249,7 @@ button {
 
 button:focus {
 	outline: none;
+	outline-offset: 4px;
 }
 
 #toggleInfo {
@@ -277,15 +278,13 @@ button:focus {
 	color: rgb(90,0,20);
 }
 #resolveImage:focus {
-	border: 2px solid var(--blueBlackAlpha);
-	outline: 3px solid var(--myMagenta);
+	outline: 2px solid var(--myMagenta);
 }
 #resolveSecret:focus {
-	border: 2px solid var(--blueBlackAlpha);
-	outline: 3px solid rgb(220,190,0);
+	outline: 2px solid rgb(220,190,0);
 }
 #toggleInfo:focus {
-	outline: 4px solid rgb(250,0,100);
+	outline: 2px solid rgb(250,0,100);
 }
 #resolveSecret {
 	position: absolute;
@@ -305,7 +304,7 @@ button:focus {
 	width: max-content;
 }
 #scrubLeft:focus, #scrubRight:focus {
-	outline: 3px solid var(--scrubberGreen);
+	outline: 2px solid var(--scrubberGreen);
 }
 #scrubLeft {
 	background-color: transparent;

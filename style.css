@@ -776,6 +776,14 @@ footer {
 	align-items: center;
 }
 
+.footerLeft {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+}
+
 .footerContainer a {
 	display: inline-block;
 	transition-property: all;

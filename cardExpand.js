@@ -55,7 +55,6 @@ function handleCardClick(e) {
 	const canvasHolder = document.querySelector('.clone .textRendererDemoHolder');
 	if (canvasHolder) {
 		canvasHolder.innerHTML = "<canvas id='expandedRendererDemo'></canvas>";
-		console.log(document.getElementById('expandedRendererDemo'));
 		renderText(6 * 10, 10, 'expandedRendererDemo', 'its good, its bad, its ugly, its a pixel text renderer', null, true);
 	}
 

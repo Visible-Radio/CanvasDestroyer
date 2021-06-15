@@ -692,6 +692,10 @@ p.reference {
 	filter: none;
 }
 
+.expanded .projectCard {
+	justify-content: space-between;
+}
+
 .clicked {
 	opacity: 0;
 }
@@ -832,4 +836,13 @@ button:hover .toolTip {
 }
 .hidden {
 	visibility: hidden;
+}
+
+a {
+	color: var(--myMagenta);
+	transition: all 0.2s;
+}
+
+a:hover {
+	filter: brightness(2);
 }

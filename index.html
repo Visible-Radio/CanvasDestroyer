@@ -1,450 +1,740 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<!-- images need to be downsampled -->
+  <head>
+    <!-- images need to be downsampled -->
 
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Patrick Kaipainen, Web Developer</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
-</head>
-<body>
-<div class="siteWrapper">
-	<div id="masterContainer">
-		<canvas id="sourceCanvas"></canvas>
-		<canvas id="skullCanvas"></canvas>
-		<div id="borderDivB">
-			<header>
-				<div class="headerBorder">
-					<div class="container headerContainer">
-						<ul class="menu">
-							<li class="menu-item"><a href="#portfolio">Projects</a></li>
-							<li class="menu-item"><a href="#about">About</a></li>
-							<li class="menu-item"><a href="#contact">Contact</a></li>
-						</ul>
-					</div>
-				</div>
-			</header>
-			<div id="borderDiv">
-				<div class="layoutContainer">
-					<div id="scrubber">
-						<button id="scrubLeft"><div class="toolTip"><p>Scrub Left</p></div></button>
-						<button id="scrubRight"><div class="toolTip"><p>Scrub Right</p></div></button>
-					</div>
-					<canvas id="destinationCanvas">A canvas element onto which a pixelated image is drawn. The pixel data that is rendered here actually contains two images interlaced with each other that resolve at different points depending on user input.</canvas>
-					<button class="sq" id="resolveImage"><div class="toolTip"><p>Resolve Image</p></div></button>
-					<button class="sq" id="resolveSecret"><div class="toolTip"><p>Resolve Secret Image</p></div></button>
-					<button id="toggleInfo"><span>i</span><div class="toolTip"><p>What is this?</p></div></button>
-					<div id="littleContainer">
-						<canvas id="littleCanvas">Patrick Kaipainen Web Developer, Pixel Enthusiast</canvas>
-					</div>
-					<div class="displayInstructionsCanvas"><canvas id="displayInstructionsCanvas"></canvas></div>
-					<!-- header was here -->
-				</div>
-			</div>
-		</div>
-	</div>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Patrick Kaipainen, Web Developer</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="siteWrapper">
+      <div id="masterContainer">
+        <canvas id="sourceCanvas"></canvas>
+        <canvas id="skullCanvas"></canvas>
+        <div id="borderDivB">
+          <header>
+            <div class="headerBorder">
+              <div class="container headerContainer">
+                <ul class="menu">
+                  <li class="menu-item"><a href="#portfolio">Projects</a></li>
+                  <li class="menu-item"><a href="#about">About</a></li>
+                  <li class="menu-item"><a href="#contact">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+          </header>
+          <div id="borderDiv">
+            <div class="layoutContainer">
+              <div id="scrubber">
+                <button id="scrubLeft">
+                  <div class="toolTip"><p>Scrub Left</p></div>
+                </button>
+                <button id="scrubRight">
+                  <div class="toolTip"><p>Scrub Right</p></div>
+                </button>
+              </div>
+              <canvas id="destinationCanvas"
+                >A canvas element onto which a pixelated image is drawn. The
+                pixel data that is rendered here actually contains two images
+                interlaced with each other that resolve at different points
+                depending on user input.</canvas
+              >
+              <button class="sq" id="resolveImage">
+                <div class="toolTip"><p>Resolve Image</p></div>
+              </button>
+              <button class="sq" id="resolveSecret">
+                <div class="toolTip"><p>Resolve Secret Image</p></div>
+              </button>
+              <button id="toggleInfo">
+                <span>i</span>
+                <div class="toolTip"><p>What is this?</p></div>
+              </button>
+              <div id="littleContainer">
+                <canvas id="littleCanvas"
+                  >Patrick Kaipainen Web Developer, Pixel Enthusiast</canvas
+                >
+              </div>
+              <div class="displayInstructionsCanvas">
+                <canvas id="displayInstructionsCanvas"></canvas>
+              </div>
+              <!-- header was here -->
+            </div>
+          </div>
+        </div>
+      </div>
 
-<div id="torso" class="torso">
-	<section id="stack" class="stack">
-		<div class="stackCanvas">
-			<canvas id="stackCanvas">Stack and tools</canvas>
-		</div>
-			<ul class="stackList">
-				<li class="stackIcon"><img src="./logos/js.png"><span class="stackText">Javascript</span></li>
-				<li class="stackIcon"><img src="./logos/react.png"><span class="stackText">React</span></li>
-				<li class="stackIcon"><img src="./logos/node.png"><span class="stackText">Node.js</span></li>
-				<li class="stackIcon link">
-					<a href="https://chartjs.org/">
-						<img src="./logos/chartjs.png">
-						<span class="stackText">Chart.js</span>
-					</a>
-				</li>
-				<li class="stackIcon link">
-					<a href="https://expressjs.com/">
-						<img src="./logos/express.webp">
-						<span class="stackText">Express.js</span>
-					</a>
-				</li>
-				<li class="stackIcon link">
-					<a href="https://knexjs.org/">
-						<img src="./logos/knex.png">
-						<span class="stackText">Knex.js</span>
-					</a>
-				</li>
-				<li class="stackIcon"><img src="./logos/postgres.png"><span class="stackText">PostgreSQL</span></li>
-				<li class="stackIcon"><img src="./logos/html.png"><span class="stackText">HTML 5</span></li>
-				<li class="stackIcon"><img src="./logos/css.png"><span class="stackText">CSS 3</span></li>
-				<li class="stackIcon"><img src="./logos/git.png"><span class="stackText">Git</span></li>
-				<li class="stackIcon"><img src="./logos/rest.webp"><span class="stackText">REST APIs</span></li>
-				<li class="stackIcon link">
-					<a href="https://developers.google.com/web/tools/puppeteer">
-						<img src="./logos/puppeteer.png">
-						<span class="stackText">Puppeteer</span>
-					</a>
-				</li>
-				<!-- <li class="stackIcon"><img style="filter:hue-rotate(90deg)" src="./logos/canvas.png"><span class="stackText">Canvas API</span></li> -->
-			</ul>
-	</section>
+      <div id="torso" class="torso">
+        <section id="stack" class="stack">
+          <div class="stackCanvas">
+            <canvas id="stackCanvas">Stack and tools</canvas>
+          </div>
+          <ul class="stackList">
+            <li class="stackIcon">
+              <img src="./logos/js.png" /><span class="stackText"
+                >Javascript</span
+              >
+            </li>
+            <li class="stackIcon">
+              <img src="./logos/react.png" /><span class="stackText"
+                >React</span
+              >
+            </li>
+            <li class="stackIcon">
+              <img src="./logos/node.png" /><span class="stackText"
+                >Node.js</span
+              >
+            </li>
+            <li class="stackIcon">
+              <a href="https://jestjs.io/">
+                <img src="./logos/jest.png" />
+                <span class="stackText">Jest</span>
+              </a>
+            </li>
+            <li class="stackIcon">
+              <a href="https://testing-library.com/">
+                <img src="./logos/rtl.png" />
+                <span class="stackText">React Testing Library</span>
+              </a>
+            </li>
+            <li class="stackIcon">
+              <a href="https://mui.com/">
+                <img src="./logos/mui.png" />
+                <span class="stackText">Material UI</span>
+              </a>
+            </li>
+            <li class="stackIcon link">
+              <a href="https://chartjs.org/">
+                <img src="./logos/chartjs.png" />
+                <span class="stackText">Chart.js</span>
+              </a>
+            </li>
+            <li class="stackIcon link">
+              <a href="https://expressjs.com/">
+                <img src="./logos/express.webp" />
+                <span class="stackText">Express.js</span>
+              </a>
+            </li>
+            <li class="stackIcon link">
+              <a href="https://knexjs.org/">
+                <img src="./logos/knex.png" />
+                <span class="stackText">Knex.js</span>
+              </a>
+            </li>
+            <li class="stackIcon">
+              <img src="./logos/postgres.png" /><span class="stackText"
+                >PostgreSQL</span
+              >
+            </li>
+            <li class="stackIcon">
+              <img src="./logos/html.png" /><span class="stackText"
+                >HTML 5</span
+              >
+            </li>
+            <li class="stackIcon">
+              <img src="./logos/css.png" /><span class="stackText">CSS 3</span>
+            </li>
+            <li class="stackIcon">
+              <img src="./logos/git.png" /><span class="stackText">Git</span>
+            </li>
+            <li class="stackIcon">
+              <img src="./logos/rest.webp" /><span class="stackText"
+                >REST APIs</span
+              >
+            </li>
+            <li class="stackIcon link">
+              <a href="https://developers.google.com/web/tools/puppeteer">
+                <img src="./logos/puppeteer.png" />
+                <span class="stackText">Puppeteer</span>
+              </a>
+            </li>
+            <!-- <li class="stackIcon"><img style="filter:hue-rotate(90deg)" src="./logos/canvas.png"><span class="stackText">Canvas API</span></li> -->
+          </ul>
+        </section>
 
-	<section id="portfolio" class="portfolio">
-		<div id="portfolioCanvasBox">
-				<canvas id="portfolioCanvas">Projects</canvas>
-		</div>
-		<div class="projectDidactic"><p>These projects are entirely my own except where it is noted that they were completed as part of a code-along.</p></div>
+        <section id="portfolio" class="portfolio">
+          <div id="portfolioCanvasBox">
+            <canvas id="portfolioCanvas">Projects</canvas>
+          </div>
+          <div class="projectDidactic">
+            <p>
+              These projects are entirely my own except where it is noted that
+              they were completed as part of a code-along.
+            </p>
+          </div>
 
-		<div class="badgeReference lg">
-			<div class="badge"><p>100% Original</p></div>
-			<div class="projectCard lg">
-				<div class="cardTop">
-					<h3 class="projectName">Electrical Trades Job Calls Database</h3>
-					<p class="description">A dashboard for tracking employment trends in the Construction sector.
-					</p>
-					<p class="longText">
-						It displays data relevant to the various classifications of members represented by the union about available jobs. Users can search by date, worker classification and company. Returned results can be filtered further in order to glean information about specific types of construction projects.
-					</p>
-					<p class="tech">
-						<span>React</span>
-						<span>Chart.js</span>
-					</p>
-				</div> <!-- end of card top -->
-				<div class="cardBottom">
-					<div class="portfolioImage">
-						<img id="portfolioImage" src="./media/job-calls.png">
-					</div>
-					<p class="reference">
-						<span><a href="https://github.com/Visible-Radio/job-calls-fe">Github</a></span>
-						<span><a href="https://job-calls-front-end.herokuapp.com/">See it Live</a></span>
-					</p>
-				</div>	<!-- end of card bottom -->
-			</div> <!-- end of card -->
-		</div> <!-- end of badge reference -->
+          <div class="badgeReference lg">
+            <div class="badge"><p>100% Original</p></div>
+            <div class="projectCard lg">
+              <div class="cardTop">
+                <h3 class="projectName">
+                  Electrical Trades Job Calls Database
+                </h3>
+                <p class="description">
+                  A dashboard for tracking employment trends in the Construction
+                  sector.
+                </p>
+                <p class="longText">
+                  It displays data relevant to the various classifications of
+                  members represented by the union about available jobs. Users
+                  can search by date, worker classification and company.
+                  Returned results can be filtered further in order to glean
+                  information about specific types of construction projects.
+                </p>
+                <p class="tech">
+                  <span>React</span>
+                  <span>Chart.js</span>
+                </p>
+              </div>
+              <!-- end of card top -->
+              <div class="cardBottom">
+                <div class="portfolioImage">
+                  <img id="portfolioImage" src="./media/job-calls.png" />
+                </div>
+                <p class="reference">
+                  <span
+                    ><a href="https://github.com/Visible-Radio/job-calls-fe"
+                      >Github</a
+                    ></span
+                  >
+                  <span
+                    ><a href="https://job-calls-front-end.herokuapp.com/"
+                      >See it Live</a
+                    ></span
+                  >
+                </p>
+              </div>
+              <!-- end of card bottom -->
+            </div>
+            <!-- end of card -->
+          </div>
+          <!-- end of badge reference -->
 
-		<div class="badgeReference lg">
-			<div class="badge"><p>100% Original</p></div>
-			<div class="projectCard lg">
-				<div class="cardTop">
-					<h3 class="projectName">Job Calls API / Database / Scraper</h3>
-					<p class="description">An API that returns JSON data pertaining to the employment of workers in the electrical and communications trades.
-					</p>
-					<p class="longText">
-						A Node script uses Puppeteer to automatically sign into the IBEW Local Union 353 website, parse the DOM and extract information about jobs available to electricians, line workers and communications workers. Each day the script writes the selected HTML elements to a new JSON file. This data is then used to populate a Postgres database. The API returns JSON data after receiving requests at any of three endpoints.
-					</p>
-					<p class="tech">
-						<span>Node</span>
-						<span>Express.js</span>
-						<span>Postgres</span>
-						<span>Knex.js</span>
-						<span>Puppeteer</span>
-						<span>Shell scripts</span>
-					</p>
-				</div> <!-- end of card top -->
-				<div class="cardBottom">
-					<div class="portfolioImage">
-						<img id="portfolioImage" src="./media/job-calls-api.png">
-					</div>
-					<p class="reference">
-						<span><a href="https://github.com/Visible-Radio/job-calls-api">Github</a></span>
-					</p>
-				</div>	<!-- end of card bottom -->
-			</div> <!-- end of card -->
-		</div> <!-- end of badge reference -->
+          <div class="badgeReference lg">
+            <div class="badge"><p>100% Original</p></div>
+            <div class="projectCard lg">
+              <div class="cardTop">
+                <h3 class="projectName">Job Calls API / Database / Scraper</h3>
+                <p class="description">
+                  An API that returns JSON data pertaining to the employment of
+                  workers in the electrical and communications trades.
+                </p>
+                <p class="longText">
+                  A Node script uses Puppeteer to automatically sign into the
+                  IBEW Local Union 353 website, parse the DOM and extract
+                  information about jobs available to electricians, line workers
+                  and communications workers. Each day the script writes the
+                  selected HTML elements to a new JSON file. This data is then
+                  used to populate a Postgres database. The API returns JSON
+                  data after receiving requests at any of three endpoints.
+                </p>
+                <p class="tech">
+                  <span>Node</span>
+                  <span>Express.js</span>
+                  <span>Postgres</span>
+                  <span>Knex.js</span>
+                  <span>Puppeteer</span>
+                  <span>Shell scripts</span>
+                </p>
+              </div>
+              <!-- end of card top -->
+              <div class="cardBottom">
+                <div class="portfolioImage">
+                  <img id="portfolioImage" src="./media/job-calls-api.png" />
+                </div>
+                <p class="reference">
+                  <span
+                    ><a href="https://github.com/Visible-Radio/job-calls-api"
+                      >Github</a
+                    ></span
+                  >
+                </p>
+              </div>
+              <!-- end of card bottom -->
+            </div>
+            <!-- end of card -->
+          </div>
+          <!-- end of badge reference -->
 
-		<div class="badgeReference lg">
-			<div class="badge"><p>100% Original</p></div>
-			<div class="projectCard lg">
-				<div class="cardTop">
-					<h3 class="projectName">ETJC DB Auth System + Email Alerts</h3>
-					<p class="description">Authentication and authorization for the job calls app. Users can create an account and receive Email alerts about job postings.
-					</p>
-					<p class="longText">
-						A special thanks is owed to the <a href="https://youtu.be/mbsmsi7l3r4">Web Dev Simplified</a> and the <a href="https://youtu.be/7UQBMb8ZpuE">Stoic Programmers</a> Youtube channels whose tutorials guided me through building the auth system.
-					</p>
-					<p class="tech">
-						<span>JSON Web Tokens</span>
-						<span>Auth</span>
-						<span>HTML Email</span>
-						<span>SendGrid API</span>
-					</p>
-				</div> <!-- end of card top -->
-				<div class="cardBottom">
-					<div class="portfolioImage">
-						<img class="reduceContrast" id="portfolioImage" src="./media/alertConfig.png">
-					</div>
-					<p class="reference">
-						<span><a href="https://github.com/Visible-Radio/job-calls-api">Github</a></span>
-						<span><a href="https://job-calls-front-end.herokuapp.com/register">Register!</a></span>
-					</p>
-				</div>	<!-- end of card bottom -->
-			</div> <!-- end of card -->
-		</div> <!-- end of badge reference -->
+          <div class="badgeReference lg">
+            <div class="badge"><p>100% Original</p></div>
+            <div class="projectCard lg">
+              <div class="cardTop">
+                <h3 class="projectName">ETJC DB Auth System + Email Alerts</h3>
+                <p class="description">
+                  Authentication and authorization for the job calls app. Users
+                  can create an account and receive Email alerts about job
+                  postings.
+                </p>
+                <p class="longText">
+                  A special thanks is owed to the
+                  <a href="https://youtu.be/mbsmsi7l3r4">Web Dev Simplified</a>
+                  and the
+                  <a href="https://youtu.be/7UQBMb8ZpuE">Stoic Programmers</a>
+                  Youtube channels whose tutorials guided me through building
+                  the auth system.
+                </p>
+                <p class="tech">
+                  <span>JSON Web Tokens</span>
+                  <span>Auth</span>
+                  <span>HTML Email</span>
+                  <span>SendGrid API</span>
+                </p>
+              </div>
+              <!-- end of card top -->
+              <div class="cardBottom">
+                <div class="portfolioImage">
+                  <img
+                    class="reduceContrast"
+                    id="portfolioImage"
+                    src="./media/alertConfig.png"
+                  />
+                </div>
+                <p class="reference">
+                  <span
+                    ><a href="https://github.com/Visible-Radio/job-calls-api"
+                      >Github</a
+                    ></span
+                  >
+                  <span
+                    ><a
+                      href="https://job-calls-front-end.herokuapp.com/register"
+                      >Register!</a
+                    ></span
+                  >
+                </p>
+              </div>
+              <!-- end of card bottom -->
+            </div>
+            <!-- end of card -->
+          </div>
+          <!-- end of badge reference -->
 
-		<div class="badgeReference lg">
-			<div class="badge"><p>100% Original</p></div>
-			<div class="projectCard lg">
-				<div class="cardTop">
-				<h3 class="projectName">Pixel Text Renderer</h3>
-					<p class="description">A reusable React component that renders a string to a canvas element.  The section headings on this page are rendered with the vanilla JS version.
-					</p>
-					<p>Try it out!</p>
-					<p class="npm"><em>npm i react-pixel-text-renderer</em></p>
-					<p class="longText">
-					</p>
-					<!-- <p class="tech">
+          <div class="badgeReference lg">
+            <div class="badge"><p>100% Original</p></div>
+            <div class="projectCard lg">
+              <div class="cardTop">
+                <h3 class="projectName">Pixel Text Renderer</h3>
+                <p class="description">
+                  A reusable React component that renders a string to a canvas
+                  element. The section headings on this page are rendered with
+                  the vanilla JS version.
+                </p>
+                <p>Try it out!</p>
+                <p class="npm"><em>npm i react-pixel-text-renderer</em></p>
+                <p class="longText"></p>
+                <!-- <p class="tech">
 						<span>React</span>
 					</p> -->
-				</div> <!-- end of card top -->
-				<div class="cardBottom">
-					<div class="textRendererDemoHolder">
-						<canvas id="textRendererDemo">Canvas element that renders pixelated text</canvas>
-					</div>
-					<p class="reference">
-						<span><a href="https://github.com/Visible-Radio/react-pixel-text-renderer">Github</a></span>
-						<span><a href="https://www.npmjs.com/package/react-pixel-text-renderer">NPM</a></span>
-					</p>
-				</div>	<!-- end of card bottom -->
-			</div> <!-- end of card -->
-		</div> <!-- end of badge reference -->
+              </div>
+              <!-- end of card top -->
+              <div class="cardBottom">
+                <div class="textRendererDemoHolder">
+                  <canvas id="textRendererDemo"
+                    >Canvas element that renders pixelated text</canvas
+                  >
+                </div>
+                <p class="reference">
+                  <span
+                    ><a
+                      href="https://github.com/Visible-Radio/react-pixel-text-renderer"
+                      >Github</a
+                    ></span
+                  >
+                  <span
+                    ><a
+                      href="https://www.npmjs.com/package/react-pixel-text-renderer"
+                      >NPM</a
+                    ></span
+                  >
+                </p>
+              </div>
+              <!-- end of card bottom -->
+            </div>
+            <!-- end of card -->
+          </div>
+          <!-- end of badge reference -->
 
-		<div class="badgeReference lg">
-			<div class="badge"><p>100% Original</p></div>
-			<div class="projectCard lg">
-				<div class="cardTop">
-				<h3 class="projectName">Pixel Character Editor</h3>
-					<p class="description">This utility application can read, preview, modify and save character definition files for the Pixel Text Renderer. Because manualy writing <em>[0, 1, 2, 3, 5, 9, 10, 11, 12, 13, 14, 15, 20]</em> for the letter <em>P</em> isn't much fun.
-					</p>
+          <div class="badgeReference lg">
+            <div class="badge"><p>100% Original</p></div>
+            <div class="projectCard lg">
+              <div class="cardTop">
+                <h3 class="projectName">Pixel Character Editor</h3>
+                <p class="description">
+                  This utility application can read, preview, modify and save
+                  character definition files for the Pixel Text Renderer.
+                  Because manualy writing
+                  <em>[0, 1, 2, 3, 5, 9, 10, 11, 12, 13, 14, 15, 20]</em> for
+                  the letter <em>P</em> isn't much fun.
+                </p>
 
-					<p class="longText">
+                <p class="longText"></p>
+                <p class="tech">
+                  <span>React</span>
+                  <span>Styled Components</span>
+                  <span>Browser File API</span>
+                </p>
+              </div>
+              <!-- end of card top -->
+              <div class="cardBottom">
+                <div class="portfolioImage">
+                  <img
+                    class="reduceContrast"
+                    id="portfolioImage"
+                    src="./media/react-pixel-character-editor.png"
+                  />
+                </div>
+                <p class="reference">
+                  <span
+                    ><a
+                      href="https://github.com/Visible-Radio/react-pixel-character-editor"
+                      >Github</a
+                    ></span
+                  >
+                  <span
+                    ><a
+                      href="https://visible-radio.github.io/react-pixel-character-editor/"
+                      >See it Live</a
+                    ></span
+                  >
+                </p>
+              </div>
+              <!-- end of card bottom -->
+            </div>
+            <!-- end of card -->
+          </div>
+          <!-- end of badge reference -->
 
-					</p>
-					<p class="tech">
-						<span>React</span>
-						<span>Styled Components</span>
-						<span>Browser File API</span>
-					</p>
+          <div class="badgeReference lg">
+            <div class="badge"><p>100% Original</p></div>
+            <div class="projectCard lg">
+              <div class="cardTop">
+                <h3 class="projectName">Image Destroyer</h3>
+                <p class="description">
+                  An experiment in direct pixel manipulation of images pulled
+                  from a NASA image API. Image destroyer renders images on a
+                  grid of div elements, and can draw text of arbitrary length to
+                  the display.
+                </p>
+                <p class="longText">
+                  When I took CS50 in 2020, I was fascinated by a series of
+                  projects related to iterating through information that
+                  represented images. My background in photography probably
+                  accounts for this fascination. Looping through image data made
+                  me feel close to the material of the image itself in a way
+                  that was familiar from my days spent in the darkroom and in
+                  photoshop. I wanted to continue to explore image manipulation
+                  using javascript.
+                </p>
+                <p class="tech">
+                  <span>Vanilla JS</span>
+                  <span>HTML</span>
+                  <span>CSS</span>
+                </p>
+              </div>
+              <!-- end of card top -->
+              <div class="cardBottom">
+                <div class="portfolioImage">
+                  <img id="portfolioImage" src="./media/image-destroyer.png" />
+                </div>
+                <p class="reference">
+                  <span
+                    ><a
+                      href="https://github.com/Visible-Radio/ImageDestroyer/tree/responsive"
+                      >Github</a
+                    ></span
+                  >
+                  <span
+                    ><a href="https://visible-radio.github.io/ImageDestroyer/"
+                      >See it Live</a
+                    ></span
+                  >
+                </p>
+              </div>
+              <!-- end of card bottom -->
+            </div>
+            <!-- end of card -->
+          </div>
+          <!-- end of badge reference -->
 
-				</div> <!-- end of card top -->
-				<div class="cardBottom">
-					<div class="portfolioImage">
-						<img class="reduceContrast" id="portfolioImage" src="./media/react-pixel-character-editor.png">
-					</div>
-					<p class="reference">
-						<span><a href="https://github.com/Visible-Radio/react-pixel-character-editor">Github</a></span>
-						<span><a href="https://visible-radio.github.io/react-pixel-character-editor/">See it Live</a></span>
-					</p>
-				</div>	<!-- end of card bottom -->
-			</div> <!-- end of card -->
-		</div> <!-- end of badge reference -->
+          <div class="badgeReference lg">
+            <div class="badge"><p>100% Original</p></div>
+            <div class="projectCard lg">
+              <div class="cardTop">
+                <h3 class="projectName">Canvas Destroyer</h3>
+                <p class="description">
+                  A refactored, more performant implementation of Image
+                  Destroyer using canvas elements. Capable of rendering text
+                  from strings and embedding a 'secret' image in another image.
+                </p>
+                <p class="longText">
+                  There is a famous 16th century oil painting by Hans Holbein
+                  called <em>The Ambassadors</em>. It contains an unusual
+                  element - an anamorphic skull. When viewed straight on, this
+                  skull is illegible. It looks like an oblique stain across the
+                  painting's surface. When viewed from the correct angle
+                  however, the skull can be seen.  Similarly, Canvas Destroyer
+                  creates a pixel array which renders different images depending
+                  on the width of the area that the data is mapped into.
+                </p>
+                <p class="tech">
+                  <span>Vanilla JS</span>
+                  <span>HTML</span>
+                  <span>CSS</span>
+                </p>
+              </div>
+              <!-- end of card top -->
+              <div class="cardBottom">
+                <div class="portfolioImage">
+                  <img id="portfolioImage" src="./media/canvas-destroyer.png" />
+                </div>
+                <p class="reference">
+                  <span
+                    ><a
+                      href="https://github.com/Visible-Radio/CanvasDestroyer/tree/responsiveCSS"
+                      >Github</a
+                    ></span
+                  >
+                  <span><a href="#destinationCanvas">See it Live</a></span>
+                </p>
+              </div>
+              <!-- end of card bottom -->
+            </div>
+            <!-- end of card -->
+          </div>
+          <!-- end of badge reference -->
 
-		<div class="badgeReference lg">
-			<div class="badge"><p>100% Original</p></div>
-			<div class="projectCard lg">
-				<div class="cardTop">
-					<h3 class="projectName">Image Destroyer</h3>
-					<p class="description">An experiment in direct pixel manipulation of images pulled from a NASA image API.  Image destroyer renders images on a grid of div elements, and can draw text of arbitrary length to the display.
-					</p>
-					<p class="longText">
-						When I took CS50 in 2020, I was fascinated by a series of projects related to iterating through information that represented images. My background in photography probably accounts for this fascination. Looping through image data made me feel close to the material of the image itself in a way that was familiar from my days spent in the darkroom and in photoshop. I wanted to continue to explore image manipulation using javascript.
-					</p>
-					<p class="tech">
-						<span>Vanilla JS</span>
-						<span>HTML</span>
-						<span>CSS</span>
-					</p>
-				</div> <!-- end of card top -->
-				<div class="cardBottom">
-					<div class="portfolioImage">
-						<img id="portfolioImage" src="./media/image-destroyer.png">
-					</div>
-					<p class="reference">
-						<span><a href="https://github.com/Visible-Radio/ImageDestroyer/tree/responsive">Github</a></span>
-						<span><a href="https://visible-radio.github.io/ImageDestroyer/">See it Live</a></span>
-					</p>
-				</div>	<!-- end of card bottom -->
-			</div> <!-- end of card -->
-		</div> <!-- end of badge reference -->
+          <div class="badgeReference lg">
+            <div class="badge"><p>100% Original</p></div>
+            <div class="projectCard lg">
+              <div class="cardTop">
+                <h3 class="projectName">High Voltage Analog</h3>
+                <p class="description">
+                  HVA takes a string of arbitrary length and renders it on a
+                  grid of 14 segment displays. The display can be customized by
+                  adding or removing 14 segment modules.
+                </p>
+                <p class="longText">
+                  This is the evolution of one of the first things I built with
+                  javascript. I love archaic technology and analog electronics.
+                  It was a fun exercise in manual DOM manipulation and CSS
+                  styling.
+                </p>
+                <p class="tech">
+                  <span>Vanilla JS</span>
+                  <span>HTML</span>
+                  <span>CSS</span>
+                </p>
+              </div>
+              <!-- end of card top -->
+              <div class="cardBottom">
+                <div class="portfolioImage">
+                  <img id="portfolioImage" src="./media/hva.png" />
+                </div>
+                <p class="reference">
+                  <span
+                    ><a
+                      href="https://github.com/Visible-Radio/HighVoltageAnalog/tree/updates"
+                      >Github</a
+                    ></span
+                  >
+                  <span
+                    ><a
+                      href="https://visible-radio.github.io/HighVoltageAnalog/"
+                      >See it Live</a
+                    ></span
+                  >
+                </p>
+              </div>
+              <!-- end of card bottom -->
+            </div>
+            <!-- end of card -->
+          </div>
+          <!-- end of badge reference -->
 
-		<div class="badgeReference lg">
-			<div class="badge"><p>100% Original</p></div>
-			<div class="projectCard lg">
-				<div class="cardTop">
-					<h3 class="projectName">Canvas Destroyer</h3>
-					<p class="description">A refactored, more performant implementation of Image Destroyer using canvas elements. Capable of rendering text from strings and embedding a 'secret' image in another image.
-					</p>
-					<p class="longText">
-						There is a famous 16th century oil painting by Hans Holbein called <em>The Ambassadors</em>. It contains an unusual element - an anamorphic skull. When viewed straight on, this skull is illegible. It looks like an oblique stain across the painting's surface. When viewed from the correct angle however, the skull can be seen.  Similarly, Canvas Destroyer creates a pixel array which renders different images depending on the width of the area that the data is mapped into.
-					</p>
-					<p class="tech">
-						<span>Vanilla JS</span>
-						<span>HTML</span>
-						<span>CSS</span>
-					</p>
-				</div> <!-- end of card top -->
-				<div class="cardBottom">
-					<div class="portfolioImage">
-						<img id="portfolioImage" src="./media/canvas-destroyer.png">
-					</div>
-					<p class="reference">
-						<span><a href="https://github.com/Visible-Radio/CanvasDestroyer/tree/responsiveCSS">Github</a></span>
-						<span><a href="#destinationCanvas">See it Live</a></span>
-					</p>
-				</div>	<!-- end of card bottom -->
-			</div> <!-- end of card -->
-		</div> <!-- end of badge reference -->
+          <div class="badgeReference lg">
+            <div class="badge"><p>Code Along</p></div>
+            <div class="projectCard lg">
+              <div class="cardTop">
+                <h3 class="projectName">Smart Brain</h3>
+                <p class="description">
+                  The fullstack final project in the Zero to Mastery Complete
+                  Web Developer course.
+                </p>
+                <p class="longText">
+                  When given the URL to an image, Smart Brain connects to an
+                  image recognition API which returns coordinates for faces in
+                  the image. It uses a relational database to store user
+                  information and securely hashes login credentials.
+                </p>
+                <p class="tech">
+                  <span>React</span>
+                  <span>Node</span>
+                  <span>Express.js</span>
+                  <span>Bcrypt</span>
+                  <span>Knex.js</span>
+                  <span>Postgres</span>
+                </p>
+              </div>
+              <!-- end of card top -->
+              <div class="cardBottom">
+                <div class="portfolioImage">
+                  <img
+                    class="reduceContrast"
+                    id="portfolioImage"
+                    src="./media/smart-brain.png"
+                  />
+                </div>
+                <p class="reference">
+                  <span
+                    ><a href="https://github.com/Visible-Radio/smart-brain"
+                      >Github</a
+                    ></span
+                  >
+                  <span
+                    ><a href="https://ztm-smart-brain-fe.herokuapp.com/"
+                      >See it Live</a
+                    ></span
+                  >
+                  <!-- <spa><a href="https://github.com/Visible-Radio/smart-brain-api">Github BE</a></span> -->
+                </p>
+              </div>
+              <!-- end of card bottom -->
+            </div>
+            <!-- end of card -->
+          </div>
+          <!-- end of badge reference -->
 
-		<div class="badgeReference lg">
-			<div class="badge"><p>100% Original</p></div>
-			<div class="projectCard lg">
-				<div class="cardTop">
-				<h3 class="projectName">High Voltage Analog</h3>
-					<p class="description">HVA takes a string of arbitrary length and renders it on a grid of 14 segment displays.  The display can be customized by adding or removing 14 segment modules.
-					</p>
-					<p class="longText">
-						This is the evolution of one of the first things I built with javascript. I love archaic technology and analog electronics. It was a fun exercise in manual DOM manipulation and CSS styling.
-					</p>
-					<p class="tech">
-						<span>Vanilla JS</span>
-						<span>HTML</span>
-						<span>CSS</span>
-					</p>
-				</div> <!-- end of card top -->
-				<div class="cardBottom">
-					<div class="portfolioImage">
-						<img id="portfolioImage" src="./media/hva.png">
-					</div>
-					<p class="reference">
-						<span><a href="https://github.com/Visible-Radio/HighVoltageAnalog/tree/updates">Github</a></span>
-						<span><a href="https://visible-radio.github.io/HighVoltageAnalog/">See it Live</a></span>
-					</p>
-				</div>	<!-- end of card bottom -->
-			</div> <!-- end of card -->
-		</div> <!-- end of badge reference -->
+          <div class="badgeReference lg">
+            <div class="badge"><p>Code Along / Kit</p></div>
+            <div class="projectCard lg">
+              <div class="cardTop">
+                <h3 class="projectName">
+                  Ben Eater's 8-Bit Breadboard Computer
+                </h3>
+                <p class="description">
+                  A programmable computer built on breadboards out of
+                  rudimentary TTL integrated circuits. It has 16
+                  <em>BYTES</em> of RAM for programs and data.
+                </p>
+                <p class="longText">
+                  This was my bridge between an interest in electronics and
+                  exposure to programmable logic controllers in the electrical
+                  trade on the one hand, and programming on the other. This kit
+                  gave me so much insight into how computers work at the
+                  hardware level. Building this literally entails defining the
+                  bit patterns (ie <em>instructions</em>!!) that the machine
+                  responds to.
+                </p>
+                <p class="tech">
+                  <span>Assembly</span>
+                  <span>Adruino</span>
+                  <span>Electronics</span>
+                  <span>C++</span>
+                </p>
+              </div>
+              <!-- end of card top -->
+              <div class="cardBottom">
+                <div class="portfolioImage">
+                  <img
+                    class="reduceContrast"
+                    id="portfolioImage"
+                    src="./media/SAP-1.png"
+                  />
+                </div>
+                <p class="reference">
+                  <span
+                    ><a href="https://youtu.be/zZT7HTNLUvs"
+                      >My Build on Youtube</a
+                    ></span
+                  >
+                  <span><a href="https://eater.net/8bit">Ben Eater</a></span>
+                </p>
+              </div>
+              <!-- end of card bottom -->
+            </div>
+            <!-- end of card -->
+          </div>
+          <!-- end of badge reference -->
+        </section>
 
-		<div class="badgeReference lg">
-			<div class="badge"><p>Code Along</p></div>
-			<div class="projectCard lg">
-				<div class="cardTop">
-				<h3 class="projectName">Smart Brain</h3>
-					<p class="description">The fullstack final project in the Zero to Mastery Complete Web Developer course.
-					</p>
-					<p class="longText">
-						When given the URL to an image, Smart Brain connects to an image recognition API which returns coordinates for faces in the image.  It uses a relational database to store user information and securely hashes login credentials.
-					</p>
-					<p class="tech">
-						<span>React</span>
-						<span>Node</span>
-						<span>Express.js</span>
-						<span>Bcrypt</span>
-						<span>Knex.js</span>
-						<span>Postgres</span>
-					</p>
-				</div> <!-- end of card top -->
-				<div class="cardBottom">
-					<div class="portfolioImage">
-						<img class="reduceContrast" id="portfolioImage" src="./media/smart-brain.png">
-					</div>
-					<p class="reference">
-						<span><a href="https://github.com/Visible-Radio/smart-brain">Github</a></span>
-						<span><a href="https://ztm-smart-brain-fe.herokuapp.com/">See it Live</a></span>
-						<!-- <spa><a href="https://github.com/Visible-Radio/smart-brain-api">Github BE</a></span> -->
-					</p>
-				</div>	<!-- end of card bottom -->
-			</div> <!-- end of card -->
-		</div> <!-- end of badge reference -->
+        <section id="about" class="about">
+          <div class="aboutImage">
+            <img id="headshot" src="./interlaceMe.png" />
+          </div>
+          <div class="aboutText">
+            <div class="aboutCanvas">
+              <canvas id="aboutCanvas">About Me</canvas>
+            </div>
+            <p>
+              Hello, I'm Patrick! I'm a web developer with a background in
+              Visual Art.  I earned an MFA from Western University where I later
+              taught courses in traditional darkroom photography. I am also a
+              licensed electrician in the province of Ontario. The common thread
+              is that I love making things!
+            </p>
+          </div>
+          <section class="contact">
+            <div class="contactItem skills">
+              <h2 class="subhead">Skills</h2>
+              <ul>
+                <li>Wed Development</li>
+                <li>Javascript</li>
+                <li>React</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>Node</li>
+              </ul>
+            </div>
+            <div class="contactItem interests">
+              <h2 class="subhead">Interests</h2>
+              <ul>
+                <li>Front End</li>
+                <li>Back End</li>
+                <li>Computer Science</li>
+                <li>Arduino</li>
+                <li>Retro electronics</li>
+                <li>Dwarf Conifers</li>
+              </ul>
+            </div>
+            <div class="contactItem status">
+              <h2 class="subhead">Status</h2>
+              <p>Learning lots of things</p>
+            </div>
+          </section>
+        </section>
 
-		<div class="badgeReference lg">
-			<div class="badge"><p>Code Along / Kit</p></div>
-			<div class="projectCard lg">
-					<div class="cardTop">
-					<h3 class="projectName">Ben Eater's 8-Bit Breadboard Computer</h3>
-						<p class="description">A programmable computer built on breadboards out of rudimentary TTL integrated circuits.  It has 16 <em>BYTES</em> of RAM for programs and data.
-						</p>
-						<p class="longText">
-							This was my bridge between an interest in electronics and exposure to programmable logic controllers in the electrical trade on the one hand, and programming on the other. This kit gave me so much insight into how computers work at the hardware level. Building this literally entails defining the bit patterns (ie <em>instructions</em>!!) that the machine responds to.
-						</p>
-						<p class="tech">
-							<span>Assembly</span>
-							<span>Adruino</span>
-							<span>Electronics</span>
-							<span>C++</span>
-						</p>
-					</div> <!-- end of card top -->
-					<div class="cardBottom">
-						<div class="portfolioImage">
-							<img class="reduceContrast" id="portfolioImage" src="./media/SAP-1.png">
-						</div>
-						<p class="reference">
-							<span><a href="https://youtu.be/zZT7HTNLUvs">My Build on Youtube</a></span>
-							<span><a href="https://eater.net/8bit">Ben Eater</a></span>
-						</p>
-					</div>	<!-- end of card bottom -->
-				</div> <!-- end of card -->
-		</div> <!-- end of badge reference -->
-
-	</section>
-
-	<section id="about" class="about">
-			<div class="aboutImage">
-				<img id="headshot" src="./interlaceMe.png">
-			</div>
-		<div class="aboutText">
-			<div class="aboutCanvas">
-				<canvas id="aboutCanvas">About Me</canvas>
-			</div>
-			<p>Hello, I'm Patrick! I'm a web developer with a background in Visual Art.  I earned an MFA from Western University where I later taught courses in traditional darkroom photography. I am also a licensed electrician in the province of Ontario. The common thread is that I love making things!</p>
-		</div>
-		<section class="contact">
-			<div class="contactItem skills">
-				<h2 class="subhead">Skills</h2>
-				<ul>
-					<li>Wed Development</li>
-					<li>Javascript</li>
-					<li>React</li>
-					<li>HTML</li>
-					<li>CSS</li>
-					<li>Node</li>
-				</ul>
-			</div>
-			<div class="contactItem interests">
-				<h2 class="subhead">Interests</h2>
-				<ul>
-					<li>Front End</li>
-					<li>Back End</li>
-					<li>Computer Science</li>
-					<li>Arduino</li>
-					<li>Retro electronics</li>
-					<li>Dwarf Conifers</li>
-				</ul>
-			</div>
-			<div class="contactItem status">
-				<h2 class="subhead">Status</h2>
-				<p>Learning lots of things</p>
-			</div>
-		</section>
-	</section>
-
-<footer id="contact">
-	<div class="footerContainer">
-		<div class="footerLeft">
-			<a href="mailto:patrick.kaipainen@gmail.com">Email</a>
-			<a href="https://github.com/Visible-Radio">Github</a>
-			<a href="https://www.linkedin.com/in/patrick-kaipainen-02745a58/">LinkedIn</a>
-			<a href="https://www.youtube.com/channel/UC4399H6TkQnNXYP5uThOI4w">YouTube</a>
-			<a href="https://twitter.com/P_Kaipainen">Twitter</a>
-			<a href="https://visible-radio.github.io/HTML-resume/">Resume</a>
-		</div>
-	</div>
-	<div class="footerRight">
-		<p>© Patrick Kaipainen 2021.</p>
-	</div>
-</footer>
-</div> <!-- end of torso -->
-	<script type="text/javascript" src="canvasDestroyer.js"></script>
-	<script type="module" src="renderFunction.js"></script>
-	<script type="module" src="cardExpand.js"></script>
-
-</div> <!-- siteWrapper -->
-</body>
+        <footer id="contact">
+          <div class="footerContainer">
+            <div class="footerLeft">
+              <a href="mailto:patrick.kaipainen@gmail.com">Email</a>
+              <a href="https://github.com/Visible-Radio">Github</a>
+              <a href="https://www.linkedin.com/in/patrick-kaipainen-02745a58/"
+                >LinkedIn</a
+              >
+              <a href="https://www.youtube.com/channel/UC4399H6TkQnNXYP5uThOI4w"
+                >YouTube</a
+              >
+              <a href="https://twitter.com/P_Kaipainen">Twitter</a>
+              <a href="https://visible-radio.github.io/HTML-resume/">Resume</a>
+            </div>
+          </div>
+          <div class="footerRight">
+            <p>© Patrick Kaipainen 2021.</p>
+          </div>
+        </footer>
+      </div>
+      <!-- end of torso -->
+      <script type="text/javascript" src="canvasDestroyer.js"></script>
+      <script type="module" src="renderFunction.js"></script>
+      <script type="module" src="cardExpand.js"></script>
+    </div>
+    <!-- siteWrapper -->
+  </body>
 </html>
